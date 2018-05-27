@@ -1,0 +1,15 @@
+// Colors
+
+$cod-gray      : #1C1C1C;
+$cerulean      : #10A3D5;
+
+$color--navbar: $cod-gray;
+
+$color--btn--portfolio: $cerulean;
+
+$breakpoints: (
+  "xs": 575px,
+  "sm": 576px,
+  "med": 768px,
+  "lg": 992px,
+);

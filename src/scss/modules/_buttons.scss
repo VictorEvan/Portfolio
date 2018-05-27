@@ -1,0 +1,19 @@
+%base-btn {
+  padding: 11px 25px;
+  font-size: .875rem;
+  border-radius: 4px;
+  color: white;
+  text-transform: uppercase;
+}
+
+.btn {
+  @extend %base-btn;
+  &:hover {
+    cursor: pointer;
+  }
+  &--portfolio {
+    @extend .btn;
+    background-color: $cerulean;
+  }
+}
+

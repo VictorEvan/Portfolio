@@ -1,0 +1,16 @@
+.navbar--active {
+  @extend .navbar;
+  display: block;
+  &::before {
+    display: block;
+  }
+}
+
+[aria-hidden="false"] {
+  .navbar__links {
+    transform: initial;
+  }
+  &::before {
+    opacity: 1;
+  }
+}

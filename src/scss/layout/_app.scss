@@ -1,0 +1,14 @@
+.app {
+  display: flex;
+  flex-direction: column;
+  header, footer {
+    height: 8vh;
+  }
+  section {
+    height: 92vh;
+  }
+  section:nth-of-type(1) {
+    margin-top: 8vh;
+    padding-bottom: 8vh;
+  }
+}

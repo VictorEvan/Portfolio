@@ -1,0 +1,31 @@
+.intro {
+  background-image: url(../images/intro-background.jpg);
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  * {
+    text-align: center;
+  }
+}
+
+.title {
+  font-size: 2.2rem;
+  font-weight: 300;
+  max-width: 50%;
+}
+
+.description {
+  font-weight: 300;
+  font-size: 1.5rem;
+  max-width: 60%;
+  margin: 2em 0 0 0;
+}
+
+.talents {
+  font-weight: 400;
+  font-size: 1.5rem;
+  color: red;
+  margin-bottom: 2em;
+}

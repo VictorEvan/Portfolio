@@ -1,0 +1,77 @@
+header {
+  position: fixed;
+  width: 100%;
+  background-color: $color--navbar;
+  background: rgba(0,0,0,.85);
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .hamburger, .logo {
+    margin: 0 1em;
+  }
+  @include mq('med') {
+    .hamburger {
+      display: none;
+    }
+    .navbar {
+      height: 100%;
+      .navbar__links {
+        height: 100%;
+        display: flex;
+        align-items: center;
+      }
+      #mobile-only {
+        display: none;
+      }
+    }
+  }
+}
+
+@media (max-width: map-get($breakpoints, 'med') - 1px) {
+  .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: auto;
+    z-index: 1;
+    display: none;
+  }
+  .navbar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+    transition: opacity 0.30s ease-in-out;
+    background-color: rgba(0,0,0,0.7);
+    display: none;
+  }
+  .navbar__links {
+    transform: translateX(-100%);
+    transition: transform 0.30s ease-in-out;
+    background-color: black;
+    height: 100%;
+    width: 80%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    z-index: 10;
+    margin: 0;
+    li {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    #mobile-only {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+    }
+  }
+}

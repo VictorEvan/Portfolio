@@ -1,0 +1,28 @@
+%line {
+  width: 100%;
+  position: absolute;
+  height: 2px;
+  background-color: white;
+  left: 0;
+}
+
+.hamburger {
+  width: 20px;
+  height: 45%;
+  position: relative;
+  .line--top {
+    @extend %line;
+    top: 25%;
+  }
+  .line--middle {
+    @extend %line;
+    top: 50%;
+  }
+  .line--bottom {
+    top: 75%;
+    @extend %line;
+  }
+  &:hover {
+    cursor: pointer;
+  }
+}

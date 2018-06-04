@@ -2,10 +2,13 @@
 
 $cod-gray      : #1C1C1C;
 $cerulean      : #10A3D5;
+$white         : #FFFFFF;
 
-$color--navbar: $cod-gray;
+$color--nav: $cod-gray;
+$color--cursor: $white;
 
 $color--btn--portfolio: $cerulean;
+$color--nav__inner__title: $cerulean;
 
 $breakpoints: (
   "xs": 575px,

@@ -1,5 +1,5 @@
-.navbar--active {
-  @extend .navbar;
+.nav--active {
+  @extend .nav;
   display: block;
   &::before {
     display: block;
@@ -7,7 +7,7 @@
 }
 
 [aria-hidden="false"] {
-  .navbar__links {
+  .nav__inner {
     transform: initial;
   }
   &::before {

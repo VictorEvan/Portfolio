@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom'; 
 import PropTypes from 'prop-types';
 
 import Hamburger from './Hamburger';
@@ -11,32 +12,34 @@ const Header = props => {
       />
       <div className="logo">logo</div>
       <nav 
-        className={props.isOpen ? "navbar--active" : "navbar"}
+        className={props.isOpen ? "nav--active" : "nav"}
         aria-hidden={props.isHidden}
         onClick={() => props.closeSideNav()}
       >
-        <ul 
-          className="navbar__links"
+        <div 
+          className="nav__inner"
           onClick={e => e.stopPropagation()}
         >
-          <li>
+          <div className="nav__inner__title mobile-only">
             Victor Evangelista
-          </li>
-          <li>
-            <a>Home</a>
-          </li>
-          <li>
-            <a>Projects</a>
-          </li>
-          <li>
-            <a>Contact</a>
-          </li>
-          <li id="mobile-only" className="navbar__links__social">
-            <div>L</div>
-            <div>G</div>
-            <div>C</div>
-          </li>
-        </ul>
+          </div>
+          <ul className="nav__inner__links">
+            <li>
+              <NavLink exact to="/">Home</NavLink>
+            </li>
+            <li>
+              <NavLink to="/projects">Projects</NavLink>
+            </li>
+            <li>
+              <NavLink to="/contact">Contact</NavLink>
+            </li>
+          </ul>
+          <ul className="nav__inner__social mobile-only">
+            <li>L</li>
+            <li>G</li>
+            <li>C</li>
+          </ul>
+        </div>
       </nav>
     </header>
   )

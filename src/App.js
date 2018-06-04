@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-/* import { BrowserRouter, Route } from 'react-router-dom'; */
+import { BrowserRouter, Route } from 'react-router-dom'; 
 import './css/App.css';
 
 import Header from './components/Header';
 import Intro from './components/Intro';
+import Projects from './components/Projects';
 
 class App extends Component {
 
@@ -15,13 +16,13 @@ class App extends Component {
   handleHamburger = () => {
     if (!this.state.sideNavIsOpen) {
       this.setState({
-        sideNavIsOpen: !this.state.sideNavIsOpen
+        sideNavIsOpen: true
       });
-      setTimeout( () => this.setState({navIsHidden: !this.state.navIsHidden}),100);
+      setTimeout( () => this.setState({navIsHidden: false}),100);
     }
   }
 
-   handleCloseSideNav = () => {
+  handleCloseSideNav = () => {
     this.setState({
       navIsHidden: true
     });
@@ -30,17 +31,18 @@ class App extends Component {
 
   render() {
     return (
-      <div className="app">
-        <Header 
-          isOpen={this.state.sideNavIsOpen}
-          isHidden={this.state.navIsHidden}
-          toggleSideNav={this.handleHamburger}
-          closeSideNav={this.handleCloseSideNav}
-        />
-        <Intro />
-        <Intro />
-        <footer></footer>
-      </div>
+      <BrowserRouter>
+        <div className="app">
+          <Header 
+            isOpen={this.state.sideNavIsOpen}
+            isHidden={this.state.navIsHidden}
+            toggleSideNav={this.handleHamburger}
+            closeSideNav={this.handleCloseSideNav}
+          />
+          <Route exact path='/' component={Intro} />
+          <Route path='/projects' component={Projects} />
+        </div>
+      </BrowserRouter>
     );
   }
 }

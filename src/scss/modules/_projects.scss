@@ -1,0 +1,41 @@
+.projects {
+  height: 92vh;
+  width: 100%;
+  background-color: yellow;
+  display: flex;
+  flex-flow: row wrap;
+  &__project {
+    height: 50%;
+    width: 50%;
+    background: red;
+  }
+}
+
+$projects: (
+  'calculator',
+  'random-quote-machine',
+  'tic-tac-toe',
+  'pomodoro-clock'
+);
+
+@each $project in $projects {
+  $current-project: $project;
+  .#{$project} {
+    @if $project == 'random-quote-machine' {
+      background: url("../images/projects/#{$current-project}--mobile.jpg");
+    } @else {
+      background: url("../images/projects/#{$current-project}--mobile.png");
+    }
+    background-size: cover;
+    background-position: center;
+    @include mq('med') {
+      @if $project == 'random-quote-machine' {
+        background: url("../images/projects/#{$current-project}--desktop.jpg");
+      } @else {
+        background: url("../images/projects/#{$current-project}--desktop.png");
+      }
+      background-size: cover;
+      background-position: center;
+    }
+  }
+}

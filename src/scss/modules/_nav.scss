@@ -1,7 +1,80 @@
+// mobile
+
+.nav__inner {
+  height: 100%;
+}
+
+@media (max-width: map-get($breakpoints, 'med') - 1px) {
+  .nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: auto;
+    z-index: 1;
+    display: none;
+  }
+  .nav::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+    transition: opacity 0.30s ease-in-out;
+    background-color: rgba(0,0,0,0.7);
+    display: none;
+  }
+  .nav__inner {
+    background: white;
+    transform: translateX(-100%);
+    transition: transform 0.30s ease-in-out;
+    width: 80%;
+    margin: 0;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    z-index: 10;
+    .mobile-only {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+    }
+    &__title {
+      background-color: $color--nav__inner--title;
+      height: 20%;
+    }
+    &__links {
+      background: white;
+      height: 40%;
+      display: flex;
+      flex-direction: column;
+      li {
+        display: flex;
+        flex: 1;
+        align-items: center;
+        a {
+          padding-left: 1rem;
+          flex: 1;
+        }
+      }
+    }
+    &__social {
+      border-top: 1px solid gray;
+      background: white;
+      color: gray;
+      height: 20%;
+    }
+  }
+}
+
 header {
+  z-index: 1000;
   position: fixed;
   width: 100%;
-  background-color: $color--navbar;
+  background-color: $color--nav;
   background: rgba(0,0,0,.85);
   color: white;
   display: flex;
@@ -14,64 +87,26 @@ header {
     .hamburger {
       display: none;
     }
-    .navbar {
+    .nav {
       height: 100%;
-      .navbar__links {
+      .nav__inner__links {
+        margin-right: 1em;
         height: 100%;
         display: flex;
         align-items: center;
+        li {
+          padding-left: 1rem;
+          a {
+            color: white;
+          }
+          .active {
+            color: orange;
+          }
+        }
       }
-      #mobile-only {
+      .mobile-only {
         display: none;
       }
-    }
-  }
-}
-
-@media (max-width: map-get($breakpoints, 'med') - 1px) {
-  .navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    overflow: auto;
-    z-index: 1;
-    display: none;
-  }
-  .navbar::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    opacity: 0;
-    transition: opacity 0.30s ease-in-out;
-    background-color: rgba(0,0,0,0.7);
-    display: none;
-  }
-  .navbar__links {
-    transform: translateX(-100%);
-    transition: transform 0.30s ease-in-out;
-    background-color: black;
-    height: 100%;
-    width: 80%;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    z-index: 10;
-    margin: 0;
-    li {
-      flex: 1;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    #mobile-only {
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
     }
   }
 }

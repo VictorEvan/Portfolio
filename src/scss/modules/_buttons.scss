@@ -1,12 +1,14 @@
 %base-btn {
-  padding: 11px 25px;
-  font-size: .875rem;
+  padding: 1rem 2rem;
+  font-size: 1rem;
   border-radius: 4px;
   color: white;
   text-transform: uppercase;
+  z-index: 100;
 }
 
 .btn {
+  text-decoration: none;
   @extend %base-btn;
   &:hover {
     cursor: pointer;

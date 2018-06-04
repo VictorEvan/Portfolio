@@ -1,0 +1,59 @@
+.text-cursor {
+  font-weight: 100;
+  font-size: 30px;
+  color: $color--cursor;
+}
+
+.text-cursor--active {
+  @extend .text-cursor;
+  -webkit-animation: .75s blink step-end infinite;
+  -moz-animation: .75s blink step-end infinite;
+  -ms-animation: .75s blink step-end infinite;
+  -o-animation: .75s blink step-end infinite;
+  animation: .75s blink step-end infinite;
+}
+
+@keyframes blink {
+  from, to {
+    color: $color--cursor;
+  }
+  50% {
+    color: transparent;
+  }
+}
+
+@-moz-keyframes blink {
+  from, to {
+    color: $color--cursor;
+  }
+  50% {
+    color: transparent;
+  }
+}
+
+@-webkit-keyframes blink {
+  from, to {
+    color: $color--cursor;
+  }
+  50% {
+    color: transparent;
+  }
+}
+
+@-ms-keyframes blink {
+  from, to {
+    color: $color--cursor;
+  }
+  50% {
+    color: transparent;
+  }
+}
+
+@-o-keyframes blink {
+  from, to {
+    color: $color--cursor;
+  }
+  50% {
+    color: transparent;
+  }
+}

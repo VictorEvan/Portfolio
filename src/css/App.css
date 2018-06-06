@@ -515,7 +515,6 @@ header {
 .projects {
   height: 92vh;
   width: 100%;
-  background-color: yellow;
   display: flex;
   flex-flow: row wrap; }
   .projects__project {

@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom'; 
+import {
+  TransitionGroup,
+  CSSTransition
+ } from 'react-transition-group';
 import './css/App.css';
 
 import Header from './components/Header';

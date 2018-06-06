@@ -13,22 +13,21 @@ function findScrollDirectionOtherBrowsers(e){
   }
 }
 
-
 class Intro extends Component {
 
   state = {
     output: '',
     isTyping: false,
-    pageIsActive: null
   }
 
+  pageIsActive = null;
   currentTalent = 0;
   currentLetter = 0;
 
   componentDidMount = () => {
     window.addEventListener('wheel',this.changeOnScroll);
     setTimeout(()=>this.typeWriter('type'),500);
-    this.setState({pageIsActive: true});
+    this.pageIsActive = true;
   }
 
   changeOnScroll = e => {
@@ -40,11 +39,11 @@ class Intro extends Component {
 
   componentWillUnmount = () => {
     window.removeEventListener('wheel',this.changeOnScroll);
-    this.setState({pageIsActive: false});
+    this.pageIsActive = false;
   }
 
   typeWriter = (action) => {
-    if (this.state.pageIsActive) {
+    if (this.pageIsActive) {
       if (action === 'type') {
         this.setState({isTyping: true});
         let i = this.currentLetter;
@@ -92,6 +91,6 @@ class Intro extends Component {
 Intro.defaultProps = {
   talents: ['React','Sass', 'Vanilla JS', 'ES6','Redux','OOJS & Functional JS', 'responsive design'],
   typingSpeed: 100
-}
+};
 
 export default withRouter(Intro);

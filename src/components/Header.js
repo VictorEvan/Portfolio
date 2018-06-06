@@ -25,13 +25,13 @@ const Header = props => {
           </div>
           <ul className="nav__inner__links">
             <li>
-              <NavLink exact to="/">Home</NavLink>
+              <NavLink exact to="/">HOME</NavLink>
             </li>
             <li>
-              <NavLink to="/projects">Projects</NavLink>
+              <NavLink to="/projects">PROJECTS</NavLink>
             </li>
             <li>
-              <NavLink to="/contact">Contact</NavLink>
+              <NavLink to="/contact">CONTACT</NavLink>
             </li>
           </ul>
           <ul className="nav__inner__social mobile-only">

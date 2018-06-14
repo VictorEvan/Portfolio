@@ -1,25 +1,23 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-import ProjectPicture from './ProjectPicture';
+import ProjectSquare from './ProjectSquare';
 
 const Projects = props => (
   <section className='projects'>
     {props.projects.map(output => (
-      <ProjectPicture 
-        project={output}
-        key={output}
+      <ProjectSquare 
+        project={output.title}
+        description={output.description}
+        codeLink={output.codeLink}
+        key={output.title}
       />
     ))}
   </section>
 )
 
-Projects.defaultProps = {
-  projects: [
-    'calculator',
-    'random-quote-machine',
-    'tic-tac-toe',
-    'pomodoro-clock'
-  ]
+Projects.propTypes = {
+  projects: PropTypes.array.isRequired
 }
 
 export default Projects;

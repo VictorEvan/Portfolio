@@ -7,31 +7,62 @@
     height: 50%;
     width: 50%;
     background: red;
+    position: relative;
+    &--overlay {
+      background: rgba(0,0,0,0.5);
+      color: white;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      & > h2,
+      & > p {
+        padding-bottom: 1rem;
+      }
+      h2 {
+        text-align: center;
+      }
+      .button-container {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        max-width: 100%;
+        .btn--project {
+          width: 40%;
+        }
+      }
+    }
   }
 }
 
 $projects: (
-  'calculator',
-  'random-quote-machine',
-  'tic-tac-toe',
-  'pomodoro-clock'
+  'calculator': 'jpg',
+  'random-quote-machine': 'jpg',
+  'tic-tac-toe': 'jpg',
+  'pomodoro-clock': 'jpg'
 );
 
-@each $project in $projects {
+@each $project, $metadata in $projects {
   $current-project: $project;
-  .#{$project} {
-    @if $project == 'random-quote-machine' {
-      background: url("../images/projects/#{$current-project}--mobile.jpg");
+  .projects__project--#{$project} {
+    @extend .projects__project;
+    @if $project == 'pomodoro-clock' {
+      background: url("../images/projects/#{$current-project}.jpg");
     } @else {
-      background: url("../images/projects/#{$current-project}--mobile.png");
+      background: url("../images/projects/#{$current-project}--mobile.#{$metadata}");
     }
     background-size: cover;
     background-position: center;
     @include mq('med') {
-      @if $project == 'random-quote-machine' {
-        background: url("../images/projects/#{$current-project}--desktop.jpg");
+      @if $project == 'pomodoro-clock' {
+        background: url("../images/projects/#{$current-project}.jpg");
       } @else {
-        background: url("../images/projects/#{$current-project}--desktop.png");
+        background: url("../images/projects/#{$current-project}--desktop.#{$metadata}");
       }
       background-size: cover;
       background-position: center;

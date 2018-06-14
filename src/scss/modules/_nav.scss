@@ -98,6 +98,7 @@ header {
           padding-left: 1rem;
           a {
             color: white;
+            transition: color $base-animation-time;
           }
           .active {
             color: orange;

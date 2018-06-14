@@ -28,7 +28,7 @@ const Header = props => {
               <NavLink exact to="/">HOME</NavLink>
             </li>
             <li>
-              <NavLink to="/projects">PROJECTS</NavLink>
+              <NavLink to="/portfolio">PORTFOLIO</NavLink>
             </li>
             <li>
               <NavLink to="/contact">CONTACT</NavLink>

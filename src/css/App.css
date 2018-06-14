@@ -425,7 +425,8 @@ header {
         header .nav .nav__inner__links li, header .nav--active .nav__inner__links li {
           padding-left: 1rem; }
           header .nav .nav__inner__links li a, header .nav--active .nav__inner__links li a {
-            color: white; }
+            color: white;
+            transition: color 0.5s; }
           header .nav .nav__inner__links li .active, header .nav--active .nav__inner__links li .active {
             color: orange; }
       header .nav .mobile-only, header .nav--active .mobile-only {
@@ -497,19 +498,38 @@ header {
 .talents {
   z-index: 100; }
 
-.btn, .btn--portfolio {
+.btn, .btn--portfolio, .btn--project {
   padding: 1rem 2rem;
   font-size: 1rem;
   border-radius: 4px;
   color: white;
   text-transform: uppercase;
-  z-index: 100; }
+  z-index: 100;
+  text-decoration: none;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
 
-.btn, .btn--portfolio {
-  text-decoration: none; }
-  .btn:hover, .btn--portfolio:hover {
-    cursor: pointer; }
-  .btn--portfolio {
+.btn:hover, .btn--portfolio:hover, .btn--project:hover {
+  cursor: pointer; }
+.btn--portfolio {
+  background-color: #10A3D5; }
+  .btn--portfolio:hover {
+    color: #10A3D5;
+    background-color: white; }
+  .btn--portfolio:active {
+    color: white;
+    background-color: #10A3D5; }
+.btn--project {
+  max-width: 50%;
+  padding: .75rem 1.2rem;
+  background-color: #10A3D5; }
+  .btn--project:hover {
+    color: #10A3D5;
+    background-color: white; }
+  .btn--project:active {
+    color: white;
     background-color: #10A3D5; }
 
 .projects {
@@ -517,48 +537,72 @@ header {
   width: 100%;
   display: flex;
   flex-flow: row wrap; }
-  .projects__project {
+  .projects__project, .projects__project--calculator, .projects__project--random-quote-machine, .projects__project--tic-tac-toe, .projects__project--pomodoro-clock {
     height: 50%;
     width: 50%;
-    background: red; }
+    background: red;
+    position: relative; }
+    .projects__project--overlay {
+      background: rgba(0, 0, 0, 0.5);
+      color: white;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center; }
+      .projects__project--overlay > h2, .projects__project--overlay > p {
+        padding-bottom: 1rem; }
+      .projects__project--overlay h2 {
+        text-align: center; }
+      .projects__project--overlay .button-container {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        max-width: 100%; }
+        .projects__project--overlay .button-container .btn--project {
+          width: 40%; }
 
-.calculator {
-  background: url("../images/projects/calculator--mobile.png");
+.projects__project--calculator {
+  background: url("../images/projects/calculator--mobile.jpg");
   background-size: cover;
   background-position: center; }
   @media (min-width: 768px) {
-    .calculator {
-      background: url("../images/projects/calculator--desktop.png");
+    .projects__project--calculator {
+      background: url("../images/projects/calculator--desktop.jpg");
       background-size: cover;
       background-position: center; } }
 
-.random-quote-machine {
+.projects__project--random-quote-machine {
   background: url("../images/projects/random-quote-machine--mobile.jpg");
   background-size: cover;
   background-position: center; }
   @media (min-width: 768px) {
-    .random-quote-machine {
+    .projects__project--random-quote-machine {
       background: url("../images/projects/random-quote-machine--desktop.jpg");
       background-size: cover;
       background-position: center; } }
 
-.tic-tac-toe {
-  background: url("../images/projects/tic-tac-toe--mobile.png");
+.projects__project--tic-tac-toe {
+  background: url("../images/projects/tic-tac-toe--mobile.jpg");
   background-size: cover;
   background-position: center; }
   @media (min-width: 768px) {
-    .tic-tac-toe {
-      background: url("../images/projects/tic-tac-toe--desktop.png");
+    .projects__project--tic-tac-toe {
+      background: url("../images/projects/tic-tac-toe--desktop.jpg");
       background-size: cover;
       background-position: center; } }
 
-.pomodoro-clock {
-  background: url("../images/projects/pomodoro-clock--mobile.png");
+.projects__project--pomodoro-clock {
+  background: url("../images/projects/pomodoro-clock.jpg");
   background-size: cover;
   background-position: center; }
   @media (min-width: 768px) {
-    .pomodoro-clock {
-      background: url("../images/projects/pomodoro-clock--desktop.png");
+    .projects__project--pomodoro-clock {
+      background: url("../images/projects/pomodoro-clock.jpg");
       background-size: cover;
       background-position: center; } }
 

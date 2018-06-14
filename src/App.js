@@ -44,7 +44,8 @@ class App extends Component {
             closeSideNav={this.handleCloseSideNav}
           />
           <Route exact path='/' component={Intro} />
-          <Route path='/projects' component={Projects} />
+          <Route path='/portfolio' render={(props) => <Projects {...props} projects={this.props.projects} />}
+          />
         </div>
       </BrowserRouter>
     );
@@ -52,7 +53,32 @@ class App extends Component {
 }
 
 App.defaultProps = {
-  
+  projects: [
+    {
+      title: 'calculator',
+      description: 'simple calculator app',
+      codeLink: 'https://github.com/VictorEvan/Calculator',
+      projectLink: ''
+    },
+    {
+      title: 'random-quote-machine',
+      description: 'beautiful quote display',
+      codeLink: 'https://github.com/VictorEvan/Random-Quote-Machine',
+      projectLink: ''
+    },
+    {
+      title: 'tic-tac-toe',
+      description: 'one or two player game',
+      codeLink: 'https://github.com/VictorEvan/Tic-Tac-Toe',
+      projectLink: ''
+    },
+    {
+      title: 'pomodoro-clock',
+      description: 'useful app for productivity',
+      codeLink: 'https://github.com/VictorEvan/Pomodoro-Clock',
+      projectLink: ''
+    }
+  ]
 };
 
 export default App;

@@ -33,7 +33,7 @@ class Intro extends Component {
   changeOnScroll = e => {
     if (findScrollDirectionOtherBrowsers(e)) {
       window.removeEventListener('wheel',this.changeOnScroll);
-      this.props.history.push('/projects');
+      this.props.history.push('/portfolio');
     }
   }
 
@@ -82,14 +82,14 @@ class Intro extends Component {
         <h1 className="title">Victor Evangelista</h1>
         <p className="description">A Front End Engineer skilled with</p>
         <p className="talents">{this.state.output}<span className={this.state.isTyping ? 'text-cursor' : 'text-cursor--active'}>|</span><span className="dot">.</span></p>
-        <Link to='/projects' className="btn--portfolio">Browse Portfolio</Link>
+        <Link to='/portfolio' className="btn--portfolio">Browse Portfolio</Link>
       </section>
     );
   }
 };
 
 Intro.defaultProps = {
-  talents: ['React','Sass', 'Vanilla JS', 'ES6','Redux','OOJS & Functional JS', 'responsive design'],
+  talents: ['React','HTML/CSS/Sass', 'JavaScript', 'ES6','Redux','OOJS & Functional JS', 'responsive design'],
   typingSpeed: 100
 };
 

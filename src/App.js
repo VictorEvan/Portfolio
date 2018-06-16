@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route } from 'react-router-dom'; 
+import { BrowserRouter, Route, Switch } from 'react-router-dom'; 
 import {
   TransitionGroup,
   CSSTransition
@@ -8,7 +8,7 @@ import './css/App.css';
 
 import Header from './components/Header';
 import Intro from './components/Intro';
-import Projects from './components/Projects';
+import Portfolio from './components/Portfolio';
 
 class App extends Component {
 
@@ -36,17 +36,32 @@ class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        <div className="app">
-          <Header 
-            isOpen={this.state.sideNavIsOpen}
-            isHidden={this.state.navIsHidden}
-            toggleSideNav={this.handleHamburger}
-            closeSideNav={this.handleCloseSideNav}
-          />
-          <Route exact path='/' component={Intro} />
-          <Route path='/portfolio' render={(props) => <Projects {...props} projects={this.props.projects} />}
-          />
-        </div>
+        <Route render={({ location }) => (
+          <div className="app">
+            <Header 
+              isOpen={this.state.sideNavIsOpen}
+              isHidden={this.state.navIsHidden}
+              toggleSideNav={this.handleHamburger}
+              closeSideNav={this.handleCloseSideNav}
+            />
+            <TransitionGroup>
+              <CSSTransition 
+                key={location.key} 
+                classNames="slide" 
+                timeout={1500}
+                onEnter={() => document.body.style.overflow = "hidden"}
+                onExited={() => document.body.style.overflow = "auto"}
+              >
+                <Switch location={location}>
+                  <Route exact path="/" component={Intro} />
+                  <Route exact path="/portfolio" render={props =>
+                    <Portfolio {...props} projects={this.props.projects}/>
+                  } />
+                </Switch>
+              </CSSTransition>
+            </TransitionGroup>
+          </div>
+        )}/>
       </BrowserRouter>
     );
   }
@@ -55,28 +70,20 @@ class App extends Component {
 App.defaultProps = {
   projects: [
     {
+      title: 'tic-tac-toe',
+      description: 'Built with React and Redux, face off an unbeatable AI or play with a friend.'
+    },
+    {
       title: 'calculator',
-      description: 'simple calculator app',
-      codeLink: 'https://github.com/VictorEvan/Calculator',
-      projectLink: ''
+      description: 'A responsive calculator app built with React'
     },
     {
       title: 'random-quote-machine',
-      description: 'beautiful quote display',
-      codeLink: 'https://github.com/VictorEvan/Random-Quote-Machine',
-      projectLink: ''
-    },
-    {
-      title: 'tic-tac-toe',
-      description: 'one or two player game',
-      codeLink: 'https://github.com/VictorEvan/Tic-Tac-Toe',
-      projectLink: ''
+      description: 'View beautiful backgrounds along with inspirational quotes.'
     },
     {
       title: 'pomodoro-clock',
-      description: 'useful app for productivity',
-      codeLink: 'https://github.com/VictorEvan/Pomodoro-Clock',
-      projectLink: ''
+      description: 'Useful app for productivity built with React'
     }
   ]
 };

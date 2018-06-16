@@ -1,0 +1,49 @@
+.fade-enter,
+.fade-enter-active,
+.fade-enter-done {
+	opacity: 1;
+	transition: opacity $fade-animation-time ease-in;
+}
+
+.fade-exit,
+.fade-exit-active
+.fade-exit-done {
+	opacity: 0;
+	transition: opacity $fade-animation-time ease-in;
+}
+
+/* initial mounting */
+.fade-appear {
+	opacity: 0;
+}
+
+.fade-appear-active {
+	opacity: 1;
+	transition: opacity $fade-animation-time ease-in;
+}
+
+.slide-enter {
+	transform: translateY(100vh);
+	z-index: 500;
+}
+
+.slide-enter-active,
+.slide-enter-done {
+	z-index: 500;
+	transform: translateY(0);
+	transition: transform $slide-animation-time $bounce-animation-effect;
+}
+
+.slide-exit {
+	z-index: 250;
+	transform: translateY(-100vh);
+}
+
+.slide-exit-active {
+	transform: translateY(-200vh);
+	transition: transform $slide-animation-time $bounce-animation-effect;
+}
+
+.slide-exit-done {
+	transition: transform $base-animation-time $bounce-animation-effect;
+}

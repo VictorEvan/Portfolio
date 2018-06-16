@@ -98,7 +98,12 @@ header {
           padding-left: 1rem;
           a {
             color: white;
-            transition: color $base-animation-time;
+            opacity: 1;
+            transition: color $base-animation-time,
+                        opacity $base-animation-time;
+            &:hover {
+              opacity: 0.75;
+            }
           }
           .active {
             color: orange;

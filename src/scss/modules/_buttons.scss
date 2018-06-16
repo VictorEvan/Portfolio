@@ -14,6 +14,7 @@
 
 .btn {
   @extend %base-btn;
+  transition: color $base-animation-time, background $base-animation-time;
   &:hover {
     cursor: pointer;
   }

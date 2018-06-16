@@ -17,6 +17,10 @@ $breakpoints: (
   "lg": 992px,
 );
 
-// Animation Times
+// Animation Stuff
 
-$base-animation-time: .50s;
+$base-animation-time: .5s;
+$fade-animation-time: .5s;
+$slide-animation-time: 1.5s;
+
+$bounce-animation-effect: cubic-bezier(.79,-0.38,.22,1.54);

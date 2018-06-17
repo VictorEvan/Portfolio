@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { withRouter, Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
-function findScrollDirectionOtherBrowsers(e){
+function detectScrollDown(e){
   var delta;
   if (e.wheelDelta){
       delta = e.wheelDelta;
@@ -31,13 +32,15 @@ class Intro extends Component {
   }
 
   changeOnScroll = e => {
-    if (findScrollDirectionOtherBrowsers(e)) {
+    if (detectScrollDown(e)) {
       window.removeEventListener('wheel',this.changeOnScroll);
+      this.props.animationState(true);
       this.props.history.push('/portfolio');
     }
   }
 
   componentWillUnmount = () => {
+    this.props.animationState(false);
     window.removeEventListener('wheel',this.changeOnScroll);
     this.pageIsActive = false;
   }
@@ -82,15 +85,24 @@ class Intro extends Component {
         <h1 className="title">Victor Evangelista</h1>
         <p className="description">A Front End Engineer skilled with</p>
         <p className="talents">{this.state.output}<span className={this.state.isTyping ? 'text-cursor' : 'text-cursor--active'}>|</span><span className="dot">.</span></p>
-        <Link to='/portfolio' className="btn--portfolio">Browse Portfolio</Link>
+        <Link 
+          to={`/portfolio`} 
+          className={`btn--portfolio ${this.props.isAnimating || this.props.location.pathname === '/portfolio' ? 'disable' : ''}`}
+          onClick={() => this.props.animationState(true)}
+        >Browse Portfolio</Link>
       </section>
     );
   }
 };
 
 Intro.defaultProps = {
-  talents: ['React','HTML/CSS/Sass', 'JavaScript', 'ES6','Redux','OOJS & Functional JS', 'responsive design'],
+  talents: ['React/React-Redux','HTML/CSS3/SCSS', 'JavaScript ES5/ES6','Object Oriented & Functional JS', 'responsive design'],
   typingSpeed: 100
 };
+
+Intro.propTypes = {
+  isAnimating: PropTypes.bool,
+  animationState: PropTypes.func.isRequired,
+}
 
 export default withRouter(Intro);

@@ -1,3 +1,7 @@
+.disable {
+	pointer-events: none;
+}
+
 .fade-enter,
 .fade-enter-active,
 .fade-enter-done {
@@ -21,6 +25,8 @@
 	opacity: 1;
 	transition: opacity $fade-animation-time ease-in;
 }
+
+// Slide
 
 .slide-enter {
 	transform: translateY(100vh);

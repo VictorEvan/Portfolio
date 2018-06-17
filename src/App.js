@@ -14,8 +14,11 @@ class App extends Component {
 
   state = {
     sideNavIsOpen: false,
-    navIsHidden: true
+    navIsHidden: true,
+    pageIsAnimating: null
   }
+
+  handleAnimationState = status => this.setState({pageIsAnimating: status});
 
   handleHamburger = () => {
     if (!this.state.sideNavIsOpen) {
@@ -35,10 +38,12 @@ class App extends Component {
 
   render() {
     return (
-      <BrowserRouter>
+      <BrowserRouter basename={process.env.PUBLIC_URL}>
         <Route render={({ location }) => (
           <div className="app">
             <Header 
+              isAnimating={this.state.pageIsAnimating}
+              animationState={this.handleAnimationState}
               isOpen={this.state.sideNavIsOpen}
               isHidden={this.state.navIsHidden}
               toggleSideNav={this.handleHamburger}
@@ -53,9 +58,19 @@ class App extends Component {
                 onExited={() => document.body.style.overflow = "auto"}
               >
                 <Switch location={location}>
-                  <Route exact path="/" component={Intro} />
-                  <Route exact path="/portfolio" render={props =>
-                    <Portfolio {...props} projects={this.props.projects}/>
+                  <Route exact path={`/`} render={props => 
+                    <Intro 
+                      {...props} 
+                      isAnimating={this.state.pageIsAnimating}
+                      animationState={this.handleAnimationState} 
+                    />
+                  } />
+                  <Route exact path={`/portfolio`} render={props =>
+                    <Portfolio 
+                      {...props}
+                      animationState={this.handleAnimationState}
+                      projects={this.props.projects}
+                    />
                   } />
                 </Switch>
               </CSSTransition>

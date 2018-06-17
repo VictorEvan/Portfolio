@@ -1,11 +1,13 @@
 // Colors
 
-$cod-gray      : #1C1C1C;
-$cerulean      : #10A3D5;
-$white         : #FFFFFF;
+$cod-gray         : #1C1C1C;
+$black-opacity-50 : rgba(0,0,0,0.5);
+$cerulean         : #10A3D5;
+$white            : #FFFFFF;
 
-$color--nav: $cod-gray;
-$color--cursor: $white;
+$color--nav       : $cod-gray;
+$color--cursor    : $white;
+$color--black-dim : $black-opacity-50;
 
 $color--btn--portfolio: $cerulean;
 $color--nav__inner__title: $cerulean;

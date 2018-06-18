@@ -5,6 +5,10 @@ import ProjectSquare from './ProjectSquare';
 
 class Portfolio extends Component {
 
+  componentWillUnmount = () => {
+    this.props.animationState(false);
+  }
+
   render() {
     return (
       <section className='projects'>
@@ -21,6 +25,7 @@ class Portfolio extends Component {
 }
 
 Portfolio.propTypes = {
+  animationState: PropTypes.func.isRequired,
   projects: PropTypes.array.isRequired,
 }
 

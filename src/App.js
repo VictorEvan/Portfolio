@@ -22,11 +22,7 @@ class App extends Component {
 
   handleFullPageChange = bool => this.setState({fullPage: bool});
 
-  handleAnimationState = status => {
-    let overflow = document.body.style.overflow;
-    this.setState({pageIsAnimating: status});
-    status ? overflow = "hidden" : overflow = "auto";
-  }
+  handleAnimationState = status => this.setState({pageIsAnimating: status});
 
   handleHamburger = () => {
     if (!this.state.sideNavIsOpen) {
@@ -47,6 +43,7 @@ class App extends Component {
           <div className={`app ${this.state.fullPage ? 'fullpage' : ''}`}>
             <Header 
               isAnimating={this.state.pageIsAnimating}
+              animationState={this.handleAnimationState}
               isOpen={this.state.sideNavIsOpen}
               isHidden={this.state.navIsHidden}
               toggleSideNav={this.handleHamburger}
@@ -65,11 +62,13 @@ class App extends Component {
                     <Intro 
                       {...props} 
                       isAnimating={this.state.pageIsAnimating}
+                      animationState={this.handleAnimationState} 
                     />} 
                   />
                   <Route exact path={`/portfolio`} render={props =>
                     <Portfolio 
                       {...props}
+                      animationState={this.handleAnimationState}
                       projects={this.props.projects}
                     />} 
                   />

@@ -34,11 +34,13 @@ class Intro extends Component {
   changeOnScroll = e => {
     if (detectScrollDown(e)) {
       window.removeEventListener('wheel',this.changeOnScroll);
+      this.props.animationState(true);
       this.props.history.push('/portfolio');
     }
   }
 
   componentWillUnmount = () => {
+    this.props.animationState(false);
     window.removeEventListener('wheel',this.changeOnScroll);
     this.pageIsActive = false;
   }
@@ -98,7 +100,8 @@ Intro.defaultProps = {
 };
 
 Intro.propTypes = {
-  isAnimating: PropTypes.bool
+  isAnimating: PropTypes.bool,
+  animationState: PropTypes.func.isRequired,
 }
 
 export default withRouter(Intro);

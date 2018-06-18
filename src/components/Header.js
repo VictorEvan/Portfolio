@@ -31,6 +31,7 @@ const Header = props => {
                   'disable' : ''
                 }
                 exact to={`/`}
+                onClick={() => props.animationState(true)}
               >HOME</NavLink>
             </li>
             <li>
@@ -40,6 +41,7 @@ const Header = props => {
                   'disable' : ''
                 }
                 to={`/portfolio`}
+                onClick={() => props.animationState(true)}
               >PORTFOLIO</NavLink>
             </li>
             <li>
@@ -50,6 +52,7 @@ const Header = props => {
                 //   'disable' : ''
                 // }
                 to={`/contact`}
+                onClick={() => props.animationState(true)}
               >CONTACT</NavLink>
             </li>
           </ul>
@@ -66,6 +69,7 @@ const Header = props => {
 
 Header.propTypes = {
   isAnimating: PropTypes.bool,
+  animationState: PropTypes.func.isRequired,
   isOpen: PropTypes.bool.isRequired,
   isHidden: PropTypes.bool.isRequired,
   toggleSideNav: PropTypes.func.isRequired,

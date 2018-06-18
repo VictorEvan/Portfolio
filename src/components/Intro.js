@@ -86,7 +86,6 @@ class Intro extends Component {
         <Link 
           to={`/portfolio`} 
           className={`btn--portfolio ${this.props.isAnimating || this.props.location.pathname === '/portfolio' ? 'disable' : ''}`}
-          onClick={() => this.props.animationState(true)}
         >Browse Portfolio</Link>
       </section>
     );

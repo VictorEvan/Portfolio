@@ -1,0 +1,9 @@
+%case-study-default {
+  height: 630px;
+}
+
+.case-study {
+  &--tic-tac-toe {
+    @extend %case-study-default;
+  }
+}

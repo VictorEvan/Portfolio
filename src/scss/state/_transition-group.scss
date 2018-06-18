@@ -29,8 +29,8 @@
 // Slide
 
 .slide-enter {
-	transform: translateY(100vh);
 	z-index: 500;
+	transform: translateY(100vh);
 }
 
 .slide-enter-active,
@@ -42,11 +42,10 @@
 
 .slide-exit {
 	z-index: 250;
-	transform: translateY(-100vh);
 }
 
 .slide-exit-active {
-	transform: translateY(-200vh);
+	transform: translateY(-100vh);
 	transition: transform $slide-animation-time $bounce-animation-effect;
 }
 

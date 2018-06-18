@@ -1,6 +1,5 @@
 .projects {
-  height: 92vh;
-  width: 100%;
+  @extend %absolute-fill;
   display: flex;
   flex-flow: row wrap;
   &__project {

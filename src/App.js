@@ -14,26 +14,25 @@ import CaseStudy from './components/CaseStudy';
 class App extends Component {
 
   state = {
+    fullPage: true,
     sideNavIsOpen: false,
     navIsHidden: true,
     pageIsAnimating: null
   }
 
+  handleFullPageChange = bool => this.setState({fullPage: bool});
+
   handleAnimationState = status => this.setState({pageIsAnimating: status});
 
   handleHamburger = () => {
     if (!this.state.sideNavIsOpen) {
-      this.setState({
-        sideNavIsOpen: true
-      });
+      this.setState({sideNavIsOpen: true});
       setTimeout( () => this.setState({navIsHidden: false}),100);
     }
   }
 
   handleCloseSideNav = () => {
-    this.setState({
-      navIsHidden: true
-    });
+    this.setState({navIsHidden: true});
     setTimeout( () => this.setState({sideNavIsOpen: false}),300);
   }
 
@@ -41,7 +40,7 @@ class App extends Component {
     return (
       <BrowserRouter basename={process.env.PUBLIC_URL}>
         <Route render={({ location }) => (
-          <div className="app">
+          <div className={`app ${this.state.fullPage ? 'fullpage' : ''}`}>
             <Header 
               isAnimating={this.state.pageIsAnimating}
               animationState={this.handleAnimationState}
@@ -50,7 +49,7 @@ class App extends Component {
               toggleSideNav={this.handleHamburger}
               closeSideNav={this.handleCloseSideNav}
             />
-            <TransitionGroup>
+            <TransitionGroup component='div' className='container--section'>
               <CSSTransition 
                 key={location.key} 
                 classNames="slide" 
@@ -78,6 +77,7 @@ class App extends Component {
                       <CaseStudy
                         {...props}
                         project={project}
+                        changeFullPage={this.handleFullPageChange}
                       />}
                     />
                   ))}

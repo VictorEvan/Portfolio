@@ -72,8 +72,8 @@
 
 header {
   z-index: 1000;
-  position: fixed;
   width: 100%;
+  min-width: 50px;
   background-color: $color--nav;
   background: rgba(0,0,0,.85);
   color: white;

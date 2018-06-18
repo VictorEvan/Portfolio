@@ -298,12 +298,12 @@ template {
 
 html,
 body {
-  width: 100vw;
-  height: 100vh; }
+  width: 100%;
+  height: 100%; }
   html [react-js="root"],
   body [react-js="root"] {
-    width: 100vw;
-    height: 100vh; }
+    width: 100%;
+    height: 100%; }
 
 nav ul li {
   list-style: none; }
@@ -332,26 +332,32 @@ a {
   a:active {
     color: initial; }
 
-.projects__project--overlay {
+.intro, .intro--overlay, .projects, .projects__project--overlay {
   position: absolute;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0; }
 
-.projects__project--overlay {
+.intro, .projects__project--overlay {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center; }
 
 .app {
+  width: 100%;
   display: flex;
   flex-direction: column; }
   .app header {
-    height: 8vh; }
-  .app section {
-    margin-top: 8vh; }
+    height: 50px; }
+
+.app.fullpage {
+  height: 100%; }
+
+.container--section {
+  flex: 1;
+  position: relative; }
 
 .nav__inner {
   height: 100%; }
@@ -415,8 +421,8 @@ a {
       height: 20%; } }
 header {
   z-index: 1000;
-  position: fixed;
   width: 100%;
+  min-width: 50px;
   background-color: #1C1C1C;
   background: rgba(0, 0, 0, 0.85);
   color: white;
@@ -469,24 +475,15 @@ header {
     cursor: pointer; }
 
 .intro {
-  height: 92vh;
-  padding-bottom: 8vh;
+  height: 100%;
+  padding-bottom: 50px;
   color: white;
   background-image: url(../images/oregon-fog.jpg);
   background-size: cover;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   position: relative; }
   .intro * {
     text-align: center; }
   .intro--overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
     z-index: 5;
     background: rgba(0, 0, 0, 0.5); }
 
@@ -551,8 +548,6 @@ header {
       background-color: #10A3D5; }
 
 .projects {
-  height: 92vh;
-  width: 100%;
   display: flex;
   flex-flow: row wrap; }
   .projects__project, .projects__project--calculator, .projects__project--random-quote-machine, .projects__project--tic-tac-toe, .projects__project--pomodoro-clock {
@@ -657,6 +652,9 @@ header {
     color: #FFFFFF; }
   50% {
     color: transparent; } }
+.case-study--tic-tac-toe {
+  height: 630px; }
+
 .nav--active {
   display: block; }
   .nav--active::before {
@@ -691,8 +689,8 @@ header {
   transition: opacity 0.5s ease-in; }
 
 .slide-enter {
-  transform: translateY(100vh);
-  z-index: 500; }
+  z-index: 500;
+  transform: translateY(100vh); }
 
 .slide-enter-active,
 .slide-enter-done {
@@ -701,11 +699,10 @@ header {
   transition: transform 1.5s cubic-bezier(0.79, -0.38, 0.22, 1.54); }
 
 .slide-exit {
-  z-index: 250;
-  transform: translateY(-100vh); }
+  z-index: 250; }
 
 .slide-exit-active {
-  transform: translateY(-200vh);
+  transform: translateY(-100vh);
   transition: transform 1.5s cubic-bezier(0.79, -0.38, 0.22, 1.54); }
 
 .slide-exit-done {

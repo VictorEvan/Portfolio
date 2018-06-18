@@ -9,6 +9,7 @@ import './css/App.css';
 import Header from './components/Header';
 import Intro from './components/Intro';
 import Portfolio from './components/Portfolio';
+import CaseStudy from './components/CaseStudy';
 
 class App extends Component {
 
@@ -63,15 +64,23 @@ class App extends Component {
                       {...props} 
                       isAnimating={this.state.pageIsAnimating}
                       animationState={this.handleAnimationState} 
-                    />
-                  } />
+                    />} 
+                  />
                   <Route exact path={`/portfolio`} render={props =>
                     <Portfolio 
                       {...props}
                       animationState={this.handleAnimationState}
                       projects={this.props.projects}
+                    />} 
+                  />
+                  {this.props.projects.map( project => (
+                    <Route key={project.title} exact path={`/portfolio/${project.title}`} render={props =>
+                      <CaseStudy
+                        {...props}
+                        project={project}
+                      />}
                     />
-                  } />
+                  ))}
                 </Switch>
               </CSSTransition>
             </TransitionGroup>
@@ -86,19 +95,79 @@ App.defaultProps = {
   projects: [
     {
       title: 'tic-tac-toe',
-      description: 'Built with React and Redux, face off an unbeatable AI or play with a friend.'
+      description: 'Built with React and Redux, face off an unbeatable AI or play with a friend.',
+      noteworthySkills: [
+        {
+          skill: 'React',
+          purpose: 'Front End Framework used to create reusable Presentational Components'
+        },
+        {
+          skill: 'Redux',
+          purpose: 'Single source of truth for application state, including player and AI moves. Connected to Container Components'
+        },
+        {
+          skill: 'Sass',
+          purpose: 'Used preprocessor to create cleaner and more maintainable styles'
+        },
+        {
+          skill: 'React Lifecycle Methods',
+          purpose: ''
+        },
+      ]
     },
     {
       title: 'calculator',
-      description: 'A responsive calculator app built with React'
+      description: 'A responsive calculator app built with React',
+      noteworthySkills: [
+        {
+          skill: 'Dynamically Rendered React Components',
+          purpose: 'Calculator buttons are dynamically rendered from JavaScript data structures'
+        },
+        {
+          skill: 'CSS Grid',
+          purpose: 'Layout System used to create calculator button rows and columns'
+        },
+        {
+          skill: 'React CSS Transitions Group',
+          purpose: 'High-level API add-on used to perform simple and reusable CSS animations'
+        }
+      ]
     },
     {
       title: 'random-quote-machine',
-      description: 'View beautiful backgrounds along with inspirational quotes.'
+      description: 'View beautiful backgrounds along with inspirational quotes.',
+      noteworthySkills: [
+        {
+          skill: 'Fetch API',
+          purpose: 'Used to request JSON containing quote data from remote server API'
+        },
+        {
+          skill: 'CSS Media Query Responsive Design',
+          purpose: 'Images and layout are dynamic according to device dimensions'
+        },
+        {
+          skill: 'Regex',
+          purpose: 'Quotes and Author names are adjusted for Twitter Query with Replace method'
+        }
+      ]
     },
     {
       title: 'pomodoro-clock',
-      description: 'Useful app for productivity built with React'
+      description: 'Useful app for productivity built with React',
+      noteworthySkills: [
+        {
+          skill: '',
+          purpose: ''
+        },
+        {
+          skill: '',
+          purpose: ''
+        },
+        {
+          skill: '',
+          purpose: ''
+        }
+      ]
     }
   ]
 };

@@ -10,7 +10,7 @@
 }
 
 .fade-exit,
-.fade-exit-active
+.fade-exit-active,
 .fade-exit-done {
 	opacity: 0;
 	transition: opacity $fade-animation-time ease-in;

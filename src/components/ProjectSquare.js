@@ -45,10 +45,10 @@ class ProjectSquare extends Component {
                   href={`https://github.com/VictorEvan/${this.props.project}`} 
                   className="btn--project"
                 >Repo</a>
-                <Link 
-                  className="btn--project"
+                {/* <Link 
+                  className="btn--project disable"
                   to={`${url}/${this.props.project}-details`}
-                >Details</Link>
+                >Details</Link> */}
                 <a 
                   target="_blank"
                   href={`https://victorevan.github.io/${this.titleCase(this.props.project, "link")}`} 

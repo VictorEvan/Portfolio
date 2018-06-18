@@ -677,7 +677,7 @@ header {
   transition: opacity 0.5s ease-in; }
 
 .fade-exit,
-.fade-exit-active
+.fade-exit-active,
 .fade-exit-done {
   opacity: 0;
   transition: opacity 0.5s ease-in; }

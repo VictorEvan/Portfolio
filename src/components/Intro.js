@@ -96,7 +96,7 @@ class Intro extends Component {
 };
 
 Intro.defaultProps = {
-  talents: ['React/React-Redux','HTML/CSS3/SCSS', 'JavaScript ES5/ES6','Object Oriented & Functional JS', 'responsive design'],
+  talents: ['React/React-Redux','HTML/CSS3/SCSS', 'JavaScript ES5/ES6','Object Oriented & Functional JS', 'responsive design', 'Bootstrap/jQuery'],
   typingSpeed: 100
 };
 

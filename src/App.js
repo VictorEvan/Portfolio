@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom'; 
-import {
-  TransitionGroup,
-  CSSTransition
- } from 'react-transition-group';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import './css/App.css';
 
 import Header from './components/Header';
@@ -18,24 +15,25 @@ class App extends Component {
     currentPage: this.props.location.pathname,
     previousPage: null,
     nextPage: null,
-    pageIsAnimating: null,
+    pageIsAnimating: false,
   }
 
   componentDidMount = () => {
     window.addEventListener('wheel',this.changeOnScroll);
   }
 
-  handleAnimationToAndFrom = (from, to) => 
+  handleAnimationToAndFrom = (from, to) => {
     this.setState({
       previousPage: from,
       nextPage: to 
     });
+  }
+
+  handleAnimationState = status => this.setState({pageIsAnimating: status});
 
   handleNextCurrentPage = page => this.setState({currentPage: page});
 
   handleFullPageChange = bool => this.setState({fullPage: bool});
-
-  handleAnimationState = status => this.setState({pageIsAnimating: status});
 
   detectScrollDirection = e => {
     let delta = e.wheelDelta ? e.wheelDelta : -1 * e.deltaY

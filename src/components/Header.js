@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom'; 
 import PropTypes from 'prop-types';
 
 import Hamburger from './Hamburger';
+import NavLinkContainer from './NavLinkContainer';
 
 class Header extends Component {
 
@@ -26,65 +26,57 @@ class Header extends Component {
   render() {
     return (
       <header>
-        <Hamburger 
-          toggleSideNav={this.handleHamburger}
-        />
-        <div className="logo">logo</div>
+        <Hamburger toggleSideNav={this.handleHamburger}/>
+        <div className="logo">VE</div>
         <nav 
           className={this.state.sideNavIsOpen ? "nav--active" : "nav"}
           aria-hidden={this.state.navIsHidden}
           onClick={() => this.closeSideNav()}
         >
-          <div 
-            className="nav__inner"
-            onClick={e => e.stopPropagation()}
-          >
+          <div className="nav__inner" onClick={e => e.stopPropagation()}>
             <div className="nav__inner__title mobile-only">
               Victor Evangelista
             </div>
             <ul className="nav__inner__links">
-              <li>
-                <NavLink 
-                  className={
-                    this.props.isAnimating || this.props.location.pathname === '/' ?
-                    'disable' : ''
-                  }
-                  exact to={`/`}
-                  onClick={() => this.props.animationState(true)}
-                >HOME</NavLink>
-              </li>
-              <li>
-                <NavLink 
-                  className={
-                    this.props.isAnimating || this.props.location.pathname === '/portfolio' ?
-                    'disable' : ''
-                  }
-                  to={`/portfolio`}
-                  onClick={() => this.props.animationState(true)}
-                >PORTFOLIO</NavLink>
-              </li>
-              <li>
-                <NavLink 
-                  className='disable'
-                  // className={
-                  //   this.props.isAnimating ?
-                  //   'disable' : ''
-                  // }
-                  to={`/contact`}
-                  onClick={() => this.props.animationState(true)}
-                >CONTACT</NavLink>
-              </li>
+              {this.props.navLinks.map( navLink => (
+                <NavLinkContainer
+                  key={navLink.toPath}
+                  animationState={this.props.animationState}
+                  closeSideNav={this.closeSideNav}
+                  isAnimating={this.props.isAnimating}
+                  currentPath={this.props.location.pathname}
+                  toPath={navLink.toPath}
+                  title={navLink.title}
+                />
+              ))}
             </ul>
             <ul className="nav__inner__social mobile-only">
-              <li>L</li>
-              <li>G</li>
-              <li>C</li>
+              <li className="social-link-container">L</li>
+              <li className="social-link-container">G</li>
+              <li className="social-link-container">C</li>
             </ul>
           </div>
         </nav>
       </header>
     )
   }
+}
+
+Header.defaultProps = {
+  navLinks: [
+    {
+      title: 'Home',
+      toPath: '/'
+    },
+    {
+      title: 'Portfolio',
+      toPath: '/portfolio'
+    },
+    {
+      title: 'Contact',
+      toPath: '/contact'
+    }
+  ]
 }
 
 Header.propTypes = {

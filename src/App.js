@@ -64,7 +64,6 @@ class App extends Component {
     );
 
     const condition = () => {
-      console.log('pathname:', this.props.location.pathname);
       return this.props.location.pathname === '/portfolio';
     }
 

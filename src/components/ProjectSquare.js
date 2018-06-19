@@ -16,10 +16,18 @@ class ProjectSquare extends Component {
   }
 
   state = {
-    projectIsActive: false
+    projectIsActive: false,
+    buttonClass: 'btn--project disable'
   }
 
-  activeProjectHandler = (status) => this.setState({projectIsActive: status});
+  activeProjectHandler = (status) => {
+    if (status) {
+      this.setState({projectIsActive: status});
+      setTimeout(() => this.setState({buttonClass: 'btn--project'}),500);
+    } else if (!status) {
+      this.setState({projectIsActive: status, buttonClass: 'btn--project disable'});
+    }
+  };
 
   render() {
     let url = this.props.match.url;
@@ -29,34 +37,35 @@ class ProjectSquare extends Component {
         onMouseEnter={() => this.activeProjectHandler(true)}
         onMouseLeave={() => this.activeProjectHandler(false)}
       >
-        {this.state.projectIsActive ?
-          <CSSTransition
-            in={this.state.projectIsActive}
-            classNames="fade"
-            appear={true}
-            timeout={2000}
-          >
-            <div className={`projects__project--overlay`}>
+        <CSSTransition
+          in={this.state.projectIsActive}
+          classNames="fade"
+          appear={true}
+          timeout={2000}
+        >
+          <div className={`projects__project--overlay`}>
+            <div className='project-container'>
               <h2 className="project-title">{this.titleCase(this.props.project, "title")}</h2>
               <p className="project-description">{this.props.description}</p>
               <div className="button-container">
                 <a 
                   target="_blank"
                   href={`https://github.com/VictorEvan/${this.props.project}`} 
-                  className="btn--project"
+                  className={this.state.buttonClass}
                 >Repo</a>
                 {/* <Link 
-                  className="btn--project disable"
+                  className={`btn--project ${this.state.projectIsActive ? '' : 'disable' }`}
                   to={`${url}/${this.props.project}-details`}
                 >Details</Link> */}
                 <a 
                   target="_blank"
                   href={`https://victorevan.github.io/${this.titleCase(this.props.project, "link")}`} 
-                  className="btn--project"
+                  className={this.state.buttonClass}
                 >View</a>
               </div>
             </div>
-          </CSSTransition> : null}
+          </div>
+        </CSSTransition>
       </div>
     )
   }

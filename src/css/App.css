@@ -653,7 +653,7 @@ header {
   50% {
     color: transparent; } }
 .case-study--tic-tac-toe {
-  height: 630px; }
+  height: 1000px; }
 
 .nav--active {
   display: block; }
@@ -688,24 +688,42 @@ header {
   opacity: 1;
   transition: opacity 0.5s ease-in; }
 
-.slide-enter {
+.slide-up-enter {
   z-index: 500;
   transform: translateY(100vh); }
 
-.slide-enter-active,
-.slide-enter-done {
+.slide-up-enter-active {
   z-index: 500;
   transform: translateY(0);
   transition: transform 1.5s cubic-bezier(0.79, -0.38, 0.22, 1.54); }
 
-.slide-exit {
+.slide-up-exit {
   z-index: 250; }
 
-.slide-exit-active {
+.slide-up-exit-active {
   transform: translateY(-100vh);
   transition: transform 1.5s cubic-bezier(0.79, -0.38, 0.22, 1.54); }
 
-.slide-exit-done {
-  transition: transform 0.5s cubic-bezier(0.79, -0.38, 0.22, 1.54); }
+.slide-up-exit-done {
+  transition: transform 1.5s cubic-bezier(0.79, -0.38, 0.22, 1.54); }
+
+.slide-down-enter {
+  z-index: 500;
+  transform: translateY(-100vh); }
+
+.slide-down-enter-active {
+  z-index: 500;
+  transform: translateY(0);
+  transition: transform 1.5s cubic-bezier(0.79, -0.38, 0.22, 1.54); }
+
+.slide-down-exit {
+  z-index: 250; }
+
+.slide-down-exit-active {
+  transform: translateY(100vh);
+  transition: transform 1.5s cubic-bezier(0.79, -0.38, 0.22, 1.54); }
+
+.slide-down-exit-done {
+  transition: transform 1.5s cubic-bezier(0.79, -0.38, 0.22, 1.54); }
 
 /*# sourceMappingURL=App.css.map */

@@ -2,18 +2,6 @@ import React, { Component } from 'react';
 import { withRouter, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-function detectScrollDown(e){
-  var delta;
-  if (e.wheelDelta){
-      delta = e.wheelDelta;
-    }else{
-      delta = -1 * e.deltaY;
-    }
-  if (delta < 0) {
-    return true;
-  }
-}
-
 class Intro extends Component {
 
   state = {
@@ -26,22 +14,14 @@ class Intro extends Component {
   currentLetter = 0;
 
   componentDidMount = () => {
-    window.addEventListener('wheel',this.changeOnScroll);
+    this.props.setNextCurrentPage(this.props.location.pathname);
+    this.props.animateFromTo(this.props.currentPage, this.props.location.pathname);
     setTimeout(()=>this.typeWriter('type'),500);
     this.pageIsActive = true;
   }
 
-  changeOnScroll = e => {
-    if (detectScrollDown(e)) {
-      window.removeEventListener('wheel',this.changeOnScroll);
-      this.props.animationState(true);
-      this.props.history.push('/portfolio');
-    }
-  }
-
   componentWillUnmount = () => {
     this.props.animationState(false);
-    window.removeEventListener('wheel',this.changeOnScroll);
     this.pageIsActive = false;
   }
 
@@ -88,6 +68,7 @@ class Intro extends Component {
         <Link 
           to={`/portfolio`} 
           className={`btn--portfolio ${this.props.isAnimating || this.props.location.pathname === '/portfolio' ? 'disable' : ''}`}
+          onClick={() => this.props.animationState(true)}
         >Browse Portfolio</Link>
       </section>
     );
@@ -100,6 +81,9 @@ Intro.defaultProps = {
 };
 
 Intro.propTypes = {
+  animateFromTo: PropTypes.func.isRequired,
+  currentPage: PropTypes.string,
+  setNextCurrentPage: PropTypes.func.isRequired,
   isAnimating: PropTypes.bool,
   animationState: PropTypes.func.isRequired,
 }

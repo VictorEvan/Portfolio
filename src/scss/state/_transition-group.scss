@@ -28,27 +28,52 @@
 
 // Slide
 
-.slide-enter {
+.slide-up-enter {
 	z-index: 500;
 	transform: translateY(100vh);
 }
 
-.slide-enter-active,
-.slide-enter-done {
+.slide-up-enter-active {
 	z-index: 500;
 	transform: translateY(0);
 	transition: transform $slide-animation-time $bounce-animation-effect;
 }
 
-.slide-exit {
+.slide-up-exit {
 	z-index: 250;
 }
 
-.slide-exit-active {
+.slide-up-exit-active {
 	transform: translateY(-100vh);
 	transition: transform $slide-animation-time $bounce-animation-effect;
 }
 
-.slide-exit-done {
-	transition: transform $base-animation-time $bounce-animation-effect;
+.slide-up-exit-done {
+	transition: transform $slide-animation-time $bounce-animation-effect;
+}
+
+// Slide Down
+
+.slide-down-enter {
+	z-index: 500;
+	transform: translateY(-100vh);
+}
+
+.slide-down-enter-active {
+	z-index: 500;
+	transform: translateY(0);
+	transition: transform $slide-animation-time $bounce-animation-effect;
+}
+
+.slide-down-exit {
+	z-index: 250;
+}
+
+.slide-down-exit-active {
+	transform: translateY(100vh);
+	transition: transform $slide-animation-time $bounce-animation-effect;
+}
+
+.slide-down-exit-done {
+	transition: transform $slide-animation-time $bounce-animation-effect;
 }

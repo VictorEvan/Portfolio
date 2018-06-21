@@ -2,7 +2,10 @@
 	pointer-events: none;
 }
 
-.fade-enter,
+.fade-enter {
+	transition: opacity $fade-animation-time ease-in;
+}
+
 .fade-enter-active,
 .fade-enter-done {
 	opacity: 1;

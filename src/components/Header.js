@@ -41,6 +41,7 @@ class Header extends Component {
               {this.props.navLinks.map( navLink => (
                 <NavLinkContainer
                   key={navLink.toPath}
+                  changeAnimationTo={this.props.changeAnimationTo}
                   animationState={this.props.animationState}
                   closeSideNav={this.closeSideNav}
                   isAnimating={this.props.isAnimating}
@@ -82,7 +83,8 @@ Header.defaultProps = {
 Header.propTypes = {
   location: PropTypes.object.isRequired,
   isAnimating: PropTypes.bool,
-  animationState: PropTypes.func.isRequired
+  animationState: PropTypes.func.isRequired,
+  changeAnimationTo: PropTypes.func.isRequired
 }
 
 export default Header;

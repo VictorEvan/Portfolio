@@ -7,11 +7,13 @@ const NavLinkContainer = props => {
     <li className="navlink-container">
       <NavLink 
         className={props.isAnimating || props.currentPath === props.toPath ? 'navlink disable' : 'navlink'}
-        exact to={props.toPath}
         onClick={() => {
+          props.changeAnimationTo(props.toPath === '/portfolio' ? 'slide-up' : 'slide-down');
           props.animationState(true);
           setTimeout(() => props.closeSideNav(),250);
+          console.log('NavLink clicked');
         }}
+        exact to={props.toPath}
       >
         {props.title.toUpperCase()}
       </NavLink>
@@ -25,7 +27,8 @@ NavLinkContainer.propTypes = {
   isAnimating: PropTypes.bool,
   currentPath: PropTypes.string,
   toPath: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired
+  title: PropTypes.string.isRequired,
+  changeAnimationTo: PropTypes.func.isRequired
 }
 
 export default NavLinkContainer;

@@ -12,57 +12,49 @@ class App extends Component {
 
   state = {
     fullPage: true,
-    currentPage: this.props.location.pathname,
-    previousPage: null,
-    nextPage: null,
     pageIsAnimating: false,
+    pageTransitionAnimation: ''
   }
 
   componentDidMount = () => {
     window.addEventListener('wheel',this.changeOnScroll);
   }
 
-  handleAnimationToAndFrom = (from, to) => {
-    this.setState({
-      previousPage: from,
-      nextPage: to 
-    });
-  }
+  handleTransitionAnimation = className => this.setState({pageTransitionAnimation: className});
 
   handleAnimationState = status => this.setState({pageIsAnimating: status});
-
-  handleNextCurrentPage = page => this.setState({currentPage: page});
 
   handleFullPageChange = bool => this.setState({fullPage: bool});
 
   detectScrollDirection = e => {
-    let delta = e.wheelDelta ? e.wheelDelta : -1 * e.deltaY
+    let delta = e.wheelDelta ? e.wheelDelta : -1 * e.deltaY;
     // Negative delta is scroll down, positive delta is scroll up
-    return delta < 0 ? 'scrollDown' : 'scrollUp'
+    return delta < 0 ? 'scrollDown' : 'scrollUp';
   }
 
   changeOnScroll = e => {
     if (!this.state.pageIsAnimating) {
-      if (this.detectScrollDirection(e) === 'scrollDown' && this.state.currentPage === '/') {
+      if (this.detectScrollDirection(e) === 'scrollDown' && this.props.location.pathname === '/') {
+        console.log('Scroll transition begin');
+        this.setState({pageTransitionAnimation: 'slide-up'});
         this.props.history.push('/portfolio');
       }
-      if (this.detectScrollDirection(e) === 'scrollUp' && this.state.currentPage === '/portfolio') {
+      if (this.detectScrollDirection(e) === 'scrollUp' && this.props.location.pathname === '/portfolio') {
+        console.log('Scroll transition begin');
+        this.setState({pageTransitionAnimation: 'slide-down'});
         this.props.history.push('/');
       }
     }
   }
 
   render() {
-    const childFactoryCreator = (classNames) => (
-      (child) => (
-        React.cloneElement(child, {
-          classNames
-        })
-      )
-    );
-
-    const condition = () => {
-      return this.props.location.pathname === '/portfolio';
+    const childFactoryCreator = (classNames) => {
+        return (
+        (child) => {
+          console.log(child);
+          return ( React.cloneElement(child, { classNames }) )
+        }
+      );
     }
 
     return (
@@ -71,40 +63,40 @@ class App extends Component {
           location={this.props.location}
           isAnimating={this.state.pageIsAnimating}
           animationState={this.handleAnimationState}
+          changeAnimationTo={this.handleTransitionAnimation}
         />
         <TransitionGroup 
           component='div' 
           className='container--section'
-          childFactory={childFactoryCreator( condition() ? 'slide-up' : 'slide-down')}
+          childFactory={childFactoryCreator( this.state.pageTransitionAnimation )}
         >
           <CSSTransition 
-            key={this.props.location.key} 
-            classNames={ condition() ? 'slide-up' : 'slide-down'}
+            key={this.props.location.pathname} 
+            classNames={ this.state.pageTransitionAnimation }
             timeout={1500}
             onEnter={() => {
+              console.log('onEnter triggered');
               document.body.style.overflow = "hidden";
               this.handleAnimationState(true);
               }
             }
-            onExited={() => document.body.style.overflow = "auto"}
+            onExited={() => {
+              console.log('onExited triggered');
+              document.body.style.overflow = "auto";
+            }}
           >
             <Switch location={this.props.location}>
               <Route exact path={`/`} render={props => 
                 <Intro 
                   {...props} 
-                  animateFromTo={this.handleAnimationToAndFrom}
-                  currentPage={this.state.currentPage}
-                  setNextCurrentPage={this.handleNextCurrentPage}
                   isAnimating={this.state.pageIsAnimating}
                   animationState={this.handleAnimationState} 
+                  changeAnimationTo={this.handleTransitionAnimation}
                 />} 
               />
               <Route exact path={`/portfolio`} render={props =>
                 <Portfolio 
                   {...props}
-                  animateFromTo={this.handleAnimationToAndFrom}
-                  currentPage={this.state.currentPage}
-                  setNextCurrentPage={this.handleNextCurrentPage}
                   animationState={this.handleAnimationState}
                   projects={this.props.projects}
                 />} 

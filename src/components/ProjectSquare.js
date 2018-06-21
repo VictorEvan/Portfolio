@@ -5,6 +5,11 @@ import { CSSTransition } from 'react-transition-group';
 
 class ProjectSquare extends Component {
 
+  state = {
+    projectIsActive: false,
+    buttonClass: 'btn--project disable'
+  }
+
   titleCase = (str, mode) => {
     let regex = /(^|\s|-)\S/g;
     if (mode === "link") {
@@ -12,12 +17,6 @@ class ProjectSquare extends Component {
     } else if (mode === "title") {
       return str.toLowerCase().replace(regex, (L) => L.startsWith("-") ? ` ${L.charAt(1).toUpperCase()}` : L.toUpperCase());
     }
-
-  }
-
-  state = {
-    projectIsActive: false,
-    buttonClass: 'btn--project disable'
   }
 
   activeProjectHandler = (status) => {
@@ -35,6 +34,7 @@ class ProjectSquare extends Component {
       <div 
         className={`projects__project--${this.props.project}`}
         onMouseEnter={() => this.activeProjectHandler(true)}
+        onTouchStart={() => this.activeProjectHandler(true)}
         onMouseLeave={() => this.activeProjectHandler(false)}
       >
         <CSSTransition

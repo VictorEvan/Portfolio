@@ -346,6 +346,7 @@ a {
   align-items: center; }
 
 .app {
+  min-width: 320px;
   width: 100%;
   display: flex;
   flex-direction: column; }
@@ -498,7 +499,8 @@ header {
 .title {
   font-size: 2.5rem;
   font-weight: 300;
-  max-width: 50%; }
+  max-width: 100%;
+  padding: 0 1rem; }
 
 .description {
   font-weight: 300;
@@ -566,17 +568,21 @@ header {
       opacity: 0;
       background: rgba(0, 0, 0, 0.5); }
       .projects__project--overlay .project-container {
-        color: white; }
+        color: white;
+        overflow: auto; }
         .projects__project--overlay .project-container .project-title,
         .projects__project--overlay .project-container .project-description {
           padding-bottom: 1rem;
           text-align: center; }
         .projects__project--overlay .project-container .project-title {
-          max-width: 80%;
+          max-width: 100%;
+          padding: 0 1rem 1rem;
           font-weight: 300;
-          font-size: 2rem; }
+          font-size: 1.5rem; }
         .projects__project--overlay .project-container .project-description {
-          max-width: 90%; }
+          font-size: 1rem;
+          max-width: 100%;
+          padding: 0 1rem 1rem; }
         .projects__project--overlay .project-container .button-container {
           width: 100%;
           padding: 0 1rem;
@@ -678,7 +684,9 @@ header {
 .disable {
   pointer-events: none; }
 
-.fade-enter,
+.fade-enter {
+  transition: opacity 0.5s ease-in; }
+
 .fade-enter-active,
 .fade-enter-done {
   opacity: 1;

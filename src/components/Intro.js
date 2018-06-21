@@ -14,13 +14,13 @@ class Intro extends Component {
   currentLetter = 0;
 
   componentDidMount = () => {
-    this.props.setNextCurrentPage(this.props.location.pathname);
-    this.props.animateFromTo(this.props.currentPage, this.props.location.pathname);
+    console.log('Intro has mounted');
     setTimeout(()=>this.typeWriter('type'),500);
     this.pageIsActive = true;
   }
 
   componentWillUnmount = () => {
+    console.log('Intro will unmount');
     this.props.animationState(false);
     this.pageIsActive = false;
   }
@@ -66,9 +66,12 @@ class Intro extends Component {
         <p className="description">A Front End Engineer skilled with</p>
         <p className="talents">{this.state.output}<span className={this.state.isTyping ? 'text-cursor' : 'text-cursor--active'}>|</span><span className="dot">.</span></p>
         <Link 
-          to={`/portfolio`} 
           className={`btn--portfolio ${this.props.isAnimating || this.props.location.pathname === '/portfolio' ? 'disable' : ''}`}
-          onClick={() => this.props.animationState(true)}
+          onClick={() => {
+            this.props.changeAnimationTo('slide-up');
+            this.props.animationState(true);
+          }}
+          to={`/portfolio`} 
         >Browse Portfolio</Link>
       </section>
     );
@@ -76,16 +79,15 @@ class Intro extends Component {
 };
 
 Intro.defaultProps = {
+  path: '/',
   talents: ['React/React-Redux','HTML/CSS3/SCSS', 'JavaScript ES5/ES6','Object Oriented & Functional JS', 'responsive design', 'Bootstrap/jQuery'],
   typingSpeed: 100
 };
 
 Intro.propTypes = {
-  animateFromTo: PropTypes.func.isRequired,
-  currentPage: PropTypes.string,
-  setNextCurrentPage: PropTypes.func.isRequired,
   isAnimating: PropTypes.bool,
   animationState: PropTypes.func.isRequired,
+  changeAnimationTo: PropTypes.func.isRequired
 }
 
 export default withRouter(Intro);

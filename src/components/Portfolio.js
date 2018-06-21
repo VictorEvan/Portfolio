@@ -6,11 +6,11 @@ import ProjectSquare from './ProjectSquare';
 class Portfolio extends Component {
 
   componentDidMount = () => {
-    this.props.setNextCurrentPage(this.props.location.pathname);
-    this.props.animateFromTo(this.props.currentPage, this.props.location.pathname);
+    console.log('Portfolio has mounted');
   }
 
   componentWillUnmount = () => {
+    console.log('Portfolio will unmount');
     this.props.animationState(false);
   }
 
@@ -30,9 +30,6 @@ class Portfolio extends Component {
 }
 
 Portfolio.propTypes = {
-  animateFromTo: PropTypes.func.isRequired,
-  currentPage: PropTypes.string,
-  setNextCurrentPage: PropTypes.func.isRequired,
   animationState: PropTypes.func.isRequired,
   projects: PropTypes.array.isRequired,
 }

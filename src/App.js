@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom'; 
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import './css/App.css';
+import './css/victor.css';
 
 import Header from './components/Header';
 import Intro from './components/Intro';

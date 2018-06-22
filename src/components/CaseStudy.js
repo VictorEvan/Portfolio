@@ -14,7 +14,8 @@ class CaseStudy extends Component {
   render() {
     return (
       <section className={`case-study--${this.props.project.title}`}>
-      
+        <h1>{this.props.project.title}</h1>
+        <p>{this.props.project.description}</p>
       </section>
     )
   }

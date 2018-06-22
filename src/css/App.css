@@ -291,13 +291,13 @@ template {
   display: none; }
 
 * {
-  font-family: 'Roboto', sans-serif;
   box-sizing: border-box;
   padding: 0;
   margin: 0; }
 
 html,
 body {
+  font-family: 'Roboto', sans-serif;
   width: 100%;
   height: 100%; }
   html [react-js="root"],
@@ -431,15 +431,25 @@ a {
 header {
   z-index: 1000;
   width: 100%;
-  min-width: 50px;
+  min-height: 50px;
   background-color: #1C1C1C;
   background: rgba(0, 0, 0, 0.85);
   color: white;
   display: flex;
   justify-content: space-between;
   align-items: center; }
-  header .hamburger, header .logo {
-    margin: 0 1em; }
+  header .hamburger, header .logo-container {
+    margin: 0 1em;
+    font-family: "Italianno"; }
+  header .logo-container {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center; }
+    header .logo-container .logo {
+      padding-top: 3px;
+      height: 50px;
+      fill: transparent; }
   @media (min-width: 768px) {
     header .hamburger {
       display: none; }
@@ -743,5 +753,19 @@ header {
 
 .slide-down-exit-done {
   transition: transform 1.5s cubic-bezier(0.79, -0.38, 0.22, 1.54); }
+
+@keyframes offset {
+  100% {
+    stroke-dashoffset: 0; } }
+@keyframes fill-it {
+  100% {
+    fill: white;
+    stroke-width: 0; } }
+.logo {
+  stroke: white;
+  stroke-width: 1;
+  stroke-dasharray: 186;
+  stroke-dashoffset: 186;
+  animation: offset 5s linear forwards, fill-it .8s 5s forwards; }
 
 /*# sourceMappingURL=App.css.map */

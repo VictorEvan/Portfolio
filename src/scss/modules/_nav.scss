@@ -82,15 +82,27 @@
 header {
   z-index: 1000;
   width: 100%;
-  min-width: 50px;
+  min-height: 50px;
   background-color: $color--nav;
   background: rgba(0,0,0,.85);
   color: white;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  .hamburger, .logo {
+  .hamburger, .logo-container {
     margin: 0 1em;
+    font-family: "Italianno";
+  }
+  .logo-container {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .logo {
+      padding-top: 3px;
+      height: 50px;
+      fill: transparent;
+    }
   }
   @include mq('med') {
     .hamburger {

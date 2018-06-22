@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import Logo from '../images/Logo';
 import Hamburger from './Hamburger';
 import NavLinkContainer from './NavLinkContainer';
 
@@ -27,7 +28,9 @@ class Header extends Component {
     return (
       <header>
         <Hamburger toggleSideNav={this.handleHamburger}/>
-        <div className="logo">VE</div>
+        <div className="logo-container">
+          <Logo />
+        </div>
         <nav 
           className={this.state.sideNavIsOpen ? "nav--active" : "nav"}
           aria-hidden={this.state.navIsHidden}

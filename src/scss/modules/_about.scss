@@ -1,0 +1,14 @@
+.about {
+  z-index: 900;
+  display: flex;
+  &__contact-half,
+  &__about-half {
+    flex: 1;
+  }
+  &__about-half {
+    background: red;
+  }
+  &__contact-half {
+    background: orange;
+  }
+}

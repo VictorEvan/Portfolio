@@ -8,81 +8,130 @@ import Header from './components/Header';
 import Intro from './components/Intro';
 import Portfolio from './components/Portfolio';
 import CaseStudy from './components/CaseStudy';
+import About from './components/About';
 
 class App extends Component {
 
   state = {
-    fullPage: true,
     pageIsAnimating: false,
-    pageTransitionAnimation: ''
+    animateFromPage: null,
   }
 
   componentDidMount = () => {
+    // sets the initial animateFromPage location on app load
+    this.setState({animateFromPage: this.props.location.pathname});
+    // scroll event listener
     window.addEventListener('wheel',this.changeOnScroll);
   }
 
-  handleTransitionAnimation = className => this.setState({pageTransitionAnimation: className});
-
-  handleAnimationState = status => this.setState({pageIsAnimating: status});
-
-  handleFullPageChange = bool => this.setState({fullPage: bool});
-
-  detectScrollDirection = e => {
-    let delta = e.wheelDelta ? e.wheelDelta : -1 * e.deltaY;
-    // Negative delta is scroll down, positive delta is scroll up
-    return delta < 0 ? 'scrollDown' : 'scrollUp';
-  }
-
   changeOnScroll = e => {
+    const detectScrollDirection = e => {
+      let delta = e.wheelDelta ? e.wheelDelta : -1 * e.deltaY;
+      // Negative delta is scroll down, positive delta is scroll up
+      return delta < 0 ? 'scrollDown' : 'scrollUp';
+    }
+    
     if (!this.state.pageIsAnimating) {
-      if (this.detectScrollDirection(e) === 'scrollDown' && this.props.location.pathname === '/') {
-        console.log('Scroll transition begin');
-        this.setState({pageTransitionAnimation: 'slide-up'});
+      if (detectScrollDirection(e) === 'scrollDown' && 
+        this.props.location.pathname === '/'
+      ) {
         this.props.history.push('/portfolio');
+        this.setState({pageIsAnimating: true});
       }
-      if (this.detectScrollDirection(e) === 'scrollUp' && this.props.location.pathname === '/portfolio') {
-        console.log('Scroll transition begin');
-        this.setState({pageTransitionAnimation: 'slide-down'});
+      if (
+        detectScrollDirection(e) === 'scrollUp' &&
+        this.props.location.pathname === '/portfolio' &&
+        window.pageYOffset === 0 // 0 pageYOffset is top of page
+      ) {
         this.props.history.push('/');
+        this.setState({pageIsAnimating: true});
       }
     }
   }
 
   render() {
-    const childFactoryCreator = (classNames) => {
+    const childFactoryCreator = () => {
+      let classNames = {
+        enter: '',
+        enterActive: '',
+        enterDone: '',
+        exit: '',
+        exitActive: '',
+        exitDone: '',
+      };
+      let timeout = 0, appear = false;
+      let animateFromPage = this.state.animateFromPage;
+      let animateToPage = this.props.location.pathname;
+      if (animateFromPage === '/' && animateToPage === '/portfolio') {
+        classNames = {
+          enter: 'slide-up-from-bottom',
+          enterActive: 'slide-up-from-bottom-active',
+          enterDone: '',
+          exit: 'slide-up-from-middle',
+          exitActive: 'slide-up-from-middle-active',
+          exitDone: 'slide-up-from-middle-done',
+        };
+        timeout = 1500;
+      } else if (animateFromPage === '/portfolio' && animateToPage === '/') {
+        classNames = {
+          enter: 'slide-down-from-top',
+          enterActive: 'slide-down-from-top-active',
+          enterDone: '',
+          exit: 'slide-down-from-middle',
+          exitActive: 'slide-down-from-middle-active',
+          exitDone: 'slide-down-from-middle-done',
+        };
+        timeout = 1500;
+      } else if (animateToPage === '/portfolio/tic-tac-toe') {
+        classNames = 'fade';
+        timeout = 500;
+      } else if (animateFromPage === '/portfolio/tic-tac-toe' && animateToPage === '/portfolio') {
+        classNames = 'fade';
+        timeout = 500;
+      } else if (animateFromPage === '/portfolio/tic-tac-toe' && animateToPage === '/') {
+        classNames = 'fade';
+        timeout = 500;
+      } else if (animateToPage === '/contact') {
+        timeout = 2000;
+      }
         return (
         (child) => {
-          console.log(child);
-          return ( React.cloneElement(child, { classNames }) )
+          return ( React.cloneElement(child, { classNames, timeout, appear }) )
         }
       );
     }
 
     return (
-      <div className={`app ${this.state.fullPage ? 'fullpage' : ''}`}>
+      <div className='app'>
         <Header 
           location={this.props.location}
           isAnimating={this.state.pageIsAnimating}
-          animationState={this.handleAnimationState}
-          changeAnimationTo={this.handleTransitionAnimation}
         />
         <TransitionGroup 
-          component='div' 
-          className='container--section'
-          childFactory={childFactoryCreator( this.state.pageTransitionAnimation )}
+          component={null}
+          childFactory={childFactoryCreator()}
         >
           <CSSTransition 
-            key={this.props.location.pathname} 
-            classNames={ this.state.pageTransitionAnimation }
-            timeout={1500}
+            key={this.props.location.pathname}
+            timeout={0}
             onEnter={() => {
-              console.log('onEnter triggered');
+              // console.log(`onEnter: A <Transition> callback fired immediately after the 'enter' or 'appear' class is applied.`);
               document.body.style.overflow = "hidden";
-              this.handleAnimationState(true);
-              }
-            }
+              this.setState({pageIsAnimating: true});
+            }}
+            // onEntering={() => console.log(`onEntering: A <Transition> callback fired immediately after the 'enter-active' or 'appear-active' class is applied.`)}
+            onEntered={() => {
+              // console.log(`onEntered: A <Transition> callback fired immediately after the 'enter' or 'appear' classes are removed and the done class is added to the DOM node.`);
+              if (this.props.location.pathname === '/') this.setState({pageIsAnimating: false});
+            }}
+            // onExit={() => console.log(`onExit: A <Transition> callback fired immediately after the 'exit' class is applied.`)}
+            // onExiting={() => console.log(`onExiting: A <Transition> callback fired immediately after the 'exit-active' is applied.`)}
             onExited={() => {
-              console.log('onExited triggered');
+              // console.log(`onExited: A <Transition> callback fired immediately after the 'exit' classes are removed and the exit-done class is added to the DOM node.`);
+              // set the current Page to be the animateFromPage going forward
+              setTimeout( () => {
+                this.setState({animateFromPage: this.props.location.pathname, pageIsAnimating: false});
+              },0 );
               document.body.style.overflow = "auto";
             }}
           >
@@ -91,15 +140,17 @@ class App extends Component {
                 <Intro 
                   {...props} 
                   isAnimating={this.state.pageIsAnimating}
-                  animationState={this.handleAnimationState} 
-                  changeAnimationTo={this.handleTransitionAnimation}
                 />} 
               />
               <Route exact path={`/portfolio`} render={props =>
                 <Portfolio 
                   {...props}
-                  animationState={this.handleAnimationState}
                   projects={this.props.projects}
+                />} 
+              />
+              <Route exact path={`/contact`} render={props =>
+                <About
+                  {...props}
                 />} 
               />
               {this.props.projects.map( project => (
@@ -107,7 +158,6 @@ class App extends Component {
                   <CaseStudy
                     {...props}
                     project={project}
-                    changeFullPage={this.handleFullPageChange}
                   />}
                 />
               ))}
@@ -123,7 +173,7 @@ App.defaultProps = {
   projects: [
     {
       title: 'tic-tac-toe',
-      description: 'Built with React and Redux, face off an unbeatable AI or play with a friend.',
+      description: 'Redux Game',
       noteworthySkills: [
         {
           skill: 'React Lifecycle Methods',
@@ -141,7 +191,7 @@ App.defaultProps = {
     },
     {
       title: 'calculator',
-      description: 'A responsive calculator app built with React',
+      description: 'Functional & responsive',
       noteworthySkills: [
         {
           skill: 'Dynamically Rendered React Components',
@@ -159,7 +209,7 @@ App.defaultProps = {
     },
     {
       title: 'random-quote-machine',
-      description: 'View beautiful backgrounds along with inspirational quotes.',
+      description: 'Beautiful & inspirational',
       noteworthySkills: [
         {
           skill: 'Fetch API',
@@ -177,7 +227,7 @@ App.defaultProps = {
     },
     {
       title: 'pomodoro-clock',
-      description: 'Useful app for productivity built with React',
+      description: 'Simple productivity app',
       noteworthySkills: [
         {
           skill: '',

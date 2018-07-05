@@ -4,14 +4,12 @@ import PropTypes from 'prop-types';
 import ProjectSquare from './ProjectSquare';
 
 class Portfolio extends Component {
-
-  componentDidMount = () => {
-    console.log('Portfolio has mounted');
+  state = {
+    currentProject: ''
   }
 
-  componentWillUnmount = () => {
-    console.log('Portfolio will unmount');
-    this.props.animationState(false);
+  handleCurrentProject = project => {
+    this.setState({currentProject: project});
   }
 
   render() {
@@ -20,6 +18,8 @@ class Portfolio extends Component {
         {this.props.projects.map(output => (
           <ProjectSquare 
             project={output.title}
+            setCurrentProject={this.handleCurrentProject}
+            currentActiveProject={this.state.currentProject}
             description={output.description}
             key={output.title}
           />
@@ -30,8 +30,7 @@ class Portfolio extends Component {
 }
 
 Portfolio.propTypes = {
-  animationState: PropTypes.func.isRequired,
-  projects: PropTypes.array.isRequired,
+  projects: PropTypes.array.isRequired
 }
 
 export default Portfolio;

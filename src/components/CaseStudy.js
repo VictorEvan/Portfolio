@@ -1,29 +1,25 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import titleCase from '../helper/titleCase.js';
+
 class CaseStudy extends Component {
-
-  componentWillMount = () => {
-    this.props.changeFullPage(false);
-  }
-
-  componentWillUnmount = () => {
-    this.props.changeFullPage(true);
-  }
-
   render() {
     return (
-      <section className={`case-study--${this.props.project.title}`}>
-        <h1>{this.props.project.title}</h1>
-        <p>{this.props.project.description}</p>
-      </section>
+      <main className={`case-study--${this.props.project.title}`}>
+        <section className="title-section">
+          <div className="hero-container">
+            <h2>{titleCase(this.props.project.title, "title")}</h2>
+            <h3>{this.props.project.description}</h3>
+          </div>
+        </section>
+      </main>
     )
   }
 }
 
 CaseStudy.propTypes = {
   project: PropTypes.object.isRequired,
-  changeFullPage: PropTypes.func.isRequired
 }
 
 export default CaseStudy;

@@ -1,71 +1,26 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withRouter, Link } from 'react-router-dom';
-import { CSSTransition } from 'react-transition-group';
+import titleCase from '../helper/titleCase.js';
 
 class ProjectSquare extends Component {
-
-  state = {
-    projectIsActive: false,
-    buttonClass: 'btn--project disable'
-  }
-
-  titleCase = (str, mode) => {
-    let regex = /(^|\s|-)\S/g;
-    if (mode === "link") {
-      return str.toLowerCase().replace(regex, (L) => L.toUpperCase());
-    } else if (mode === "title") {
-      return str.toLowerCase().replace(regex, (L) => L.startsWith("-") ? ` ${L.charAt(1).toUpperCase()}` : L.toUpperCase());
-    }
-  }
-
-  activeProjectHandler = (status) => {
-    if (status) {
-      this.setState({projectIsActive: status});
-      setTimeout(() => this.setState({buttonClass: 'btn--project'}),500);
-    } else if (!status) {
-      this.setState({projectIsActive: status, buttonClass: 'btn--project disable'});
-    }
-  };
-
   render() {
     let url = this.props.match.url;
     return (
       <div 
-        className={`projects__project--${this.props.project}`}
-        onMouseEnter={() => this.activeProjectHandler(true)}
-        onTouchStart={() => this.activeProjectHandler(true)}
-        onMouseLeave={() => this.activeProjectHandler(false)}
+        className={`project projects__project--${this.props.project}`}
+        onMouseEnter={() => {this.props.setCurrentProject(this.props.project)}}
+        onTouchStart={() => {this.props.setCurrentProject(this.props.project);}}
       >
-        <CSSTransition
-          in={this.state.projectIsActive}
-          classNames="fade"
-          appear={true}
-          timeout={2000}
-        >
-          <div className={`projects__project--overlay`}>
-            <div className='project-container'>
-              <h2 className="project-title">{this.titleCase(this.props.project, "title")}</h2>
-              <p className="project-description">{this.props.description}</p>
-              <div className="button-container">
-                <a 
-                  target="_blank"
-                  href={`https://github.com/VictorEvan/${this.props.project}`} 
-                  className={this.state.buttonClass}
-                >Repo</a>
-                {/* <Link 
-                  className={`btn--project ${this.state.projectIsActive ? '' : 'disable' }`}
-                  to={`${url}/${this.props.project}-details`}
-                >Details</Link> */}
-                <a 
-                  target="_blank"
-                  href={`https://victorevan.github.io/${this.titleCase(this.props.project, "link")}`} 
-                  className={this.state.buttonClass}
-                >View</a>
-              </div>
-            </div>
+        <div className={`projects__project--overlay`}>
+        </div>
+        <div className='project-container'>
+          <h2 className="project-title">{titleCase(this.props.project, "title") === 'Random Quote Machine' ? 'Quote Machine' : titleCase(this.props.project, "title")}</h2>
+          <h3 className="project-description">{this.props.description}</h3>
+          <div className="link-container">
+            <Link className="project-link" to={`${url}/${this.props.project}`}>View</Link>
           </div>
-        </CSSTransition>
+        </div>
       </div>
     )
   }
@@ -73,7 +28,9 @@ class ProjectSquare extends Component {
 
 ProjectSquare.propTypes = {
   project: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired
+  description: PropTypes.string.isRequired,
+  setCurrentProject: PropTypes.func.isRequired,
+  currentActiveProject: PropTypes.string.isRequired
 }
 
 export default withRouter(ProjectSquare);

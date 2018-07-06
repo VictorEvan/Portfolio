@@ -1,7 +1,7 @@
 @mixin mq($break) {
 	$value: map-get($breakpoints, $break);
-	$sm: map-get($breakpoints,'sm');
-	@if $value < $sm {
+	$med: map-get($breakpoints,'med');
+	@if $value < $med {
 		@media (max-width: $value) {
 			@content;
 		}

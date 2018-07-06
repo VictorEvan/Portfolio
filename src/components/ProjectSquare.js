@@ -11,10 +11,12 @@ class ProjectSquare extends Component {
         className={`project projects__project--${this.props.project}`}
         onMouseEnter={() => {this.props.setCurrentProject(this.props.project)}}
         onTouchStart={() => {this.props.setCurrentProject(this.props.project);}}
+        onClick={() => console.log(this.props.project)}
       >
         <div className={`projects__project--overlay`}>
         </div>
         <div className='project-container'>
+          <Link className="project-link-cover" to={`${url}/${this.props.project}`}></Link>
           <h2 className="project-title">{titleCase(this.props.project, "title") === 'Random Quote Machine' ? 'Quote Machine' : titleCase(this.props.project, "title")}</h2>
           <h3 className="project-description">{this.props.description}</h3>
           <div className="link-container">

@@ -1,9 +1,35 @@
-%case-study-default {
-  height: 1000px;
+@mixin case-study-default($title-background) {
+  .title-section {
+    background-color: $title-background;
+    height: calc(100vh - 50px);
+    margin-top: 50px;
+    padding-bottom: 50px;
+    @extend %flex-column-center;
+    .hero-container {
+      width: 90%;
+      @extend %flex-column-center;
+      h2 {
+        padding-bottom: 1em;
+      }
+      h3 {
+        font-style: italic;
+        text-align: center;
+      }
+    }
+  }
 }
 
 .case-study {
   &--tic-tac-toe {
-    @extend %case-study-default;
+    @include case-study-default(red);
+  }
+  &--calculator {
+    @include case-study-default(blue);
+  }
+  &--random-quote-machine {
+    @include case-study-default(orange);
+  }
+  &--pomodoro-clock {
+    @include case-study-default(yellow);
   }
 }

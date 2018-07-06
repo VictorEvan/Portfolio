@@ -1,14 +1,40 @@
-.about {
+.about-contact {
   z-index: 900;
   display: flex;
-  &__contact-half,
-  &__about-half {
-    flex: 1;
+  flex-direction: column;
+  @include mq('med') {
+    flex-direction: row;
+    &__contact-half,
+    &__about-half {
+      flex: 1;
+    }
   }
   &__about-half {
-    background: red;
+    padding: 2rem 0;
+    background: #ecf0f1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   &__contact-half {
     background: orange;
+  }
+}
+
+.contact-info {
+  width: 70%;
+  &__title {
+    padding-top: .50rem;
+    font-weight: bold;
+    font-size: 1.79rem;
+  }
+  &__description {
+    padding-top: .25rem;
+    font-weight: 300;
+    font-size: 1.32rem;
+  }
+  &__paragraph {
+    padding: .50rem 0;
+    font-size: 1rem;
   }
 }

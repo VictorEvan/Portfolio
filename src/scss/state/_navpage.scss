@@ -1,16 +1,14 @@
 .nav--active {
   @extend .nav;
-  display: block;
-  &::before {
-    display: block;
-  }
+  transform: initial;
+  transition: transform .45s cubic-bezier(.694,.048,.335,1),-webkit-transform .45s cubic-bezier(.694,.048,.335,1);
+  transition-delay: .25s;
 }
 
 [aria-hidden="false"] {
   .nav__inner {
     transform: initial;
-  }
-  &::before {
-    opacity: 1;
+    transition: transform .45s cubic-bezier(.694,.048,.335,1),-webkit-transform .45s cubic-bezier(.694,.048,.335,1);
+    transition-delay: .25s;
   }
 }

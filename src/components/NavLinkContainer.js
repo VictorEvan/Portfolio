@@ -12,7 +12,7 @@ const NavLinkContainer = props => {
         }}
         exact to={props.toPath}
       >
-        {props.title.toUpperCase()}
+        {props.title}
       </NavLink>
     </li>
   );

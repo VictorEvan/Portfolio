@@ -14,38 +14,43 @@ class Header extends Component {
 
   handleHamburger = () => {
     if (!this.state.sideNavIsOpen) {
-      this.setState({sideNavIsOpen: true});
-      setTimeout( () => this.setState({navIsHidden: false}),100);
+      console.log('toggle on');
+      this.setState({sideNavIsOpen: true, navIsHidden: false});
+    } else {
+      console.log('toggle off');
+      this.setState({navIsHidden: true});
+      setTimeout( () => this.setState({sideNavIsOpen: false}),700);
     }
   }
 
   closeSideNav = () => {
     this.setState({navIsHidden: true});
-    setTimeout( () => this.setState({sideNavIsOpen: false}),300);
+    setTimeout( () => this.setState({sideNavIsOpen: false}),700);
   }
 
   render() {
     return (
       <header>
-        <Hamburger toggleSideNav={this.handleHamburger}/>
+        <Hamburger 
+          toggleSideNav={this.handleHamburger}
+          sideNavIsOpen={this.state.sideNavIsOpen}
+          navIsHidden={this.state.navIsHidden}
+        />
         <div className="logo-container">
           <Logo />
         </div>
         <nav 
           className={this.state.sideNavIsOpen ? "nav--active" : "nav"}
           aria-hidden={this.state.navIsHidden}
-          onClick={() => this.closeSideNav()}
         >
           <div className="nav__inner" onClick={e => e.stopPropagation()}>
             <div className="nav__inner__title mobile-only">
-              Victor Evangelista
+              <Logo />
             </div>
             <ul className="nav__inner__links">
               {this.props.navLinks.map( navLink => (
                 <NavLinkContainer
                   key={navLink.toPath}
-                  changeAnimationTo={this.props.changeAnimationTo}
-                  animationState={this.props.animationState}
                   closeSideNav={this.closeSideNav}
                   isAnimating={this.props.isAnimating}
                   currentPath={this.props.location.pathname}
@@ -86,8 +91,6 @@ Header.defaultProps = {
 Header.propTypes = {
   location: PropTypes.object.isRequired,
   isAnimating: PropTypes.bool,
-  animationState: PropTypes.func.isRequired,
-  changeAnimationTo: PropTypes.func.isRequired
 }
 
 export default Header;

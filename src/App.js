@@ -49,51 +49,107 @@ class App extends Component {
     }
   }
 
+  animationHandler = (from, to) => {
+    if (from !== to) {
+      // from switch
+      switch(from) {
+        case '/contact':
+          return {
+            classNames: {
+              enter: '',
+              enterActive: '',
+              enterDone: '',
+              exit: 'move-out-halves',
+              exitActive: 'move-out-halves-active',
+              exitDone: ''
+            }, timeout: 1250, appear: false
+          }
+        default:
+          break;
+      }
+
+      // to switch
+      switch(to) {
+        case '/contact':
+          return {
+            classNames: {
+              enter: 'move-in-halves',
+              enterActive: 'move-in-halves-active',
+              enterDone: '',
+              exit: '',
+              exitActive: '',
+              exitDone: ''
+            }, timeout: 1500, appear: false
+          }
+        default:
+          break;
+      }
+    }
+
+    // full from to switch
+    const data = `${from}-${to}`;
+    switch(data) {
+      case '/-/portfolio':
+        return {
+          classNames: {
+            enter: 'slide-up-from-bottom',
+            enterActive: 'slide-up-from-bottom-active',
+            enterDone: '',
+            exit: 'slide-up-from-middle',
+            exitActive: 'slide-up-from-middle-active',
+            exitDone: 'slide-up-from-middle-done'
+          },
+          timeout: 1500, appear: false
+        }
+      case '/portfolio-/':
+        return {
+          classNames: {
+            enter: 'slide-down-from-top',
+            enterActive: 'slide-down-from-top-active',
+            enterDone: '',
+            exit: 'slide-down-from-middle',
+            exitActive: 'slide-down-from-middle-active',
+            exitDone: 'slide-down-from-middle-done'
+          },
+          timeout: 1500, appear: false
+        }
+      case `/portfolio-/portfolio/${this.props.projects[0].title}`:
+        return {
+          classNames: 'fade', timeout: 500, appear: false
+        }
+      case `/portfolio-/portfolio/${this.props.projects[1].title}`:
+        return {
+          classNames: 'fade', timeout: 500, appear: false
+        }
+      case `/portfolio-/portfolio/${this.props.projects[2].title}`:
+        return {
+          classNames: 'fade', timeout: 500, appear: false
+        }
+      case `/portfolio-/portfolio/${this.props.projects[3].title}`:
+        return {
+          classNames: 'fade', timeout: 500, appear: false
+        }
+      default:
+        return {
+          classNames: {
+            enter: '',
+            enterActive: '',
+            enterDone: '',
+            exit: '',
+            exitActive: '',
+            exitDone: ''
+          },
+          timeout: 0, appear: false
+        }
+    }
+  }
+
   render() {
     const childFactoryCreator = () => {
-      let classNames = {
-        enter: '',
-        enterActive: '',
-        enterDone: '',
-        exit: '',
-        exitActive: '',
-        exitDone: '',
-      };
-      let timeout = 0, appear = false;
       let animateFromPage = this.state.animateFromPage;
       let animateToPage = this.props.location.pathname;
-      if (animateFromPage === '/' && animateToPage === '/portfolio') {
-        classNames = {
-          enter: 'slide-up-from-bottom',
-          enterActive: 'slide-up-from-bottom-active',
-          enterDone: '',
-          exit: 'slide-up-from-middle',
-          exitActive: 'slide-up-from-middle-active',
-          exitDone: 'slide-up-from-middle-done',
-        };
-        timeout = 1500;
-      } else if (animateFromPage === '/portfolio' && animateToPage === '/') {
-        classNames = {
-          enter: 'slide-down-from-top',
-          enterActive: 'slide-down-from-top-active',
-          enterDone: '',
-          exit: 'slide-down-from-middle',
-          exitActive: 'slide-down-from-middle-active',
-          exitDone: 'slide-down-from-middle-done',
-        };
-        timeout = 1500;
-      } else if (animateToPage === '/portfolio/tic-tac-toe') {
-        classNames = 'fade';
-        timeout = 500;
-      } else if (animateFromPage === '/portfolio/tic-tac-toe' && animateToPage === '/portfolio') {
-        classNames = 'fade';
-        timeout = 500;
-      } else if (animateFromPage === '/portfolio/tic-tac-toe' && animateToPage === '/') {
-        classNames = 'fade';
-        timeout = 500;
-      } else if (animateToPage === '/contact') {
-        timeout = 2000;
-      }
+      console.log(this.animationHandler(animateFromPage, animateToPage));
+      let { classNames, timeout, appear } = this.animationHandler(animateFromPage,animateToPage);
         return (
         (child) => {
           return ( React.cloneElement(child, { classNames, timeout, appear }) )

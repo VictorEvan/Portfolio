@@ -1,45 +1,87 @@
 .projects {
-  @extend %absolute-fill;
   display: flex;
   flex-flow: row wrap;
   &__project {
+    @include mq('med') {
+      border: 6px solid #fff;
+    }
     height: 50%;
     width: 50%;
     position: relative;
     &--overlay {
-      opacity: 0;
       @extend %absolute-fill;
-      background: $color--black-dim;
-      .project-container {
-        @extend %absolute-fill;
-        @extend %flex-column-center;
-        color: white;
-        overflow: auto;
-        .project-title,
-        .project-description {
-          padding-bottom: 1rem;
-          text-align: center;
-        }
-        .project-title {
-          max-width: 100%;
-          padding: 0 1rem 1rem;
-          font-weight: 300;
-          font-size: 1.5rem;
-        }
-        .project-description {
-          font-size: 1rem;
-          max-width: 100%;
-          padding: 0 1rem 1rem;
-        }
-        .button-container {
-          width: 100%;
-          padding: 0 1rem;
-          display: flex;
-          flex-wrap: wrap;
-          justify-content: center;
-          align-items: center;
-        }
-      }
+      background: #1c1d25;
+      opacity: .6;
+    }
+  }
+}
+
+.project-container {
+  @extend %absolute-fill;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding-left: 1rem;
+  color: white;
+  overflow: auto;
+  .project-title {
+    max-width: 90%;
+    font-weight: 300;
+    font-size: 1.89rem;
+  }
+  .project-description {
+    padding-top: .75rem;
+    font-size: 1rem;
+    font-style: italic;
+    font-weight: 400;
+    max-width: 100%;
+  }
+  .link-container {
+    display: flex;
+    padding-top: .75rem;
+  }
+  .project-link {
+    font-size: .875em;
+    letter-spacing: 3px;
+    padding: 12px 20px;
+    background-color: #f06449;
+    background: linear-gradient(270deg,#f06449,#ef3636);
+    color: #fff;
+  }
+  .project-link-cover {
+    @extend %absolute-fill;
+    display: block;
+    :hover {
+      cursor: pointer;
+    }
+  }
+  @include mq('med') {
+    padding-left: 4rem;
+  }
+}
+
+.project {
+  @include mq('med') {
+    transition: border-width .25s ease-in;
+    &:hover {
+      border-width: 0px !important;
+      transition: border-width .25s ease-in;
+    }
+    &:nth-of-type(1) {
+      border-top: 12px solid #fff;
+      border-left: 12px solid #fff;
+    }
+    &:nth-of-type(2) {
+      border-top: 12px solid #fff;
+      border-right: 12px solid #fff;
+    }
+    &:nth-of-type(3) {
+      border-left: 12px solid #fff;
+      border-bottom: 12px solid #fff;
+    }
+    &:nth-of-type(4) {
+      border-right: 12px solid #fff;
+      border-bottom: 12px solid #fff;
     }
   }
 }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+
+import CoolButton from './CoolButton';
 
 class Intro extends Component {
 
@@ -56,16 +57,18 @@ class Intro extends Component {
   }
 
   render() {
+    const coolButtonClassName = this.props.isAnimating || this.props.location.pathname === '/portfolio' ? 'disable' : '';
     return (
       <section className="intro">
         <div className="intro--overlay"></div>
         <h1 className="title">Victor Evangelista</h1>
         <p className="description">A Front End Engineer skilled with</p>
         <p className="talents">{this.state.output}<span className={this.state.isTyping ? 'text-cursor' : 'text-cursor--active'}>|</span><span className="dot">.</span></p>
-        <Link 
-          className={`btn--portfolio ${this.props.isAnimating || this.props.location.pathname === '/portfolio' ? 'disable' : ''}`}
+        <CoolButton 
+          className={`cool-button ${coolButtonClassName}`}
           to={`/portfolio`} 
-        >Browse Portfolio</Link>
+          text={'Browse Portfolio'}
+        />
       </section>
     );
   }

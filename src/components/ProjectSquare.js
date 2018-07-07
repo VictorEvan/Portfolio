@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { withRouter, Link } from 'react-router-dom';
 import titleCase from '../helper/titleCase.js';
 
+import CoolButton from './CoolButton';
+
 class ProjectSquare extends Component {
   render() {
     let url = this.props.match.url;
@@ -20,7 +22,12 @@ class ProjectSquare extends Component {
           <h2 className="project-title">{titleCase(this.props.project, "title") === 'Random Quote Machine' ? 'Quote Machine' : titleCase(this.props.project, "title")}</h2>
           <h3 className="project-description">{this.props.description}</h3>
           <div className="link-container">
-            <Link className="project-link" to={`${url}/${this.props.project}`}>View</Link>
+            <CoolButton
+              className="project=link cool-button"
+              to={`${url}/${this.props.project}`}
+              text="View Project"
+            >
+            </CoolButton>
           </div>
         </div>
       </div>

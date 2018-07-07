@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { NavLink } from 'react-router-dom';
 
 import Logo from '../images/Logo';
+
 import Hamburger from './Hamburger';
 import NavLinkContainer from './NavLinkContainer';
 
@@ -9,23 +11,32 @@ class Header extends Component {
 
   state = {
     sideNavIsOpen: false,
-    navIsHidden: true,
+    ariaHidden: true,
+    navIsAnimating: false,
+    logoClass: ''
   }
 
   handleHamburger = () => {
+    if (!this.state.isAnimating) {
+      this.setState({sideNavIsOpen: true, navIsAnimating: true});
     if (!this.state.sideNavIsOpen) {
-      console.log('toggle on');
-      this.setState({sideNavIsOpen: true, navIsHidden: false});
+        setTimeout( () => this.setState({ariaHidden: false}),10);
+        setTimeout( () => this.setState({navIsAnimating: false}),500);
     } else {
-      console.log('toggle off');
-      this.setState({navIsHidden: true});
-      setTimeout( () => this.setState({sideNavIsOpen: false}),700);
+        this.setState({ariaHidden: true});
+        setTimeout( () => this.setState({sideNavIsOpen: false, navIsAnimating: false}),500);
     }
+  }
   }
 
   closeSideNav = () => {
-    this.setState({navIsHidden: true});
-    setTimeout( () => this.setState({sideNavIsOpen: false}),700);
+    this.setState({ariaHidden: true});
+    setTimeout( () => this.setState({sideNavIsOpen: false}),500);
+  }
+
+  componentDidMount = () => {
+    this.setState({logoClass: 'logo logo-animates'});
+    setTimeout(()=>this.setState({logoClass: 'logo'}),5800)
   }
 
   render() {
@@ -33,19 +44,25 @@ class Header extends Component {
       <header>
         <Hamburger 
           toggleSideNav={this.handleHamburger}
-          sideNavIsOpen={this.state.sideNavIsOpen}
-          navIsHidden={this.state.navIsHidden}
+          ariaHidden={this.state.ariaHidden}
         />
         <div className="logo-container">
-          <Logo />
+          <NavLink
+            className={this.props.isAnimating ? 'navlink disable' : 'navlink'}
+            exact to='/'
+          >
+            <Logo 
+              className={this.state.logoClass}
+            />
+          </NavLink>
         </div>
         <nav 
           className={this.state.sideNavIsOpen ? "nav--active" : "nav"}
-          aria-hidden={this.state.navIsHidden}
+          aria-hidden={this.state.ariaHidden}
+          onClick={() => this.closeSideNav()}
         >
           <div className="nav__inner" onClick={e => e.stopPropagation()}>
             <div className="nav__inner__title mobile-only">
-              <Logo />
             </div>
             <ul className="nav__inner__links">
               {this.props.navLinks.map( navLink => (
@@ -60,9 +77,21 @@ class Header extends Component {
               ))}
             </ul>
             <ul className="nav__inner__social mobile-only">
-              <li className="social-link-container">L</li>
-              <li className="social-link-container">G</li>
-              <li className="social-link-container">C</li>
+              <li className="social-link-container">
+                <a className="social-link" href="https://www.github.com/victorevan">
+                  <img className="social-link__image--github" target="_blank" src={require('../images/social/github.png')} alt="GitHub"/>
+                </a>
+              </li>
+              <li className="social-link-container">
+                <a className="social-link" href="https://www.linkedin.com/in/victorevan">
+                  <img className="social-link__image--linkedin" target="_blank" src={require('../images/social/linkedin.png')} alt="Linkedin"/>
+                </a>
+              </li>
+              <li className="social-link-container">
+                <a className="social-link" href="https://www.codepen.io/victorevangelista">
+                  <img className="social-link__image--codepen" target="_blank" src={require('../images/social/codepen.png')} alt=""/>
+                </a>
+              </li>
             </ul>
           </div>
         </nav>

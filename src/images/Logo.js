@@ -1,8 +1,9 @@
-import React from "react"
+import React from "react";
+import PropTypes from 'prop-types';
 
 const Logo = props => (
   <svg
-    className="logo"
+    className={props.className}
     xmlnsXlink="http://www.w3.org/1999/xlink"
     viewBox="276.292 260.667 83.167 56.083"
     {...props}
@@ -33,5 +34,9 @@ const Logo = props => (
     <use xlinkHref="#a" />
   </svg>
 )
+
+Logo.propTypes = {
+  className: PropTypes.string.isRequired
+}
 
 export default Logo;

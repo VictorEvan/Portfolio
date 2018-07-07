@@ -1,20 +1,20 @@
 // Colors
 
 $cod-gray         : #1C1C1C;
-$black-opacity-50 : rgba(0,0,0,0.5);
+$black-opacity-25 : rgba(0,0,0,0.25);
 $cerulean         : #10A3D5;
 $white            : #FFFFFF;
 
 $color--nav       : $cod-gray;
 $color--cursor    : $white;
-$color--black-dim : $black-opacity-50;
+$color--black-dim : $black-opacity-25;
 
 $color--btn--portfolio: $cerulean;
 $color--nav__inner__title: $cerulean;
 
 $breakpoints: (
-  "xs": 320px,
-  "sm": 321px,
+  "xs": 600px,
+  "sm": 767px,
   "med": 768px,
   "lg": 992px,
 );
@@ -24,5 +24,8 @@ $breakpoints: (
 $base-animation-time: .5s;
 $fade-animation-time: .5s;
 $slide-animation-time: 1.5s;
+$cursor-animation-time: .60s;
+$move-in-animation-time: 1.5s;
+$move-out-animation-time: .5s;
 
 $bounce-animation-effect: cubic-bezier(.79,-0.38,.22,1.54);

@@ -13,10 +13,32 @@
   }
 }
 
-.logo {
+@keyframes fill-it-active {
+  100% {
+    fill: orange;
+    stroke-width: 0;
+  }
+}
+
+@keyframes fade-out {
+  100% {
+    opacity: 0;
+  }
+}
+
+.logo-animates {
   stroke: white;
   stroke-width: 1;
   stroke-dasharray: 186;
   stroke-dashoffset: 186;
   animation: offset 5s linear forwards, fill-it .8s 5s forwards;
+}
+
+.navlink.active
+.logo-animates {
+  stroke: white;
+  stroke-width: 1;
+  stroke-dasharray: 186;
+  stroke-dashoffset: 186;
+  animation: offset 5s linear forwards, fill-it-active .8s 5s forwards;
 }

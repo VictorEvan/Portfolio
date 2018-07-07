@@ -17,12 +17,13 @@
 
 .hamburger.is-active {
   z-index: 2000;
+  transform: translateZ(0);
   -webkit-transition: all 0.3s ease-in-out;
   -o-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
-  -webkit-transition-delay: 0.6s;
-  -o-transition-delay: 0.6s;
-  transition-delay: 0.6s;
+  -webkit-transition-delay: 0.3s;
+  -o-transition-delay: 0.3s;
+  transition-delay: 0.3s;
   -webkit-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
   -o-transform: rotate(45deg);
@@ -34,7 +35,7 @@
     -webkit-transform: translateY(13px);
     -ms-transform: translateY(13px);
     -o-transform: translateY(13px);
-    transform: translateY(13px);
+    transform: translateY(13px) translateZ(0);
   }
   .line:nth-child(1), 
   .line:nth-child(3) {
@@ -49,6 +50,6 @@
     -webkit-transform: translateY(-13px) rotate(90deg);
     -ms-transform: translateY(-13px) rotate(90deg);
     -o-transform: translateY(-13px) rotate(90deg);
-    transform: translateY(-13px) rotate(90deg);
+    transform: translateY(-13px) translateZ(0) rotate(90deg);
   }
 }

@@ -52,6 +52,13 @@ class App extends Component {
   animationHandler = (from, to) => {
     if (from !== to) {
       // from switch
+      const repetitiveProjects = {
+        '/portfolio/tic-tac-toe': true,
+        '/portfolio/calculator': true,
+        '/portfolio/random-quote-generator': true,
+        '/portfolio/pomodoro-clock': true
+      }
+      if (repetitiveProjects[from] && to !== '/contact') from = 'any-project' 
       switch(from) {
         case '/contact':
           return {
@@ -63,6 +70,10 @@ class App extends Component {
               exitActive: 'move-out-halves-active',
               exitDone: ''
             }, timeout: 1250, appear: false
+          }
+        case 'any-project':
+          return {
+            classNames: 'fade', timeout: 500, appear: false
           }
         default:
           break;
@@ -115,19 +126,51 @@ class App extends Component {
         }
       case `/portfolio-/portfolio/${this.props.projects[0].title}`:
         return {
-          classNames: 'fade', timeout: 500, appear: false
+          classNames: {
+            enter: 'fade-enter',
+            enterActive: 'fade-enter-active--delay',
+            enterDone: '',
+            exit: 'expand-project--project-one',
+            exitActive: 'expand-project--project-one-active',
+            exitDone: ''
+          },
+          timeout: 1500, appear: false
         }
       case `/portfolio-/portfolio/${this.props.projects[1].title}`:
         return {
-          classNames: 'fade', timeout: 500, appear: false
+          classNames: {
+            enter: 'fade-enter',
+            enterActive: 'fade-enter-active--delay',
+            enterDone: '',
+            exit: 'expand-project--project-two',
+            exitActive: 'expand-project--project-two-active',
+            exitDone: ''
+          },
+          timeout: 1500, appear: false
         }
       case `/portfolio-/portfolio/${this.props.projects[2].title}`:
         return {
-          classNames: 'fade', timeout: 500, appear: false
+          classNames: {
+            enter: 'fade-enter',
+            enterActive: 'fade-enter-active--delay',
+            enterDone: '',
+            exit: 'expand-project--project-three',
+            exitActive: 'expand-project--project-three-active',
+            exitDone: ''
+          },
+          timeout: 1500, appear: false
         }
       case `/portfolio-/portfolio/${this.props.projects[3].title}`:
         return {
-          classNames: 'fade', timeout: 500, appear: false
+          classNames: {
+            enter: 'fade-enter',
+            enterActive: 'fade-enter-active--delay',
+            enterDone: '',
+            exit: 'expand-project--project-four',
+            exitActive: 'expand-project--project-four-active',
+            exitDone: ''
+          },
+          timeout: 1500, appear: false
         }
       default:
         return {

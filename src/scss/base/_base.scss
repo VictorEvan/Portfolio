@@ -48,3 +48,12 @@ a {
     color: initial;
   }
 }
+
+::-webkit-scrollbar {
+  width: 6px;
+  border-left: 1px solid #E6ECF8
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #293347
+}

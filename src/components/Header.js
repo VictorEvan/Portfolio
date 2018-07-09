@@ -78,18 +78,18 @@ class Header extends Component {
             </ul>
             <ul className="nav__inner__social mobile-only">
               <li className="social-link-container">
-                <a className="social-link" href="https://www.github.com/victorevan">
-                  <img className="social-link__image--github" target="_blank" src={require('../images/social/github.png')} alt="GitHub"/>
+                <a className="social-link" target="_blank" rel="noopener noreferrer" href="https://www.github.com/victorevan">
+                  <img className="social-link__image--github" src={require('../images/social/github.png')} alt="GitHub"/>
                 </a>
               </li>
               <li className="social-link-container">
-                <a className="social-link" href="https://www.linkedin.com/in/victorevan">
-                  <img className="social-link__image--linkedin" target="_blank" src={require('../images/social/linkedin.png')} alt="Linkedin"/>
+                <a className="social-link" target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/in/victorevan">
+                  <img className="social-link__image--linkedin" src={require('../images/social/linkedin.png')} alt="Linkedin"/>
                 </a>
               </li>
               <li className="social-link-container">
-                <a className="social-link" href="https://www.codepen.io/victorevangelista">
-                  <img className="social-link__image--codepen" target="_blank" src={require('../images/social/codepen.png')} alt=""/>
+                <a className="social-link" target="_blank" rel="noopener noreferrer" href="https://www.codepen.io/victorevangelista">
+                  <img className="social-link__image--codepen" src={require('../images/social/codepen.png')} alt=""/>
                 </a>
               </li>
             </ul>

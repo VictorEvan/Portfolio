@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 const NavLinkContainer = props => {
   return (
-    <li className={`navlink-container ${props.title.toLowerCase()}`}>
+    <li className={`navlink-container--${props.title.toLowerCase()}`}>
       <NavLink 
         className={props.isAnimating || props.currentPath === props.toPath ? 'navlink disable' : 'navlink'}
         onClick={() => {

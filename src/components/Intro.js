@@ -57,7 +57,7 @@ class Intro extends Component {
   }
 
   render() {
-    const coolButtonClassName = this.props.isAnimating || this.props.location.pathname === '/portfolio' ? 'disable' : '';
+    const coolButtonClassName = this.props.isAnimating || this.props.location.pathname === '/projects' ? 'disable' : '';
     return (
       <section className="intro">
         <div className="intro--overlay"></div>
@@ -66,7 +66,7 @@ class Intro extends Component {
         <p className="talents">{this.state.output}<span className={this.state.isTyping ? 'text-cursor' : 'text-cursor--active'}>|</span><span className="dot">.</span></p>
         <CoolButton 
           className={`cool-button ${coolButtonClassName}`}
-          to={`/portfolio`} 
+          to={`/projects`} 
           text={'Browse Portfolio'}
         />
       </section>

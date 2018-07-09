@@ -35,12 +35,12 @@ class App extends Component {
       if (detectScrollDirection(e) === 'scrollDown' && 
         this.props.location.pathname === '/'
       ) {
-        this.props.history.push('/portfolio');
+        this.props.history.push('/projects');
         this.setState({pageIsAnimating: true});
       }
       if (
         detectScrollDirection(e) === 'scrollUp' &&
-        this.props.location.pathname === '/portfolio' &&
+        this.props.location.pathname === '/projects' &&
         window.pageYOffset === 0 // 0 pageYOffset is top of page
       ) {
         this.props.history.push('/');
@@ -53,10 +53,10 @@ class App extends Component {
     if (from !== to) {
       // from switch
       const repetitiveProjects = {
-        '/portfolio/tic-tac-toe': true,
-        '/portfolio/calculator': true,
-        '/portfolio/random-quote-generator': true,
-        '/portfolio/pomodoro-clock': true
+        '/projects/tic-tac-toe': true,
+        '/projects/calculator': true,
+        '/projects/random-quote-machine': true,
+        '/projects/pomodoro-clock': true
       }
       if (repetitiveProjects[from] && to !== '/contact') from = 'any-project' 
       switch(from) {
@@ -100,7 +100,7 @@ class App extends Component {
     // full from to switch
     const data = `${from}-${to}`;
     switch(data) {
-      case '/-/portfolio':
+      case '/-/projects':
         return {
           classNames: {
             enter: 'slide-up-from-bottom',
@@ -112,7 +112,7 @@ class App extends Component {
           },
           timeout: 1500, appear: false
         }
-      case '/portfolio-/':
+      case '/projects-/':
         return {
           classNames: {
             enter: 'slide-down-from-top',
@@ -124,7 +124,7 @@ class App extends Component {
           },
           timeout: 1500, appear: false
         }
-      case `/portfolio-/portfolio/${this.props.projects[0].title}`:
+      case `/projects-/projects/${this.props.projects[0].title}`:
         return {
           classNames: {
             enter: 'fade-enter',
@@ -136,7 +136,7 @@ class App extends Component {
           },
           timeout: 1500, appear: false
         }
-      case `/portfolio-/portfolio/${this.props.projects[1].title}`:
+      case `/projects-/projects/${this.props.projects[1].title}`:
         return {
           classNames: {
             enter: 'fade-enter',
@@ -148,7 +148,7 @@ class App extends Component {
           },
           timeout: 1500, appear: false
         }
-      case `/portfolio-/portfolio/${this.props.projects[2].title}`:
+      case `/projects-/projects/${this.props.projects[2].title}`:
         return {
           classNames: {
             enter: 'fade-enter',
@@ -160,7 +160,7 @@ class App extends Component {
           },
           timeout: 1500, appear: false
         }
-      case `/portfolio-/portfolio/${this.props.projects[3].title}`:
+      case `/projects-/projects/${this.props.projects[3].title}`:
         return {
           classNames: {
             enter: 'fade-enter',
@@ -199,6 +199,13 @@ class App extends Component {
         }
       );
     }
+
+    const scrollablePages = {
+      '/projects/tic-tac-toe': true,
+      '/projects/calculator': true,
+      '/projects/random-quote-machine': true,
+      '/projects/pomodoro-clock': true
+    };
 
     return (
       <div className='app'>
@@ -241,7 +248,7 @@ class App extends Component {
                   isAnimating={this.state.pageIsAnimating}
                 />} 
               />
-              <Route exact path={`/portfolio`} render={props =>
+              <Route exact path={`/projects`} render={props =>
                 <Portfolio 
                   {...props}
                   projects={this.props.projects}
@@ -253,7 +260,7 @@ class App extends Component {
                 />} 
               />
               {this.props.projects.map( project => (
-                <Route key={project.title} exact path={`/portfolio/${project.title}`} render={props =>
+                <Route key={project.title} exact path={`/projects/${project.title}`} render={props =>
                   <CaseStudy
                     {...props}
                     project={project}

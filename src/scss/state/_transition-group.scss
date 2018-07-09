@@ -69,6 +69,12 @@
 	transform: translateY(-100vh) translateZ(0);
 }
 
+.slide-up-from-middle.slide-up-from-middle-active.negate {
+	z-index: 250;
+	transform: translateY(0) translateZ(0);
+	transition: transform $slide-animation-time $bounce-animation-effect;
+}
+
 // ====================
 // Slide Down
 // ====================
@@ -91,6 +97,12 @@
 
 .slide-down-from-middle-active {
 	transform: translateY(100vh) translateZ(0);
+	transition: transform $slide-animation-time $bounce-animation-effect;
+}
+
+.slide-down-from-middle.slide-down-from-middle-active.negate {
+	z-index: 250;
+	transform: translateY(0) translateZ(0);
 	transition: transform $slide-animation-time $bounce-animation-effect;
 }
 
@@ -135,23 +147,10 @@
 	}
 }
 
-// ====================
-// Move In From Top Left
-// ====================
-
-.move-in-from-top-left {
-	z-index: 20000;
-	height: 36px;
-	width: 36px;
-	transform: translate(-100%,-100%) translateZ(0);
-	opacity: 0;
-	&-active {
-		z-index: 20000;
-		width: 100%;
-		height: auto;
-		transform: translate(0,0);
-		opacity: 1;
-		transition: all 1s cubic-bezier(.25,.02,.92,.3);
+.move-out-halves.move-out-halves-active.negate {
+	section {
+		transform: translateY(0) translateZ(0);
+		transition: transform .5s ease;
 	}
 }
 
@@ -172,6 +171,25 @@
 		transition: all 1s ease;
 		animation: fade-out $fade-animation-time ease 1s forwards;
 		@content;
+	}
+	&.negate {
+		.project {
+			@include mq('sm') {
+				height: 70%;
+				width: 100%;
+			}
+			display: block;
+			height: 50%;
+			width: 50%;
+		}
+		.project:nth-of-type(#{$num}) {
+			animation: fade-in $fade-animation-time ease;
+			position: static;
+			@include mq('med') {
+				border: 6px solid #fff;
+			}
+			@include projectBorder($num);
+		}
 	}
 }
 

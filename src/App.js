@@ -50,6 +50,19 @@ class App extends Component {
   }
 
   animationHandler = (from, to) => {
+    // handle user back button mid transition
+    if (from === to) {
+      return {
+        classNames: {
+          enter: '',
+          enterActive: '',
+          enterDone: 'negate',
+          exit: '',
+          exitActive: '',
+          exitDone: ''
+        }, timeout: 0, appear: false
+      }
+    }
     if (from !== to) {
       // from switch
       const repetitiveProjects = {

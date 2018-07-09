@@ -47,13 +47,16 @@
 }
 
 .cool-button {
-  transition: all .3s;
+  transition: all .2s ease-in-out;
   position: relative;
 	padding: 12px 20px;
 	background-color: #7E9DF0;
 	background: linear-gradient(270deg,#7E9DF0,#465FA3);
   color: #fff;
   z-index: 200;
+  &:active {
+    color: #fff;
+  }
   .button-text {
     z-index: 10;
     position: relative;
@@ -100,4 +103,28 @@
 .cool-button:hover .button-mask::after, .cool-button:hover .button-mask:before {
   -webkit-transform: translateX(200%);
   transform: translateX(200%);
+}
+
+.outline-button {
+  transition: all .2s ease-in-out;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 1.5;
+  height: 2.25em;
+  border: 1px solid transparent;
+  color: #fff;
+  padding: 1.25em 2em;
+  font-weight: 400;
+  border-width: 2px;
+  background-color: transparent;
+  border-color: $color--case-study-theme;
+  border-radius: 30000px;
+  font-size: 1.25rem;
+  &:hover,
+  &:active {
+    color: #fff;
+    background-color: $color--case-study-theme;;
+    border-color: $color--case-study-theme;;
+  }
 }

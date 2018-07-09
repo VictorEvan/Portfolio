@@ -25,7 +25,7 @@ class ProjectSquare extends Component {
             <CoolButton
               className="project=link cool-button"
               to={`${url}/${this.props.project}`}
-              text="View Project"
+              text="Case Study"
             >
             </CoolButton>
           </div>

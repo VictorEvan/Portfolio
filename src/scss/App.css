@@ -605,6 +605,9 @@ header {
   @media (min-width: 768px) {
     .intro {
       background-image: url(../images/backgrounds/intro-image--desktop.jpg); } }
+  @media screen and (orientation: landscape) and (max-width: 767px) {
+    .intro {
+      background-image: url(../images/backgrounds/intro-image--desktop.jpg); } }
   .intro * {
     text-align: center; }
   .intro--overlay {
@@ -743,6 +746,12 @@ header {
     background-size: cover;
     background-position: center; } }
 
+@media screen and (orientation: landscape) and (max-width: 767px) {
+  .projects__project--calculator {
+    background: url("../images/projects/calculator--desktop.jpg");
+    background-size: cover;
+    background-position: center; } }
+
 @media (max-width: 767px) {
   .projects__project--random-quote-machine {
     background: url("../images/projects/random-quote-machine--mobile.jpg");
@@ -755,6 +764,12 @@ header {
     background-size: cover;
     background-position: center; } }
 
+@media screen and (orientation: landscape) and (max-width: 767px) {
+  .projects__project--random-quote-machine {
+    background: url("../images/projects/random-quote-machine--desktop.jpg");
+    background-size: cover;
+    background-position: center; } }
+
 @media (max-width: 767px) {
   .projects__project--pomodoro-clock {
     background: url("../images/projects/pomodoro-clock--mobile.jpg");
@@ -762,6 +777,12 @@ header {
     background-position: top center; } }
 
 @media (min-width: 768px) {
+  .projects__project--pomodoro-clock {
+    background: url("../images/projects/pomodoro-clock--desktop.jpg");
+    background-size: cover;
+    background-position: center; } }
+
+@media screen and (orientation: landscape) and (max-width: 767px) {
   .projects__project--pomodoro-clock {
     background: url("../images/projects/pomodoro-clock--desktop.jpg");
     background-size: cover;
@@ -781,16 +802,28 @@ header {
         padding-bottom: 20px; }
       .case-study--tic-tac-toe .hero-container__header h2 {
         text-align: center;
-        font-weight: 300; }
+        font-weight: 300;
+        padding-bottom: 20px; }
+      .case-study--tic-tac-toe .hero-container__header .button-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap; }
+        .case-study--tic-tac-toe .hero-container__header .button-container a {
+          margin: .50rem;
+          width: 210px; }
   .case-study--tic-tac-toe .card-hero {
+    top: -20px;
     position: relative;
-    top: -200px;
     max-width: 90%;
     margin: 0 auto;
     border: 1px solid #f0f0f0;
     border-radius: 12px;
     background-color: #fff;
     box-shadow: 0 5px 5px 0 rgba(233, 240, 243, 0.5), 0 0 0 1px #E6ECF8; }
+    @media (min-height: 500px) {
+      .case-study--tic-tac-toe .card-hero {
+        top: -200px; } }
   .case-study--tic-tac-toe .column-container {
     text-align: center; }
     @media (min-width: 768px) {
@@ -859,16 +892,28 @@ header {
         padding-bottom: 20px; }
       .case-study--calculator .hero-container__header h2 {
         text-align: center;
-        font-weight: 300; }
+        font-weight: 300;
+        padding-bottom: 20px; }
+      .case-study--calculator .hero-container__header .button-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap; }
+        .case-study--calculator .hero-container__header .button-container a {
+          margin: .50rem;
+          width: 210px; }
   .case-study--calculator .card-hero {
+    top: -20px;
     position: relative;
-    top: -200px;
     max-width: 90%;
     margin: 0 auto;
     border: 1px solid #f0f0f0;
     border-radius: 12px;
     background-color: #fff;
     box-shadow: 0 5px 5px 0 rgba(233, 240, 243, 0.5), 0 0 0 1px #E6ECF8; }
+    @media (min-height: 500px) {
+      .case-study--calculator .card-hero {
+        top: -200px; } }
   .case-study--calculator .column-container {
     text-align: center; }
     @media (min-width: 768px) {
@@ -937,16 +982,28 @@ header {
         padding-bottom: 20px; }
       .case-study--random-quote-machine .hero-container__header h2 {
         text-align: center;
-        font-weight: 300; }
+        font-weight: 300;
+        padding-bottom: 20px; }
+      .case-study--random-quote-machine .hero-container__header .button-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap; }
+        .case-study--random-quote-machine .hero-container__header .button-container a {
+          margin: .50rem;
+          width: 210px; }
   .case-study--random-quote-machine .card-hero {
+    top: -20px;
     position: relative;
-    top: -200px;
     max-width: 90%;
     margin: 0 auto;
     border: 1px solid #f0f0f0;
     border-radius: 12px;
     background-color: #fff;
     box-shadow: 0 5px 5px 0 rgba(233, 240, 243, 0.5), 0 0 0 1px #E6ECF8; }
+    @media (min-height: 500px) {
+      .case-study--random-quote-machine .card-hero {
+        top: -200px; } }
   .case-study--random-quote-machine .column-container {
     text-align: center; }
     @media (min-width: 768px) {
@@ -1015,16 +1072,28 @@ header {
         padding-bottom: 20px; }
       .case-study--pomodoro-clock .hero-container__header h2 {
         text-align: center;
-        font-weight: 300; }
+        font-weight: 300;
+        padding-bottom: 20px; }
+      .case-study--pomodoro-clock .hero-container__header .button-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap; }
+        .case-study--pomodoro-clock .hero-container__header .button-container a {
+          margin: .50rem;
+          width: 210px; }
   .case-study--pomodoro-clock .card-hero {
+    top: -20px;
     position: relative;
-    top: -200px;
     max-width: 90%;
     margin: 0 auto;
     border: 1px solid #f0f0f0;
     border-radius: 12px;
     background-color: #fff;
     box-shadow: 0 5px 5px 0 rgba(233, 240, 243, 0.5), 0 0 0 1px #E6ECF8; }
+    @media (min-height: 500px) {
+      .case-study--pomodoro-clock .card-hero {
+        top: -200px; } }
   .case-study--pomodoro-clock .column-container {
     text-align: center; }
     @media (min-width: 768px) {
@@ -1175,13 +1244,15 @@ header {
       background-color: #10A3D5; }
 
 .cool-button {
-  transition: all .3s;
+  transition: all .2s ease-in-out;
   position: relative;
   padding: 12px 20px;
   background-color: #7E9DF0;
   background: linear-gradient(270deg, #7E9DF0, #465FA3);
   color: #fff;
   z-index: 200; }
+  .cool-button:active {
+    color: #fff; }
   .cool-button .button-text {
     z-index: 10;
     position: relative; }
@@ -1221,6 +1292,27 @@ header {
 .cool-button:hover .button-mask::after, .cool-button:hover .button-mask:before {
   -webkit-transform: translateX(200%);
   transform: translateX(200%); }
+
+.outline-button {
+  transition: all .2s ease-in-out;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 1.5;
+  height: 2.25em;
+  border: 1px solid transparent;
+  color: #fff;
+  padding: 1.25em 2em;
+  font-weight: 400;
+  border-width: 2px;
+  background-color: transparent;
+  border-color: #3088f3;
+  border-radius: 30000px;
+  font-size: 1.25rem; }
+  .outline-button:hover, .outline-button:active {
+    color: #fff;
+    background-color: #3088f3;
+    border-color: #3088f3; }
 
 .text-cursor, .text-cursor--active {
   font-weight: 100;

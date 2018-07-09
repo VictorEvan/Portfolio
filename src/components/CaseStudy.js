@@ -11,7 +11,23 @@ class CaseStudy extends Component {
         <section className="hero-container">
           <div className="hero-container__header">
             <h1>{titleCase(this.props.project.title, "title")}</h1>
-            <h2>{this.props.project.description}</h2>
+            <h2>A Case Study</h2>
+            <div className="button-container">
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                href={`https://github.com/VictorEvan/${this.props.project.title}`}
+                className="outline-button"
+              >GitHub Repo
+              </a>
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                href={`https://victorevan.github.io/${titleCase(this.props.project.title, "link")}`}
+                className="outline-button"
+              >View Website
+              </a>
+            </div>
           </div>
         </section>
         <section className="card-hero column-container">

@@ -142,6 +142,11 @@ $projects: (
       background-size: cover;
       background-position: center;
     }
+    @media screen and (orientation: landscape) and (max-width: map-get($breakpoints,'sm')) {
+      background: url('../images/projects/#{$project-name}--desktop.jpg');
+      background-size: cover;
+      background-position: center;
+    }
   } @else if $responsive == false {
     background: url('../images/projects/#{$project-name}.jpg');
     background-size: cover;

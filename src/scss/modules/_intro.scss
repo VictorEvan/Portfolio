@@ -8,6 +8,9 @@
   @include mq('med') {
     background-image: url(../images/backgrounds/intro-image--desktop.jpg);
   }
+  @media screen and (orientation: landscape) and (max-width: map-get($breakpoints,'sm')) {
+    background-image: url(../images/backgrounds/intro-image--desktop.jpg);
+  }
   background-size: cover;
   background-position: center;
   @extend %flex-column-center;

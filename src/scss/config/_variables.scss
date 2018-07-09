@@ -3,11 +3,13 @@
 $cod-gray         : #1C1C1C;
 $black-opacity-25 : rgba(0,0,0,0.25);
 $cerulean         : #10A3D5;
-$white            : #FFFFFF;
+$white            : #F5F5F5;
+$dodger-blue      : #3088f3;
 
-$color--nav       : $cod-gray;
-$color--cursor    : $white;
-$color--black-dim : $black-opacity-25;
+$color--nav             : $cod-gray;
+$color--cursor          : $white;
+$color--black-dim       : $black-opacity-25;
+$color--case-study-text : $dodger-blue;
 
 $color--btn--portfolio: $cerulean;
 $color--nav__inner__title: $cerulean;

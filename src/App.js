@@ -21,7 +21,7 @@ class App extends Component {
     // sets the initial animateFromPage location on app load
     this.setState({animateFromPage: this.props.location.pathname});
     // scroll event listener
-    window.addEventListener('wheel',this.changeOnScroll);
+    window.addEventListener('wheel',this.changeOnScroll, {passive: true});
   }
 
   changeOnScroll = e => {

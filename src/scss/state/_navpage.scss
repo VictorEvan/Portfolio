@@ -20,3 +20,7 @@
     transition: transform .50s cubic-bezier(.694,.048,.335,1),-webkit-transform .45s cubic-bezier(.694,.048,.335,1);
   }
 }
+
+.active {
+  cursor: default;
+}

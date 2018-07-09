@@ -18,25 +18,25 @@ class Header extends Component {
   handleHamburger = () => {
     if (!this.state.isAnimating) {
       this.setState({sideNavIsOpen: true, navIsAnimating: true});
-    if (!this.state.sideNavIsOpen) {
+      if (!this.state.sideNavIsOpen) {
           document.body.style.overflow = "hidden";
-        setTimeout( () => this.setState({ariaHidden: false}),10);
-        setTimeout( () => this.setState({navIsAnimating: false}),500);
-    } else {
+          setTimeout( () => this.setState({ariaHidden: false}),10);
+          setTimeout( () => this.setState({navIsAnimating: false}),500);
+      } else {
           document.body.style.overflow = "auto";
-        this.setState({ariaHidden: true});
-        setTimeout( () => this.setState({sideNavIsOpen: false, navIsAnimating: false}),500);
+          this.setState({ariaHidden: true});
+          setTimeout( () => this.setState({sideNavIsOpen: false, navIsAnimating: false}),500);
+      }
     }
-  }
   }
 
   closeSideNav = () => {
     // mobile only
     if (this.state.sideNavIsOpen) {
       document.body.style.overflow = "auto";
-    this.setState({ariaHidden: true});
-    setTimeout( () => this.setState({sideNavIsOpen: false}),500);
-  }
+      this.setState({ariaHidden: true});
+      setTimeout( () => this.setState({sideNavIsOpen: false}),500);
+    }
   }
 
   render() {

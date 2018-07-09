@@ -13,7 +13,7 @@ class ProjectSquare extends Component {
         className={`project projects__project--${this.props.project}`}
         onMouseEnter={() => {this.props.setCurrentProject(this.props.project)}}
         onTouchStart={() => {this.props.setCurrentProject(this.props.project);}}
-        onClick={() => console.log(this.props.project)}
+        onClick={() => window.scrollTo(0,0)}
       >
         <div className={`projects__project--overlay`}>
         </div>

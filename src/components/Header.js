@@ -12,8 +12,7 @@ class Header extends Component {
   state = {
     sideNavIsOpen: false,
     ariaHidden: true,
-    navIsAnimating: false,
-    logoClass: ''
+    navIsAnimating: false
   }
 
   handleHamburger = () => {
@@ -38,10 +37,6 @@ class Header extends Component {
     this.setState({ariaHidden: true});
     setTimeout( () => this.setState({sideNavIsOpen: false}),500);
   }
-
-  componentDidMount = () => {
-    this.setState({logoClass: 'logo logo-animates'});
-    setTimeout(()=>this.setState({logoClass: 'logo'}),5800)
   }
 
   render() {
@@ -57,7 +52,7 @@ class Header extends Component {
             exact to='/'
           >
             <Logo 
-              className={this.state.logoClass}
+              className='logo logo-animates'
             />
           </NavLink>
         </div>

@@ -1,35 +1,112 @@
-@mixin case-study-default($title-background) {
-  .title-section {
-    background-color: $title-background;
-    height: calc(100vh - 50px);
-    margin-top: 50px;
-    padding-bottom: 50px;
-    @extend %flex-column-center;
-    .hero-container {
-      width: 90%;
-      @extend %flex-column-center;
-      h2 {
-        padding-bottom: 1em;
-      }
-      h3 {
-        font-style: italic;
+@mixin case-study-default($title-background: none) {
+  font-family: 'Nunito', 'Roboto', sans-serif;
+  .hero-container {
+    height: 100vh;
+    background: $title-background;
+    &__header {
+      color: white;
+      padding-top: 110px;
+      h1 {
         text-align: center;
+        font-size: 45px;
+        padding-bottom: 20px;
       }
+      h2 {
+        text-align: center;
+        font-weight: 300;
+      }
+    }
+  }
+  .card-hero {
+    position: relative;
+    top: -200px;
+    max-width: 90%;
+    margin: 0 auto;
+    border: 1px solid #f0f0f0;
+    border-radius: 12px;
+    background-color: #fff;
+    box-shadow: 0 5px 5px 0 rgba(233,240,243,0.5), 0 0 0 1px #E6ECF8;
+  }
+  .column-container {
+    text-align: center;
+    @include mq('med') {
+      display: flex;
+    }
+    .column:last-child {
+      border-right: none;
+      border-bottom: none;
+    }
+  }
+  .column {
+    line-height: 1.5;
+    font-size: 20px;
+    display: block;
+    flex: 1;
+    padding: 40px 30px;
+    border-bottom: 1px solid #E6ECF8;
+    border-right: 0px solid #E6ECF8;
+    @include mq('med') {
+      border-bottom: 0px solid #E6ECF8;
+      border-right: 1px solid #E6ECF8;
+      padding: 60px 35px;
+    }
+    p {
+      font-weight: 300;
+    }
+    p:not(:last-child) {
+      margin-bottom: 2rem;
+    }
+    &__image {
+      margin: 0 auto 2em;
+      .skill-icon {
+        height: 55px;
+        width: auto;
+      }
+    }
+    &__skill-name {
+      margin-bottom: 2em;
+      font-weight: 800;
+      font-size: 1.6rem;
+    }
+    &__skill-title {
+      color: $color--case-study-text;
+      font-weight: 400!important;
+      font-size: 1.1rem;
+      margin-top: 50px!important;
+      margin-bottom: 1rem!important;
+    }
+    &__skill-link {
+      display: block;
+      margin-bottom: 8px;
+      color: #0070c9;
+      &:hover {
+        text-decoration: underline;
+      }
+      span {
+        font-size: 1.1rem;
+      }
+    }
+    ul li {
+      list-style: none;
+      font-weight: 300;
+    }
+    li+li {
+      margin-top: 0.25em;
     }
   }
 }
 
 .case-study {
   &--tic-tac-toe {
-    @include case-study-default(red);
+    @include case-study-default(linear-gradient(135deg,#3088f3 16%,#7031ac));
   }
   &--calculator {
-    @include case-study-default(blue);
+    @include case-study-default(linear-gradient(225deg, #3088f3 16%,#7031ac));
   }
   &--random-quote-machine {
-    @include case-study-default(orange);
+    @include case-study-default(linear-gradient(45deg, #3088f3 16%,#7031ac));
   }
   &--pomodoro-clock {
-    @include case-study-default(yellow);
+    @include case-study-default(linear-gradient(315deg,#3088f3 16%,#7031ac));
   }
 }

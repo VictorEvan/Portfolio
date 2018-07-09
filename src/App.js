@@ -292,25 +292,28 @@ App.defaultProps = {
   projects: [
     {
       title: 'tic-tac-toe',
-      description: 'Redux Game',
-      noteworthySkills: [
-        {
-          skill: 'React Lifecycle Methods',
-          purpose: 'componentDidUpdate proved useful for dynamically initiating player turns on state change.'
+      description: 'Single or Multiplayer Redux Game',
+      programmingDescription: "React's reusable presentational components and Redux' store for app state proved to make a delightful cocktail for this game.",
+      programmingLink: {
+        href: "https://github.com/VictorEvan/Tic-Tac-Toe/blob/master/src/redux/redux.js",
+        text: "Redux Source Code"
         },
         {
           skill: 'Redux',
           purpose: 'Single source of truth for application state, including player and AI moves. Connected to Container Components'
         },
-        {
-          skill: 'Sass',
-          purpose: 'Used preprocessor to create cleaner and more maintainable styles'
-        }
-      ]
+      designLinkDescription: "Check out how CSS Flex, Grid, and Position are used to create the game layout. Also noteworthy- Sass extends!",
+      thoughtsDescription: "Creating this application from scratch taught me a lot about how React lifecycle methods can be used in conjunction with Redux.",
+      notableSkillsUsed: [
+        "React Component Lifecycle Methods",
+        "React CSS Transitions",
+        "Redux State Management",
+        "Sass CSS Preprocessor",
+      ],
     },
     {
       title: 'calculator',
-      description: 'Functional & responsive',
+      description: 'Fully functional & responsive',
       noteworthySkills: [
         {
           skill: 'Dynamically Rendered React Components',
@@ -328,7 +331,7 @@ App.defaultProps = {
     },
     {
       title: 'random-quote-machine',
-      description: 'Beautiful & inspirational',
+      description: 'Inspirational quotes from the web',
       noteworthySkills: [
         {
           skill: 'Fetch API',

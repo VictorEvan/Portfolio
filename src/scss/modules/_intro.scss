@@ -2,8 +2,14 @@
   @extend %absolute-fill;
   padding-bottom: 50px;
   color: white;
-  background-image: url(../images/oregon-fog.jpg);
+  @include mq('sm') {
+    background-image: url(../images/backgrounds/intro-image--mobile.jpg);
+  }
+  @include mq('med') {
+    background-image: url(../images/backgrounds/intro-image--desktop.jpg);
+  }
   background-size: cover;
+  background-position: center;
   @extend %flex-column-center;
   position: relative;
   * {
@@ -12,7 +18,7 @@
   &--overlay {
     @extend %absolute-fill;
     z-index: 5;
-    background: rgba(0,0,0,0.5);
+    background: rgba(0,0,0,0.30);
   }
 }
 

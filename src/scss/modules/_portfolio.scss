@@ -7,13 +7,12 @@
     position: relative;
     @include mq('med') {
       border: 6px solid #fff;
-    height: 50%;
-    width: 50%;
+      height: 50%;
+      width: 50%;
     }
     &--overlay {
       @extend %absolute-fill;
-      background: #1c1d25;
-      opacity: .6;
+      background: rgba(0,0,0,0.40);
     }
   }
 }
@@ -23,12 +22,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: white;
+  color: $white;
   overflow: auto;
   padding-top: 1.5rem;
   @include mq('med') {
     justify-content: center;
-    padding-left: 4rem;
+    padding-left: 3rem;
     align-items: stretch;
   }
   .project-title {
@@ -60,39 +59,65 @@
   }
 }
 
+@mixin projectBorder($num) {
+  @if $num == 1 {
+    @include mq('sm') {
+      border-bottom: 12px solid #fff;
+    }
+    @include mq('med') {
+      border-top: 12px solid #fff;
+      border-left: 12px solid #fff;
+    }
+
+  }
+  @else if $num == 2 {
+    @include mq('sm') {
+      border-bottom: 12px solid #fff;
+    }
+    @include mq('med') {
+      border-top: 12px solid #fff;
+      border-right: 12px solid #fff;
+    }
+  }
+  @else if $num == 3 {
+    @include mq('sm') {
+      border-bottom: 12px solid #fff;
+    }
+    @include mq('med') {
+      border-left: 12px solid #fff;
+      border-bottom: 12px solid #fff;
+    }
+  }
+  @else if $num == 4 {
+    @include mq('med') {
+      border-right: 12px solid #fff;
+      border-bottom: 12px solid #fff;
+    }
+  }
+}
+
 .project {
-  @include mq('sm') {
-    &:nth-of-type(1) {
-      border-bottom: 12px solid #fff;
-    }
-    &:nth-of-type(2) {
-      border-bottom: 12px solid #fff;
-    }
-    &:nth-of-type(3) {
-      border-bottom: 12px solid #fff;
-    }
+  &:nth-of-type(1) {
+    @include projectBorder(1);
+  }
+  &:nth-of-type(2) {
+    @include projectBorder(2);
+  }
+  &:nth-of-type(3) {
+    @include projectBorder(3);
+  }
+  &:nth-of-type(4) {
+    @include projectBorder(4);
   }
   @include mq('med') {
     transition: border-width .25s ease-in;
     &:hover {
       border-width: 0px !important;
       transition: border-width .25s ease-in;
-    }
-    &:nth-of-type(1) {
-      border-top: 12px solid #fff;
-      border-left: 12px solid #fff;
-    }
-    &:nth-of-type(2) {
-      border-top: 12px solid #fff;
-      border-right: 12px solid #fff;
-    }
-    &:nth-of-type(3) {
-      border-left: 12px solid #fff;
-      border-bottom: 12px solid #fff;
-    }
-    &:nth-of-type(4) {
-      border-right: 12px solid #fff;
-      border-bottom: 12px solid #fff;
+      .projects__project--overlay {
+        background: rgba(0,0,0,0.60);
+        transition: background .5s ease;
+      }
     }
   }
 }
@@ -104,25 +129,39 @@ $projects: (
   'pomodoro-clock': 'jpg'
 );
 
-@each $project, $metadata in $projects {
-  $current-project: $project;
-  .projects__project--#{$project} {
-    @extend .projects__project;
-    @if $project == 'pomodoro-clock' {
-      background: url("../images/projects/#{$current-project}.jpg");
-    } @else {
-      background: url("../images/projects/#{$current-project}--mobile.#{$metadata}");
+@mixin projects__project-background($project-name, $responsive: true) {
+  @extend .projects__project;
+  @if $responsive == true {
+    @include mq('sm') {
+      background: url('../images/projects/#{$project-name}--mobile.jpg');
+      background-size: cover;
+      background-position: top center;
     }
-    background-size: cover;
-    background-position: center;
     @include mq('med') {
-      @if $project == 'pomodoro-clock' {
-        background: url("../images/projects/#{$current-project}.jpg");
-      } @else {
-        background: url("../images/projects/#{$current-project}--desktop.#{$metadata}");
-      }
+      background: url('../images/projects/#{$project-name}--desktop.jpg');
       background-size: cover;
       background-position: center;
     }
+  } @else if $responsive == false {
+    background: url('../images/projects/#{$project-name}.jpg');
+    background-size: cover;
+    background-position: center;
   }
+
+}
+
+.projects__project--tic-tac-toe {
+  @include projects__project-background('tic-tac-toe', false);
+}
+
+.projects__project--calculator {
+  @include projects__project-background('calculator', true);
+}
+
+.projects__project--random-quote-machine {
+  @include projects__project-background('random-quote-machine', true);
+}
+
+.projects__project--pomodoro-clock {
+  @include projects__project-background('pomodoro-clock', true);
 }

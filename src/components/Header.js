@@ -20,9 +20,11 @@ class Header extends Component {
     if (!this.state.isAnimating) {
       this.setState({sideNavIsOpen: true, navIsAnimating: true});
     if (!this.state.sideNavIsOpen) {
+          document.body.style.overflow = "hidden";
         setTimeout( () => this.setState({ariaHidden: false}),10);
         setTimeout( () => this.setState({navIsAnimating: false}),500);
     } else {
+          document.body.style.overflow = "auto";
         this.setState({ariaHidden: true});
         setTimeout( () => this.setState({sideNavIsOpen: false, navIsAnimating: false}),500);
     }
@@ -30,6 +32,9 @@ class Header extends Component {
   }
 
   closeSideNav = () => {
+    // mobile only
+    if (this.state.sideNavIsOpen) {
+      document.body.style.overflow = "auto";
     this.setState({ariaHidden: true});
     setTimeout( () => this.setState({sideNavIsOpen: false}),500);
   }

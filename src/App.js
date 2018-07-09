@@ -221,7 +221,7 @@ class App extends Component {
     };
 
     return (
-      <div className='app'>
+      <div className={scrollablePages[`${this.props.location.pathname}`] ? 'app scrollable' : 'app'}>
         <Header 
           location={this.props.location}
           isAnimating={this.state.pageIsAnimating}

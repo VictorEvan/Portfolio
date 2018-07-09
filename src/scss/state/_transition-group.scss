@@ -13,7 +13,7 @@
 
 .fade-enter-active--delay {
 	opacity: 1;
-	transition: opacity $fade-animation-time 1s ease-in;
+	transition: opacity $fade-animation-time .5s ease-in;
 }
 
 .fade-exit {
@@ -168,8 +168,8 @@
 		height: 100%;
 		width: 100%;
 		transform: translateZ(0);
-		transition: all 1s ease;
-		animation: fade-out $fade-animation-time ease 1s forwards;
+		transition: all .5s ease;
+		animation: fade-out $fade-animation-time ease .5s forwards;
 		@content;
 	}
 	&.negate {

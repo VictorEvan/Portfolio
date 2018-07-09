@@ -147,7 +147,7 @@ class App extends Component {
             exitActive: 'expand-project--project-one-active',
             exitDone: ''
           },
-          timeout: 1500, appear: false
+          timeout: 1000, appear: false
         }
       case `/projects-/projects/${this.props.projects[1].title}`:
         return {
@@ -159,7 +159,7 @@ class App extends Component {
             exitActive: 'expand-project--project-two-active',
             exitDone: ''
           },
-          timeout: 1500, appear: false
+          timeout: 1000, appear: false
         }
       case `/projects-/projects/${this.props.projects[2].title}`:
         return {
@@ -171,7 +171,7 @@ class App extends Component {
             exitActive: 'expand-project--project-three-active',
             exitDone: ''
           },
-          timeout: 1500, appear: false
+          timeout: 1000, appear: false
         }
       case `/projects-/projects/${this.props.projects[3].title}`:
         return {
@@ -183,7 +183,7 @@ class App extends Component {
             exitActive: 'expand-project--project-four-active',
             exitDone: ''
           },
-          timeout: 1500, appear: false
+          timeout: 1000, appear: false
         }
       default:
         return {

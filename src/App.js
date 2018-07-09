@@ -204,6 +204,7 @@ class App extends Component {
     const childFactoryCreator = () => {
       let animateFromPage = this.state.animateFromPage;
       let animateToPage = this.props.location.pathname;
+      console.log(`${animateFromPage} to ${animateToPage}`);
       console.log(this.animationHandler(animateFromPage, animateToPage));
       let { classNames, timeout, appear } = this.animationHandler(animateFromPage,animateToPage);
         return (

@@ -1,8 +1,14 @@
 .about-contact {
   z-index: 900;
-  display: flex;
-  flex-direction: column;
+  @media (min-height: 600px) {
+    display: flex;
+    flex-direction: column;
+    section {
+      flex: 1;
+    }
+  }
   @include mq('med') {
+    display: flex;
     flex-direction: row;
     &__contact-half,
     &__about-half {
@@ -10,14 +16,17 @@
     }
   }
   &__about-half {
-    padding: 2rem 0;
     background: #ecf0f1;
     display: flex;
     justify-content: center;
     align-items: center;
   }
   &__contact-half {
-    background: orange;
+    background: rgba(28,29,37,.985);
+    color: $white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
 
@@ -29,12 +38,35 @@
     font-size: 1.79rem;
   }
   &__description {
-    padding-top: .25rem;
+    margin-top: .50rem;
     font-weight: 300;
     font-size: 1.32rem;
   }
   &__paragraph {
-    padding: .50rem 0;
+    margin: 20px 0;
     font-size: 1rem;
+  }
+  &__list {
+    background: #ecf0f1;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-top: 1px solid #ecf0f1;
+    color: gray;
+    height: 80px;
+    max-height: 20%;
+    .social-link-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 30px;
+      width: 30px;
+      &__image {
+        height: auto;
+        &--linkedin {
+          transform: scale(1.2);
+        }
+      }
+    }
   }
 }

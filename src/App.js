@@ -298,9 +298,11 @@ App.defaultProps = {
         href: "https://github.com/VictorEvan/Tic-Tac-Toe/blob/master/src/redux/redux.js",
         text: "Redux Source Code"
         },
-        {
-          skill: 'Redux',
-          purpose: 'Single source of truth for application state, including player and AI moves. Connected to Container Components'
+      programmingLinkDescription: "Take a deeper look into the state and logic behind the app. Action Type Creators, Reducers, a MiniMax algorithm- Oh my!",
+      designDescription: "Using Sass as my CSS preprocessor proved to be quintessential in rapidly developing quality styles with variables, mixins, and extends.",
+      designLink: {
+        href: "https://github.com/VictorEvan/Tic-Tac-Toe/blob/master/src/scss/layout/_layout.scss",
+        text: "Layout Source Code"
         },
       designLinkDescription: "Check out how CSS Flex, Grid, and Position are used to create the game layout. Also noteworthy- Sass extends!",
       thoughtsDescription: "Creating this application from scratch taught me a lot about how React lifecycle methods can be used in conjunction with Redux.",

@@ -83,7 +83,7 @@ class App extends Component {
         startY = touchobj.pageY
         startTime = new Date().getTime() // record time when finger first makes contact with surface
         // e.preventDefault()
-    }, false)
+    }, {passive: true})
   
     touchsurface.addEventListener('touchmove', e => {
       // prevents annoying browser bar glitch on mobile
@@ -107,7 +107,7 @@ class App extends Component {
         }
         handleswipe(swipedir)
         // e.preventDefault();
-    }, false)
+    }, {passive: true})
   }
 
   animationHandler = (from, to) => {
@@ -313,7 +313,10 @@ class App extends Component {
               setTimeout( () => {
                 this.setState({animateFromPage: this.props.location.pathname, pageIsAnimating: false});
               },0 );
-              document.body.style.overflow = "auto";
+              if (this.props.location !== '/') {
+                document.body.style.overflow = "auto";
+              }
+              
             }}
           >
             <Switch location={this.props.location}>

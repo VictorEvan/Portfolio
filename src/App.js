@@ -351,7 +351,7 @@ App.defaultProps = {
         text: "Styles Source Code"
       },
       designLinkDescription: "Check out the Sass mixins, lists and control directives that bring the app to life!",
-      thoughtsDescription: "This was a highly enjoyable project. I love creating beautifully simple apps.",
+      thoughtsDescription: "This was a highly enjoyable and uplifting project to work on. I love designing and coding beautifully simple apps.",
       notableSkillsUsed: [
         "JavaScript fetch API",
         "Sass Mixins, Lists & Control Directives",

@@ -316,42 +316,71 @@ App.defaultProps = {
     {
       title: 'calculator',
       description: 'Fully functional & responsive',
-      noteworthySkills: [
-        {
-          skill: 'Dynamically Rendered React Components',
-          purpose: 'Calculator buttons are dynamically rendered from JavaScript data structures'
-        },
-        {
-          skill: 'CSS Grid',
-          purpose: 'Layout System used to create calculator button rows and columns'
-        },
-        {
-          skill: 'React CSS Transitions Group',
-          purpose: 'High-level API add-on used to perform simple and reusable CSS animations'
-        }
-      ]
+      programmingDescription: "Using React for this application was a pleasure. The majority of the UI is dynamically rendered by reusable React Components.",
+      programmingLink: {
+        href: "https://github.com/VictorEvan/Calculator/blob/master/src/App.js",
+        text: "App Source Code"
+      },
+      programmingLinkDescription: "Take a look at the building blocks and logic behind the app, all following industry patterns.",
+      designDescription: "Inspired by the UI of the Android calculator app, I sought to create my own fullscreen responsive design using CSS Grid and Flex.",
+      designLink: {
+        href: "https://github.com/VictorEvan/Calculator/blob/master/src/scss/_layout.scss",
+        text: "Layout Source Code"
+      },
+      designLinkDescription: "Take a look at the short, simple, and beautiful layout rules that make the app just work.",
+      thoughtsDescription: "This made for a fun project to practice programmatically generating UI elements each with their own callback functions built in.",
+      notableSkillsUsed: [
+        "CSS Grid/Flexbox",
+        "Dynamically Rendered UI Components",
+        "JavaScript Closures",
+        "Edge Case Handling",
+      ],
     },
     {
       title: 'random-quote-machine',
       description: 'Inspirational quotes from the web',
-      noteworthySkills: [
-        {
-          skill: 'Fetch API',
-          purpose: 'Used to request JSON containing quote data from remote server API'
-        },
-        {
-          skill: 'CSS Media Query Responsive Design',
-          purpose: 'Images and layout are dynamic according to device dimensions'
-        },
-        {
-          skill: 'Regex',
-          purpose: 'Quotes and Author names are adjusted for Twitter Query with Replace method'
-        }
-      ]
+      programmingDescription: "All the quotes behind this beautiful app are pulled from the web using the fetch API, and can be easily be shared on Twitter.",
+      programmingLink: {
+        href: "https://github.com/VictorEvan/Random-Quote-Machine/blob/master/src/App.js",
+        text: "App Source Code"
+      },
+      programmingLinkDescription: "Take a look behind the scenes at the built in methods that handle changing the app state.",
+      designDescription: "The design for this app was greatly inspired by quotefancy who combine beautiful background images with fantastic quotes.",
+      designLink: {
+        href: "https://github.com/VictorEvan/Random-Quote-Machine/blob/master/src/scss/App.scss",
+        text: "Styles Source Code"
+      },
+      designLinkDescription: "Check out the Sass mixins, lists and control directives that bring the app to life!",
+      thoughtsDescription: "This was a highly enjoyable project. I love creating beautifully simple apps.",
+      notableSkillsUsed: [
+        "JavaScript fetch API",
+        "Sass Mixins, Lists & Control Directives",
+        "Image Caching",
+        "Regex Data Cleansing",
+      ],
     },
     {
       title: 'pomodoro-clock',
       description: 'Simple productivity app',
+      programmingDescription: "",
+      programmingLink: {
+        href: "",
+        text: ""
+      },
+      programmingLinkDescription: "",
+      designDescription: "",
+      designLink: {
+        href: "",
+        text: ""
+      },
+      designLinkDescription: "",
+      thoughtsDescription: "",
+      notableSkillsUsed: [
+        "",
+        "",
+        "",
+        "",
+      ],
       noteworthySkills: [
         {
           skill: '',

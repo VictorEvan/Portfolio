@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 const Hamburger = props => (
   <button 
+    aria-label="toggle-nav"
     className={!props.ariaHidden ? 'hamburger is-active' : 'hamburger'}
     onClick={()=> {props.toggleSideNav()}}
   >

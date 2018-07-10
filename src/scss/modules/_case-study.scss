@@ -5,7 +5,10 @@
     background: $title-background;
     &__header {
       color: white;
-      padding-top: 110px;
+      padding-top: 90px;
+      @media (min-height: 501px) and (min-width: map-get($breakpoints,'med')) {
+        padding-top: 110px;
+      }
       h1 {
         text-align: center;
         font-size: 45px;
@@ -32,7 +35,7 @@
     @media (min-height: 500px) {
       top: -200px;
     }
-    top: -20px;
+    top: -35px;
     position: relative;
     max-width: 90%;
     margin: 0 auto;

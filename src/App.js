@@ -13,32 +13,39 @@ class App extends Component {
 
   state = {
     pageIsAnimating: false,
-    animateFromPage: null,
+    animateFromPage: null
   }
 
   componentDidMount = () => {
     // sets the initial animateFromPage location on app load
     this.setState({animateFromPage: this.props.location.pathname});
     // scroll event listener
-    window.addEventListener('wheel',this.changeOnScroll, {passive: true});
+    window.addEventListener('wheel',this.detectScroll, {passive: true});
+    let el = document.querySelector('.app');
+    this.detectSwipe(el, swipedir => {
+      switch(swipedir) {
+        case 'up':
+          this.movementHandler('scrollDown');
+          break;
+        case 'down':
+          this.movementHandler('scrollUp');
+          break;
+        default:
+          break;
+      }
+  });
   }
 
-  changeOnScroll = e => {
-    const detectScrollDirection = e => {
-      let delta = e.wheelDelta ? e.wheelDelta : -1 * e.deltaY;
-      // Negative delta is scroll down, positive delta is scroll up
-      return delta < 0 ? 'scrollDown' : 'scrollUp';
-    }
-    
+  movementHandler = direction => {
     if (!this.state.pageIsAnimating) {
-      if (detectScrollDirection(e) === 'scrollDown' && 
+      if (direction === 'scrollDown' && 
         this.props.location.pathname === '/'
       ) {
         this.props.history.push('/projects');
         this.setState({pageIsAnimating: true});
       }
       if (
-        detectScrollDirection(e) === 'scrollUp' &&
+        direction === 'scrollUp' &&
         this.props.location.pathname === '/projects' &&
         window.pageYOffset === 0 // 0 pageYOffset is top of page
       ) {
@@ -46,6 +53,59 @@ class App extends Component {
         this.setState({pageIsAnimating: true});
       }
     }
+  }
+
+  detectScroll = e => {
+    let delta = e.wheelDelta ? e.wheelDelta : -1 * e.deltaY;
+    // Negative delta is scroll down, positive delta is scroll up
+    let direction = delta < 0 ? 'scrollDown' : 'scrollUp';
+    this.movementHandler(direction);
+  }
+
+  detectSwipe = (el, callback) => {
+  
+    let touchsurface = el,
+    swipedir,
+    startX,
+    startY,
+    distX,
+    distY,
+    threshold = 100, //required min distance traveled to be considered swipe
+    restraint = 200, // maximum distance allowed at the same time in perpendicular direction
+    allowedTime = 500, // maximum time allowed to travel that distance
+    elapsedTime,
+    startTime,
+    handleswipe = callback || function(swipedir){}
+  
+    touchsurface.addEventListener('touchstart', function(e){
+        let touchobj = e.changedTouches[0]
+        swipedir = 'none'
+        startX = touchobj.pageX
+        startY = touchobj.pageY
+        startTime = new Date().getTime() // record time when finger first makes contact with surface
+        // e.preventDefault()
+    }, false)
+  
+/*     touchsurface.addEventListener('touchmove', function(e){
+        e.preventDefault() // prevent scrolling when inside DIV
+    }, false) */
+  
+    touchsurface.addEventListener('touchend', function(e){
+        let touchobj = e.changedTouches[0]
+        distX = touchobj.pageX - startX // get horizontal dist traveled by finger while in contact with surface
+        distY = touchobj.pageY - startY // get vertical dist traveled by finger while in contact with surface
+        elapsedTime = new Date().getTime() - startTime // get time elapsed
+        if (elapsedTime <= allowedTime){ // first condition for awipe met
+            if (Math.abs(distX) >= threshold && Math.abs(distY) <= restraint){ // 2nd condition for horizontal swipe met
+                swipedir = (distX < 0)? 'left' : 'right' // if dist traveled is negative, it indicates left swipe
+            }
+            else if (Math.abs(distY) >= threshold && Math.abs(distX) <= restraint){ // 2nd condition for vertical swipe met
+                swipedir = (distY < 0)? 'up' : 'down' // if dist traveled is negative, it indicates up swipe
+            }
+        }
+        handleswipe(swipedir)
+        // e.preventDefault();
+    }, false)
   }
 
   animationHandler = (from, to) => {

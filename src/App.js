@@ -317,25 +317,25 @@ class App extends Component {
             }}
           >
             <Switch location={this.props.location}>
-              <Route exact path={`${process.env.PUBLIC_URL}/`} render={props => 
+              <Route exact path={`/`} render={props => 
                 <Intro 
                   {...props} 
                   isAnimating={this.state.pageIsAnimating}
                 />} 
               />
-              <Route exact path={`${process.env.PUBLIC_URL}/projects`} render={props =>
+              <Route exact path={`/projects`} render={props =>
                 <Portfolio 
                   {...props}
                   projects={this.props.projects}
                 />} 
               />
-              <Route exact path={`${process.env.PUBLIC_URL}/contact`} render={props =>
+              <Route exact path={`/contact`} render={props =>
                 <About
                   {...props}
                 />} 
               />
               {this.props.projects.map( project => (
-                <Route key={project.title} exact path={`${process.env.PUBLIC_URL}/projects/${project.title}`} render={props =>
+                <Route key={project.title} exact path={`/projects/${project.title}`} render={props =>
                   <CaseStudy
                     {...props}
                     project={project}

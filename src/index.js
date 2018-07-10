@@ -5,7 +5,7 @@ import { Route, HashRouter } from 'react-router-dom';
 import registerServiceWorker from './registerServiceWorker';
 
 ReactDOM.render(
-  <HashRouter basename={process.env.PUBLIC_URL}>
+  <HashRouter>
     <Route render={props => (
       <App {...props} />
     )}/>

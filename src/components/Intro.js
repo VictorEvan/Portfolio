@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import CoolButton from './CoolButton';
+import ScrollDownIcon from './../images/icons/ScrollDownIcon';
+import MouseIcon from './../images/icons/MouseIcon';
+import { Link } from 'react-router-dom';
 
 class Intro extends Component {
 
@@ -69,6 +72,18 @@ class Intro extends Component {
           to={`/projects`} 
           text={'Browse Portfolio'}
         />
+        <div className="bar">
+          <Link
+            to="/projects"
+          >
+            <div className="carousel-scroll-btn">
+              <div className="carousel-scroll-btn-icon-wrapper">
+                <ScrollDownIcon />
+              </div>
+                <MouseIcon />
+            </div>
+          </Link>
+        </div>
       </section>
     );
   }

@@ -74,6 +74,7 @@ class Intro extends Component {
         />
         <div className="bar">
           <Link
+            aria-label="to projects"
             to="/projects"
           >
             <div className="carousel-scroll-btn">

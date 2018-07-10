@@ -63,7 +63,6 @@ class App extends Component {
   }
 
   detectSwipe = (el, callback) => {
-  
     let touchsurface = el,
     swipedir,
     startX,
@@ -77,7 +76,7 @@ class App extends Component {
     startTime,
     handleswipe = callback || function(swipedir){}
   
-    touchsurface.addEventListener('touchstart', function(e){
+    touchsurface.addEventListener('touchstart', e => {
         let touchobj = e.changedTouches[0]
         swipedir = 'none'
         startX = touchobj.pageX
@@ -86,11 +85,14 @@ class App extends Component {
         // e.preventDefault()
     }, false)
   
-/*     touchsurface.addEventListener('touchmove', function(e){
-        e.preventDefault() // prevent scrolling when inside DIV
-    }, false) */
+    touchsurface.addEventListener('touchmove', e => {
+      // prevents annoying browser bar glitch on mobile
+      if (this.props.location.pathname === '/') {
+        e.preventDefault() // prevent scrolling
+      }
+    }, false)
   
-    touchsurface.addEventListener('touchend', function(e){
+    touchsurface.addEventListener('touchend', e => {
         let touchobj = e.changedTouches[0]
         distX = touchobj.pageX - startX // get horizontal dist traveled by finger while in contact with surface
         distY = touchobj.pageY - startY // get vertical dist traveled by finger while in contact with surface

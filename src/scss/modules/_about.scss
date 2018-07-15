@@ -61,11 +61,9 @@
       align-items: center;
       height: 30px;
       width: 30px;
-      &__image {
-        height: auto;
-        &--linkedin {
-          transform: scale(1.2);
-        }
+      svg {
+        height: 40px;
+        width: 40px;
       }
     }
   }

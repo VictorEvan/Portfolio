@@ -100,12 +100,9 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 30px;
-        width: 30px;
-        &__image {
-          height: auto;
-          &--linkedin {
-            transform: scale(1.2);
+        svg {
+          height: 35px;
+          width: 35px;
           }
         }
       }

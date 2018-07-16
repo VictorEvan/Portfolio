@@ -26,7 +26,7 @@ class ProjectSquare extends Component {
           <h3 className="project-description">{this.props.description}</h3>
           <div className="link-container">
             <CoolButton
-              className="project=link cool-button"
+              className="project-link cool-button"
               to={`${url}/${this.props.project}`}
               onClick={()=>this.props.mostRecentProject(`${url}/${this.props.project}`)}
               text="Case Study"

@@ -4,7 +4,7 @@ const GitHub = () => (
   <svg viewBox="0 0 524 512">
     <defs />
     <title>github</title>
-    <g id="Layer_2" data-name="Layer 2">
+    <g>
       <g id="github">
         <path
           style={{fill: 'transparent'}}

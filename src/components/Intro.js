@@ -74,7 +74,7 @@ class Intro extends Component {
           to={`/projects`} 
           text={'Browse Portfolio'}
         />
-        <div className="bar">
+        <div className="bar--bottom">
           <Link
             aria-label="to projects"
             to="/projects"

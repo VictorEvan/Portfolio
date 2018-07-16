@@ -5,7 +5,7 @@ const Hamburger = props => (
   <button 
     aria-label="toggle-nav"
     className={!props.ariaHidden ? 'hamburger is-active' : 'hamburger'}
-    onClick={()=> {props.toggleSideNav()}}
+    onClick={() => props.toggleSideNav(true)}
   >
     <span className="line"></span>
     <span className="line"></span>

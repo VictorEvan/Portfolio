@@ -7,9 +7,7 @@ const NavLinkContainer = props => {
     <li className={`navlink-container--${props.title.toLowerCase()}`}>
       <NavLink 
         className={props.isAnimating || props.currentPath === props.toPath ? 'navlink disable' : 'navlink'}
-        onClick={() => {
-          setTimeout(() => props.closeSideNav(),250);
-        }}
+        onClick={() => setTimeout(() => props.closeSideNav(),250)}
         exact to={props.toPath}
       >
         {props.title}

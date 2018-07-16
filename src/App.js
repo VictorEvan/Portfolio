@@ -73,6 +73,27 @@ class App extends Component {
     addEvent(window, 'MozMousePixelScroll', checkScroll);
     // ============================================================
   }
+  
+  handleNav = (toggle= false) => {
+    const openSideNav = () => {
+      document.body.style.overflow = "hidden";
+      setTimeout( () => this.setState({ariaHidden: false}),10);
+      setTimeout( () => this.setState({navIsAnimating: false}),500);
+    }
+    const closeSideNav = () => {
+      if (this.state.sideNavIsOpen) {
+        document.body.style.overflow = "auto";
+        this.setState({ariaHidden: true});
+        setTimeout( () => this.setState({sideNavIsOpen: false, navIsAnimating: false}),500);
+      }
+    }
+    const toggleSideNav = () => {
+      this.setState({sideNavIsOpen: true, navIsAnimating: true});
+      this.state.sideNavIsOpen ? closeSideNav() : openSideNav();
+    };
+    if (!this.state.navIsAnimating) toggle ? toggleSideNav() : closeSideNav();
+  }
+
   movementHandler = direction => {
     if (!this.state.pageIsAnimating) {
       if (direction === 'scrollDown' && 
@@ -324,6 +345,12 @@ class App extends Component {
         <Header 
           location={this.props.location}
           isAnimating={this.state.pageIsAnimating}
+          sideNavIsOpen={this.state.sideNavIsOpen}
+          ariaHidden={this.state.ariaHidden}
+          navIsAnimating={this.state.navIsAnimating}
+          handleHamburger={this.handleNav}
+          closeSideNav={this.handleNav}
+          showMouseUpIcon={this.state.showMouseUpIcon}
         />
         <TransitionGroup 
           component={null}

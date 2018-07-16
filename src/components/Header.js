@@ -43,8 +43,8 @@ class Header extends Component {
     return (
       <header>
         <Hamburger 
-          toggleSideNav={this.handleHamburger}
-          ariaHidden={this.state.ariaHidden}
+          toggleSideNav={this.props.handleHamburger}
+          ariaHidden={this.props.ariaHidden}
         />
         <div className="logo-container">
           <NavLink
@@ -57,9 +57,9 @@ class Header extends Component {
           </NavLink>
         </div>
         <nav 
-          className={this.state.sideNavIsOpen ? "nav--active" : "nav"}
-          aria-hidden={this.state.ariaHidden}
-          onClick={() => this.closeSideNav()}
+          className={this.props.sideNavIsOpen ? "nav--active" : "nav"}
+          aria-hidden={this.props.ariaHidden}
+          onClick={() => this.props.closeSideNav()}
         >
           <div className="nav__inner" onClick={e => e.stopPropagation()}>
             <div className="nav__inner__title mobile-only">
@@ -68,7 +68,7 @@ class Header extends Component {
               {this.props.navLinks.map( navLink => (
                 <NavLinkContainer
                   key={navLink.toPath}
-                  closeSideNav={this.closeSideNav}
+                  closeSideNav={this.props.closeSideNav}
                   isAnimating={this.props.isAnimating}
                   currentPath={this.props.location.pathname}
                   toPath={navLink.toPath}
@@ -120,6 +120,10 @@ Header.defaultProps = {
 Header.propTypes = {
   location: PropTypes.object.isRequired,
   isAnimating: PropTypes.bool,
+  sideNavIsOpen: PropTypes.bool.isRequired,
+  ariaHidden: PropTypes.bool.isRequired,
+  handleHamburger: PropTypes.func.isRequired,
+  closeSideNav: PropTypes.func.isRequired
 }
 
 export default Header;

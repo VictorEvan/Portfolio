@@ -498,38 +498,24 @@ App.defaultProps = {
     {
       title: 'pomodoro-clock',
       description: 'Simple productivity app',
-      programmingDescription: "",
+      programmingDescription: "There has to be something interesting I can say about a clock.",
       programmingLink: {
-        href: "",
-        text: ""
+        href: "https://github.com/VictorEvan/Pomodoro-Clock/blob/master/src/App.js",
+        text: "App Source Code"
       },
-      programmingLinkDescription: "",
-      designDescription: "",
+      programmingLinkDescription: "Take a look at the accurate time tracking implementation.",
+      designDescription: "Creating the layout for this app was fast and easy with Flexbox.",
       designLink: {
-        href: "",
-        text: ""
+        href: "https://github.com/VictorEvan/Pomodoro-Clock/blob/master/src/scss/_layout.scss",
+        text: "Layout Source Code"
       },
-      designLinkDescription: "",
-      thoughtsDescription: "",
+      designLinkDescription: "Flex Mania",
+      thoughtsDescription: "The accurate timer for this app will prove useful for future projects.",
       notableSkillsUsed: [
-        "",
-        "",
-        "",
-        "",
-      ],
-      noteworthySkills: [
-        {
-          skill: '',
-          purpose: ''
-        },
-        {
-          skill: '',
-          purpose: ''
-        },
-        {
-          skill: '',
-          purpose: ''
-        }
+        "Dynamically Rendered Components",
+        "Responsible State Handling",
+        "JavaScript Closures",
+        "Flexbox",
       ]
     }
   ]

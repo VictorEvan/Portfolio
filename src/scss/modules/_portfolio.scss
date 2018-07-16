@@ -2,7 +2,7 @@
   display: flex;
   flex-flow: row wrap;
   &__project {
-      width: 50%;
+    width: 50%;
     height: 50%;
     position: relative;
     &--overlay {
@@ -10,10 +10,10 @@
       background: rgba(0,0,0,0.2);
       transition: background .5s ease;
       @include mq('med') {
-      background: rgba(0,0,0,0.40);
+        background: rgba(0,0,0,0.40);
+      }
     }
   }
-}
 }
 
 .project-container {
@@ -40,21 +40,21 @@
       display: none;
     }
     @include mq('med') {
-    font-size: 2rem;
+      font-size: 2rem;
       text-align: start;
       font-weight: 800;
-  }
+    }
   }
   .project-description {
     display: none;
     @include mq('med') {
       display: block;
-    padding-top: .75rem;
-    font-size: 1.25rem;
-    font-style: italic;
-    font-weight: 300;
-    max-width: 100%;
-  }
+      padding-top: .75rem;
+      font-size: 1.25rem;
+      font-style: italic;
+      font-weight: 300;
+      max-width: 100%;
+    }
   }
   .link-container {
     display: flex;
@@ -64,7 +64,7 @@
     display: none;
     @include mq('med') {
       display: block;
-    font-size: 1rem;
+      font-size: 1rem;
       letter-spacing: 2px;
     }
   }

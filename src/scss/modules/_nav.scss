@@ -114,18 +114,17 @@
         svg {
           height: 35px;
           width: 35px;
-          }
         }
       }
     }
   }
+}
 
 header {
   z-index: 1000;
   width: 100%;
   min-height: 50px;
   background-color: $color--nav;
-  background: rgba(0,0,0,.85);
   color: white;
   display: flex;
   justify-content: space-between;
@@ -143,10 +142,10 @@ header {
       display: flex;
       justify-content: center;
       align-items: center;
-    }
-    .logo {
-      padding-top: 3px;
-      height: 48px;
+      .logo {
+        height: 48px;
+        padding: 10px;
+      }
     }
   }
   .mouse-up-container {
@@ -206,9 +205,11 @@ header {
 .app.scrollable {
   .navlink {
     opacity: 1;
-    &:hover {
-      border: none;
-      opacity: .50;
+    @include mq('med') {
+      &:hover {
+        border: none;
+        opacity: .50;
+      }
     }
     &.active {
       border: 1px solid white;

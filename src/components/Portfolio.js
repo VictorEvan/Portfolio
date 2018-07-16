@@ -6,9 +6,7 @@ import ProjectSquare from './ProjectSquare';
 class Portfolio extends Component {
   componentDidMount = () => {
     document.body.classList.add('stop-pull-refresh');
-  }
-  componentWillUnmount = () => {
-    document.body.classList.remove('stop-pull-refresh');
+    document.body.style.overflow = "hidden";
   }
   state = {
     currentProject: ''

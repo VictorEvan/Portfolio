@@ -18,6 +18,8 @@ class Intro extends Component {
   currentLetter = 0;
 
   componentDidMount = () => {
+    document.body.classList.remove('stop-pull-refresh');
+    document.body.style.overflow = "hidden";
     setTimeout(()=>this.typeWriter('type'),500);
     this.pageIsActive = true;
   }

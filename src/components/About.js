@@ -5,6 +5,11 @@ import Codepen from './../images/social/Codepen';
 import Linkedin from './../images/social/Linkedin';
 
 class About extends Component {
+
+  componentDidMount = () => {
+    document.body.classList.remove('stop-pull-refresh');
+  }
+
   render() {
     return (
       <main className="about-contact">

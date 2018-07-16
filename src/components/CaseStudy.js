@@ -7,6 +7,7 @@ import Column from './Column';
 class CaseStudy extends Component {
 
   componentDidMount = () => {
+    document.body.classList.add('stop-pull-refresh');
     setTimeout(() => this.props.enableMouseUpIcon(true),2500);
   }
 

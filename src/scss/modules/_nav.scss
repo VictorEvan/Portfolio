@@ -52,6 +52,7 @@
       .navlink-container {
         &--home,
         &--projects,
+        &--data,
         &--contact {
           display: flex;
           .navlink.active {
@@ -68,6 +69,10 @@
             align-items: center;
           }
         }
+        &--data {
+          pointer-events: none;
+          background: rgba(0,0,0,0.55);
+        }
         &--home .navlink::before {
           content: url("../images/icons/home.svg");
           margin-right: 10px;
@@ -76,6 +81,12 @@
         }
         &--projects .navlink::before {
           content: url("../images/icons/briefcase.svg");
+          margin-right: 10px;
+          height: 20px;
+          width: 20px;
+        }
+        &--data .navlink::before {
+          content: url("../images/icons/data.svg");
           margin-right: 10px;
           height: 20px;
           width: 20px;
@@ -108,7 +119,6 @@
       }
     }
   }
-}
 
 header {
   z-index: 1000;
@@ -156,10 +166,14 @@ header {
       align-items: center;
     }
     .navlink-container {
-      &--home, &--projects, &--contact {
+      &--home, &--projects, &--data, &--contact {
         display: flex;
         padding-left: 1rem;
         height: 100%;
+      }
+      &--data {
+        pointer-events: none;
+        opacity: .40;
       }
       &--home {
         display: none;

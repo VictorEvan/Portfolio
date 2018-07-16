@@ -101,6 +101,10 @@ Header.defaultProps = {
       toPath: '/projects'
     },
     {
+      title: 'Data',
+      toPath: '/data'
+    },
+    {
       title: 'Contact',
       toPath: '/contact'
     }

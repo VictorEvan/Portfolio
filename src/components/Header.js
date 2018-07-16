@@ -10,7 +10,9 @@ import Logo from '../images/Logo';
 import Hamburger from './Hamburger';
 import NavLinkContainer from './NavLinkContainer';
 
-class Header extends Component {
+import ScrollDownIcon from './../images/icons/ScrollDownIcon';
+import MouseIcon from './../images/icons/MouseIcon';
+import { Link } from 'react-router-dom';
 
   state = {
     sideNavIsOpen: false,
@@ -49,6 +51,20 @@ class Header extends Component {
           toggleSideNav={this.props.handleHamburger}
           ariaHidden={this.props.ariaHidden}
         />
+        { this.props.showMouseUpIcon ?
+          <Link
+            className="mouse-up-container"
+            aria-label="to projects"
+            to="/projects"
+          >
+            <div className={`carousel-scroll-btn--lone ${this.props.sideNavIsOpen ? 'lower-z-index' : ''}`}>
+              <div className="carousel-scroll-btn-icon-wrapper">
+                <ScrollDownIcon />
+              </div>
+                <MouseIcon />
+            </div>
+          </Link> : null
+        }
         <div className="logo-container">
           <NavLink
             className={this.props.isAnimating ? 'navlink disable' : 'navlink'}
@@ -126,7 +142,8 @@ Header.propTypes = {
   sideNavIsOpen: PropTypes.bool.isRequired,
   ariaHidden: PropTypes.bool.isRequired,
   handleHamburger: PropTypes.func.isRequired,
-  closeSideNav: PropTypes.func.isRequired
+  closeSideNav: PropTypes.func.isRequired,
+  showMouseUpIcon: PropTypes.bool.isRequired,
 }
 
 export default Header;

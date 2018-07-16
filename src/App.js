@@ -26,7 +26,8 @@ class App extends Component {
 
   state = {
     pageIsAnimating: false,
-    animateFromPage: null
+    animateFromPage: null,
+    showMouseUpIcon: false
   }
 
   componentDidMount = () => {
@@ -74,6 +75,8 @@ class App extends Component {
     // ============================================================
   }
   
+  handleMouseUpIcon = boolean => this.setState({showMouseUpIcon: boolean});
+
   handleNav = (toggle= false) => {
     const openSideNav = () => {
       document.body.style.overflow = "hidden";
@@ -406,6 +409,7 @@ class App extends Component {
                   <CaseStudy
                     {...props}
                     project={project}
+                    enableMouseUpIcon={this.handleMouseUpIcon}
                   />}
                 />
               ))}

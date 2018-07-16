@@ -5,6 +5,15 @@ import titleCase from '../helper/titleCase.js';
 import Column from './Column';
 
 class CaseStudy extends Component {
+
+  componentDidMount = () => {
+    setTimeout(() => this.props.enableMouseUpIcon(true),2500);
+  }
+
+  componentWillUnmount = () => {
+    this.props.enableMouseUpIcon(false);
+  }
+
   render() {
     return (
       <main className={`case-study--${this.props.project.title}`}>
@@ -59,6 +68,7 @@ class CaseStudy extends Component {
 
 CaseStudy.propTypes = {
   project: PropTypes.object.isRequired,
+  enableMouseUpIcon: PropTypes.func.isRequired
 }
 
 export default CaseStudy;

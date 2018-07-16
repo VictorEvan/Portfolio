@@ -32,6 +32,12 @@
       padding: 0 40px;
       margin-top: 20px;
       transition: background 1.5s ease ,margin 1s 1.5s ease, padding 1s 1.5s ease;
+      .logo-container {
+        margin-right: auto;
+      }
+    }
+    .mouse-up-container {
+      display: block;
     }   
   }
 }

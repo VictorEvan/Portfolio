@@ -31,6 +31,7 @@ class App extends Component {
     sideNavIsOpen: false, // header stuff
     ariaHidden: true, // header stuff
     navIsAnimating: false, //header stuff
+    mostRecentProjectVisited: null
   }
 
   componentDidMount = () => {
@@ -107,17 +108,32 @@ class App extends Component {
       ) {
         this.props.history.push('/projects');
         this.setState({pageIsAnimating: true});
-      }
-      if (
+      } else if (
         direction === 'scrollUp' &&
-        this.props.location.pathname === '/projects' &&
-        window.pageYOffset === 0 // 0 pageYOffset is top of page
+        this.props.location.pathname === '/projects'
       ) {
         this.props.history.push('/');
+        this.setState({pageIsAnimating: true});
+      } else if (
+        direction === 'scrollUp' &&
+        this.props.repetitiveProjects[this.props.location.pathname] &&
+        window.pageYOffset === 0 // 0 pageYOffset is top of page
+      ) {
+        this.props.history.push('/projects');
+        this.setState({pageIsAnimating: true});
+      } else if (
+        direction === 'scrollDown' &&
+        this.props.location.pathname === '/projects' &&
+        this.state.mostRecentProjectVisited
+      ) {
+        this.props.history.push(`${this.state.mostRecentProjectVisited}`);
         this.setState({pageIsAnimating: true});
       }
     }
   }
+
+  
+  handleMostRecentProject = projectPathName => this.setState({mostRecentProjectVisited: projectPathName});
 
 /*   detectScroll = e => {
     let delta = e.wheelDelta ? e.wheelDelta : -1 * e.deltaY;
@@ -400,6 +416,7 @@ class App extends Component {
                 <Portfolio 
                   {...props}
                   projects={this.props.projects}
+                  mostRecentProject={this.handleMostRecentProject}
                 />} 
               />
               <Route exact path={`/contact`} render={props =>

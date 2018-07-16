@@ -24,6 +24,7 @@ class Portfolio extends Component {
         {this.props.projects.map(output => (
           <ProjectSquare 
             project={output.title}
+            mostRecentProject={this.props.mostRecentProject}
             setCurrentProject={this.handleCurrentProject}
             currentActiveProject={this.state.currentProject}
             description={output.description}
@@ -36,7 +37,8 @@ class Portfolio extends Component {
 }
 
 Portfolio.propTypes = {
-  projects: PropTypes.array.isRequired
+  projects: PropTypes.array.isRequired,
+  mostRecentProject: PropTypes.func.isRequired
 }
 
 export default Portfolio;

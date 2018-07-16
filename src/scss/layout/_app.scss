@@ -26,12 +26,12 @@
     @include mq('sm') {
       margin-top: 20px;
       padding: 0 10px;
-      transition: background 1.5s ease ,margin 1s 1.5s ease, padding 1s 1.5s ease;
+      transition: background .5s .5s ease , margin .5s 2s ease, padding .5s 2s ease;
     }
     @include mq('med') {
       padding: 0 40px;
       margin-top: 20px;
-      transition: background 1.5s ease ,margin 1s 1.5s ease, padding 1s 1.5s ease;
+      transition: background .5s .5s ease , margin .5s 2s ease, padding .5s 2s ease;
       .logo-container {
         margin-right: auto;
       }

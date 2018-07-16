@@ -27,7 +27,10 @@ class App extends Component {
   state = {
     pageIsAnimating: false,
     animateFromPage: null,
-    showMouseUpIcon: false
+    showMouseUpIcon: false,
+    sideNavIsOpen: false, // header stuff
+    ariaHidden: true, // header stuff
+    navIsAnimating: false, //header stuff
   }
 
   componentDidMount = () => {

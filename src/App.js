@@ -9,6 +9,19 @@ import Portfolio from './components/Portfolio';
 import CaseStudy from './components/CaseStudy';
 import About from './components/About';
 
+const { Lethargy } = require('lethargy');
+
+// Cross-browser bind without using JQuery, taken from http://stackoverflow.com/a/3076693/3966682
+function addEvent(el, eventType, handler) {
+  if (el.addEventListener) { // DOM Level 2 browsers
+    el.addEventListener(eventType, handler, false);
+  } else if (el.attachEvent) { // IE <= 8
+    el.attachEvent('on' + eventType, handler);
+  } else { // ancient browsers
+    el['on' + eventType] = handler;
+  }
+};
+	
 class App extends Component {
 
   state = {
@@ -20,7 +33,7 @@ class App extends Component {
     // sets the initial animateFromPage location on app load
     this.setState({animateFromPage: this.props.location.pathname});
     // scroll event listener
-    window.addEventListener('wheel',this.detectScroll, {passive: true});
+/*     window.addEventListener('wheel',this.detectScroll, {passive: true}); */
     let el = document.querySelector('.app');
     this.detectSwipe(el, swipedir => {
       switch(swipedir) {
@@ -34,8 +47,32 @@ class App extends Component {
           break;
       }
   });
-  }
+    // ============================================================
+    const lethargy = new Lethargy(20,10,0.10);
 
+    // Define the function to run on mousewheel
+    const checkScroll = e => {
+
+      // Lethargy.check() must only be called once per mouse event
+      // If you need to use the result in more than one place
+      // you MUST store it as a variable and use that variable instead
+      // See https://github.com/d4nyll/lethargy/issues/5
+      const result = lethargy.check(e);
+      // false means it's not a scroll intent, 1 or -1 means it is
+      if (result === 1) {
+        this.movementHandler('scrollUp');
+      } else if (result === -1) {
+        this.movementHandler('scrollDown');
+  }
+    };
+
+    // Cross-browser way to bind to mouse events
+    addEvent(window, 'mousewheel', checkScroll);
+    addEvent(window, 'DOMMouseScroll', checkScroll);
+    addEvent(window, 'wheel', checkScroll);
+    addEvent(window, 'MozMousePixelScroll', checkScroll);
+    // ============================================================
+  }
   movementHandler = direction => {
     if (!this.state.pageIsAnimating) {
       if (direction === 'scrollDown' && 
@@ -55,12 +92,12 @@ class App extends Component {
     }
   }
 
-  detectScroll = e => {
+/*   detectScroll = e => {
     let delta = e.wheelDelta ? e.wheelDelta : -1 * e.deltaY;
     // Negative delta is scroll down, positive delta is scroll up
     let direction = delta < 0 ? 'scrollDown' : 'scrollUp';
     this.movementHandler(direction);
-  }
+  } */
 
   detectSwipe = (el, callback) => {
     let touchsurface = el,

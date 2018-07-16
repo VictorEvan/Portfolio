@@ -1,18 +1,19 @@
 {
   "name": "victorevan",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "homepage": "http://victorevan.github.io/Portfolio",
   "dependencies": {
-    "ajv": "^6.5.0",
+    "ajv": "^6.5.2",
+    "lethargy": "^1.0.4",
     "node-sass-chokidar": "^1.3.0",
-    "npm": "^6.1.0",
+    "npm": "^6.2.0",
     "npm-run-all": "^4.1.3",
-    "react": "^16.3.2",
-    "react-dom": "^16.3.2",
-    "react-router-dom": "^4.2.2",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
+    "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.4",
-    "react-transition-group": "^2.3.1"
+    "react-transition-group": "^2.4.0"
   },
   "scripts": {
     "build-css": "node-sass-chokidar src/ -o src/",

@@ -25,6 +25,11 @@
 	transition: opacity $fade-animation-time ease-in;
 }
 
+.fade-exit.fade-exit-active.negate {
+	opacity: 1;
+	transition: opacity $fade-animation-time ease-in;
+}
+
 /* initial mounting */
 .fade-appear {
 	opacity: 0;
@@ -158,70 +163,60 @@
 // Expand Project
 // ====================
 
-@mixin expand-project-active($num) {
+.projects.expand-projects {
+	margin-top: 0px;
+	transition: margin-top .5s ease;
+}
+
+.projects.expand-projects-active {
 	.project {
-		display: none;
+		&:nth-of-type(2n+1) {
+			transform: translateX(-100%) translateZ(0);
+			transition: transform .5s ease-out 1s;
 	}
-	.project:nth-of-type(#{$num}) {
-		display: block;
-		border: 0px;
-		height: 100%;
-		width: 100%;
-		transform: translateZ(0);
-		transition: all .5s ease;
-		animation: fade-out $fade-animation-time ease .5s forwards;
-		@content;
+		&:nth-of-type(2n) {
+			transform: translateX(100%) translateZ(0);
+			transition: transform .5s ease-out 1s;
 	}
-	&.negate {
-		.project {
-			@include mq('sm') {
-				height: 70%;
-				width: 100%;
 			}
-			display: block;
-			height: 50%;
-			width: 50%;
 		}
-		.project:nth-of-type(#{$num}) {
-			animation: fade-in $fade-animation-time ease;
-			position: static;
-			@include mq('med') {
-				border: 6px solid #fff;
+
+.projects.expand-projects.expand-projects-active.negate {
+	margin-top: 50px;
+	transition: margin-top .5s ease;
+	.project {
+		&:nth-of-type(2n+1) {
+			transform: translateX(0) translateZ(0);
+			transition: transform .5s ease-out;
 			}
-			@include projectBorder($num);
+		&:nth-of-type(2n) {
+			transform: translateX(0) translateZ(0);
+			transition: transform .5s ease-out;
 		}
 	}
 }
 
-.expand-project {
-	&--project-one-active {
-		@include expand-project-active(1);
+.expand-chosen-project {
+	.hero-container {
+		&__header {
+			opacity: 0;
 	}
-	&--project-two-active {
-		@include expand-project-active(2) {
-			@include mq('med') {
-				position: absolute;
-				top: 0;
-				right: 0;
 			}
-		};
+	.card-hero {
+		top: 0px;
 	}
-	&--project-three-active {
-		@include expand-project-active(3) {
-			@include mq('med') {
-				position: absolute;
-				bottom: 0;
-				left: 0;
+	&-done {
+		.hero-container__header {
+			opacity: 1;
+			transition: opacity .5s .5s ease;
 			}
-		};
+		.card-hero {
+			@media (min-height: 500px) {
+				top: -200px;
+				transition: top .5s ease;
 	}
-	&--project-four-active {
-		@include expand-project-active(4) {
-			@include mq('med') {
-				position: absolute;
-				bottom: 0;
-				right: 0;
+			top: -35px;
+			transition: top .5s ease;
 			}
-		};
 	}
 }

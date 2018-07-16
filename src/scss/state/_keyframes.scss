@@ -1,35 +1,53 @@
 // logo initial animation
 
-@keyframes offset {
+@-webkit-keyframes offset {
+  0% {
+    fill: transparent;
+    stroke: white;
+  }
   100% {
+    fill: transparent;
     stroke-dashoffset: 0;
   }
 }
 
-@keyframes fill-it {
+@keyframes offset {
+  0% {
+    fill: transparent;
+    stroke: white;
+  }
+  100% {
+    fill: transparent;
+    stroke-dashoffset: 0;
+  }
+}
+
+@-webkit-keyframes fill {
+  0% {
+    fill: transparent;
+    stroke-width: 1px;
+  }
+  100% {
+    fill: white;
+    stroke-width: 0px;
+  }
+}
+
+@keyframes fill {
+  0% {
+    fill: transparent;
+    stroke-width: 1;
+  }
   100% {
     fill: white;
     stroke-width: 0;
   }
 }
 
-@keyframes fade-in {
-  100% {
-    opacity: 1;
-  }
-}
-
-@keyframes fade-out {
-  100% {
-    opacity: 0;
-  }
-}
-
-.logo-animates {
+.logo.logo-animates {
   stroke: white;
-  fill: transparent;
   stroke-width: 1;
-  stroke-dasharray: 186;
-  stroke-dashoffset: 186;
-  animation: offset 5s linear forwards, fill-it .8s 5s forwards;
+  stroke-dasharray: 555;
+  stroke-dashoffset: 555;
+  animation: offset 3s linear forwards, fill 1s ease 3s forwards;
 }

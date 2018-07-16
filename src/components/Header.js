@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 
+import GitHub from './../images/social/GitHub';
+import Codepen from './../images/social/Codepen';
+import Linkedin from './../images/social/Linkedin';
 import Logo from '../images/Logo';
 
 import Hamburger from './Hamburger';
@@ -79,17 +82,17 @@ class Header extends Component {
             <ul className="nav__inner__social mobile-only">
               <li className="social-link-container">
                 <a className="social-link" target="_blank" rel="noopener noreferrer" href="https://www.github.com/victorevan">
-                  <img className="social-link__image--github" src={require('../images/social/github.png')} alt="GitHub"/>
+                  <GitHub/>
                 </a>
               </li>
               <li className="social-link-container">
                 <a className="social-link" target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/in/victorevan">
-                  <img className="social-link__image--linkedin" src={require('../images/social/linkedin.png')} alt="Linkedin"/>
+                  <Linkedin/>
                 </a>
               </li>
               <li className="social-link-container">
                 <a className="social-link" target="_blank" rel="noopener noreferrer" href="https://www.codepen.io/victorevangelista">
-                  <img className="social-link__image--codepen" src={require('../images/social/codepen.png')} alt=""/>
+                  <Codepen/>
                 </a>
               </li>
             </ul>

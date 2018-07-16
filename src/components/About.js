@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 
+import GitHub from './../images/social/GitHub';
+import Codepen from './../images/social/Codepen';
+import Linkedin from './../images/social/Linkedin';
+
 class About extends Component {
   render() {
     return (
@@ -22,17 +26,17 @@ class About extends Component {
             <ul className="contact-info__list">
               <li className="social-link-container">
                 <a className="social-link" target="_blank" rel="noopener noreferrer" href="https://www.github.com/victorevan">
-                  <img className="social-link__image--github" src={require('../images/social/github.png')} alt="GitHub"/>
+                  <GitHub/>
                 </a>
               </li>
               <li className="social-link-container">
                 <a className="social-link" target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/in/victorevan">
-                  <img className="social-link__image--linkedin" src={require('../images/social/linkedin.png')} alt="Linkedin"/>
+                  <Linkedin/>
                 </a>
               </li>
               <li className="social-link-container">
                 <a className="social-link" target="_blank" rel="noopener noreferrer" href="https://www.codepen.io/victorevangelista">
-                  <img className="social-link__image--codepen" src={require('../images/social/codepen.png')} alt=""/>
+                  <Codepen/>
                 </a>
               </li>
             </ul>

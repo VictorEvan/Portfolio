@@ -51,7 +51,7 @@ class App extends Component {
         default:
           break;
       }
-  });
+    });
     // ============================================================
     const lethargy = new Lethargy(20,10,0.10);
 
@@ -68,7 +68,7 @@ class App extends Component {
         this.movementHandler('scrollUp');
       } else if (result === -1) {
         this.movementHandler('scrollDown');
-  }
+      }
     };
 
     // Cross-browser way to bind to mouse events
@@ -78,7 +78,7 @@ class App extends Component {
     addEvent(window, 'MozMousePixelScroll', checkScroll);
     // ============================================================
   }
-  
+
   handleMouseUpIcon = boolean => this.setState({showMouseUpIcon: boolean});
 
   handleNav = (toggle= false) => {
@@ -157,18 +157,20 @@ class App extends Component {
     handleswipe = callback || function(swipedir){}
   
     touchsurface.addEventListener('touchstart', e => {
-        let touchobj = e.changedTouches[0]
-        swipedir = 'none'
-        startX = touchobj.pageX
-        startY = touchobj.pageY
-        startTime = new Date().getTime() // record time when finger first makes contact with surface
+        const touchobj = e.changedTouches[0];
+        swipedir = 'none';
+        startX = touchobj.pageX;
+        startY = touchobj.pageY;
+        startTime = new Date().getTime(); // record time when finger first makes contact with surface
         // e.preventDefault()
     }, {passive: true})
   
     touchsurface.addEventListener('touchmove', e => {
-      // prevents annoying browser bar glitch on mobile
-      if (this.props.location.pathname === '/') {
-        e.preventDefault() // prevent scrolling
+      if (
+        this.props.location.pathname === '/' || 
+        this.props.location.pathname === '/projects'
+      ) {
+        e.preventDefault();
       }
     }, false)
   
@@ -206,13 +208,6 @@ class App extends Component {
     }
     if (from !== to) {
       // from switch
-      const repetitiveProjects = {
-        '/projects/tic-tac-toe': true,
-        '/projects/calculator': true,
-        '/projects/random-quote-machine': true,
-        '/projects/pomodoro-clock': true
-      }
-      if (repetitiveProjects[from] && to !== '/contact') from = 'any-project' 
       switch(from) {
         case '/contact':
           return {
@@ -224,10 +219,6 @@ class App extends Component {
               exitActive: 'move-out-halves-active',
               exitDone: ''
             }, timeout: 1250, appear: false
-          }
-        case 'any-project':
-          return {
-            classNames: 'fade', timeout: 500, appear: false
           }
         default:
           break;
@@ -252,7 +243,21 @@ class App extends Component {
     }
 
     // full from to switch
+    if (this.props.repetitiveProjects[from] && to === '/projects') from = 'any-project';
+    else if (this.props.repetitiveProjects[from] && to === '/') from = 'any-project';
     const data = `${from}-${to}`;
+
+    const defaultProjectsCase = {
+      classNames: {
+        enter: 'expand-chosen-project',
+        enterActive: 'expand-chosen-project-active',
+        enterDone: 'expand-chosen-project-done',
+        exit: 'expand-projects',
+        exitActive: 'expand-projects-active',
+        exitDone: ''
+      },
+      timeout: 1500, appear: false
+    }
     switch(data) {
       case '/-/projects':
         return {
@@ -279,52 +284,36 @@ class App extends Component {
           timeout: 1500, appear: false
         }
       case `/projects-/projects/${this.props.projects[0].title}`:
-        return {
-          classNames: {
-            enter: 'fade-enter',
-            enterActive: 'fade-enter-active--delay',
-            enterDone: '',
-            exit: 'expand-project--project-one',
-            exitActive: 'expand-project--project-one-active',
-            exitDone: ''
-          },
-          timeout: 1000, appear: false
-        }
+        return defaultProjectsCase;
       case `/projects-/projects/${this.props.projects[1].title}`:
-        return {
-          classNames: {
-            enter: 'fade-enter',
-            enterActive: 'fade-enter-active--delay',
-            enterDone: '',
-            exit: 'expand-project--project-two',
-            exitActive: 'expand-project--project-two-active',
-            exitDone: ''
-          },
-          timeout: 1000, appear: false
-        }
+        return defaultProjectsCase;
       case `/projects-/projects/${this.props.projects[2].title}`:
-        return {
-          classNames: {
-            enter: 'fade-enter',
-            enterActive: 'fade-enter-active--delay',
-            enterDone: '',
-            exit: 'expand-project--project-three',
-            exitActive: 'expand-project--project-three-active',
-            exitDone: ''
-          },
-          timeout: 1000, appear: false
-        }
+        return defaultProjectsCase;
       case `/projects-/projects/${this.props.projects[3].title}`:
+        return defaultProjectsCase;
+      case 'any-project-/projects':
         return {
           classNames: {
-            enter: 'fade-enter',
-            enterActive: 'fade-enter-active--delay',
+            enter: 'slide-down-from-top',
+            enterActive: 'slide-down-from-top-active',
             enterDone: '',
-            exit: 'expand-project--project-four',
-            exitActive: 'expand-project--project-four-active',
-            exitDone: ''
+            exit: 'slide-down-from-middle',
+            exitActive: 'slide-down-from-middle-active',
+            exitDone: 'slide-down-from-middle-done'
           },
-          timeout: 1000, appear: false
+          timeout: 1500, appear: false
+        }
+      case 'any-project-/':
+        return {
+          classNames: {
+            enter: 'slide-down-from-top',
+            enterActive: 'slide-down-from-top-active',
+            enterDone: '',
+            exit: 'slide-down-from-middle',
+            exitActive: 'slide-down-from-middle-active',
+            exitDone: 'slide-down-from-middle-done'
+          },
+          timeout: 1500, appear: false
         }
       default:
         return {
@@ -341,20 +330,20 @@ class App extends Component {
     }
   }
 
-  render() {
-    const childFactoryCreator = () => {
-      let animateFromPage = this.state.animateFromPage;
-      let animateToPage = this.props.location.pathname;
-      console.log(`${animateFromPage} to ${animateToPage}`);
-      console.log(this.animationHandler(animateFromPage, animateToPage));
-      let { classNames, timeout, appear } = this.animationHandler(animateFromPage,animateToPage);
-        return (
-        (child) => {
-          return ( React.cloneElement(child, { classNames, timeout, appear }) )
-        }
-      );
-    }
+  childFactoryCreator = () => {
+    let animateFromPage = this.state.animateFromPage;
+    let animateToPage = this.props.location.pathname;
+    console.log(`${animateFromPage} to ${animateToPage}`);
+    console.log(this.animationHandler(animateFromPage, animateToPage));
+    let { classNames, timeout, appear } = this.animationHandler(animateFromPage,animateToPage);
+      return (
+      (child) => {
+        return ( React.cloneElement(child, { classNames, timeout, appear }) )
+      }
+    );
+  }
 
+  render() {
     const scrollablePages = {
       '/projects/tic-tac-toe': true,
       '/projects/calculator': true,
@@ -376,7 +365,7 @@ class App extends Component {
         />
         <TransitionGroup 
           component={null}
-          childFactory={childFactoryCreator()}
+          childFactory={this.childFactoryCreator()}
         >
           <CSSTransition 
             key={this.props.location.pathname}
@@ -398,11 +387,10 @@ class App extends Component {
               // set the current Page to be the animateFromPage going forward
               setTimeout( () => {
                 this.setState({animateFromPage: this.props.location.pathname, pageIsAnimating: false});
-              },0 );
-              if (this.props.location !== '/') {
+              },0);
+              if (this.props.location.pathname !== '/' && this.props.location.pathname !== '/projects') {
                 document.body.style.overflow = "auto";
-              }
-              
+              }  
             }}
           >
             <Switch location={this.props.location}>
@@ -442,6 +430,12 @@ class App extends Component {
 }
 
 App.defaultProps = {
+  repetitiveProjects: {
+    '/projects/tic-tac-toe': true,
+    '/projects/calculator': true,
+    '/projects/random-quote-machine': true,
+    '/projects/pomodoro-clock': true
+  },
   projects: [
     {
       title: 'tic-tac-toe',

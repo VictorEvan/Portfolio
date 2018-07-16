@@ -28,6 +28,7 @@ class ProjectSquare extends Component {
             <CoolButton
               className="project=link cool-button"
               to={`${url}/${this.props.project}`}
+              onClick={()=>this.props.mostRecentProject(`${url}/${this.props.project}`)}
               text="Case Study"
             >
             </CoolButton>

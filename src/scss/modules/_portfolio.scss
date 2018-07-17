@@ -36,10 +36,9 @@
     align-items: stretch;
   }
   .project-title {
-    @include mq('sm') {
       display: none;
-    }
-    @include mq('med') {
+    @media screen and (min-width: map-get($breakpoints,'med')) and (min-height: 400px) {
+      display: block;
       font-size: 2rem;
       text-align: start;
       font-weight: 800;
@@ -47,7 +46,7 @@
   }
   .project-description {
     display: none;
-    @include mq('med') {
+    @media screen and (min-width: map-get($breakpoints,'med')) and (min-height: 400px) {
       display: block;
       padding-top: .75rem;
       font-size: 1.25rem;
@@ -62,7 +61,7 @@
   }
   .project-link {
     display: none;
-    @include mq('med') {
+    @media screen and (min-width: map-get($breakpoints,'med')) and (min-height: 400px) {
       display: block;
       font-size: 1rem;
       letter-spacing: 2px;

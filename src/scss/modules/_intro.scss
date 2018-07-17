@@ -10,6 +10,22 @@
   }
   @media screen and (orientation: landscape) and (max-width: map-get($breakpoints,'sm')) {
     background-image: url(../images/backgrounds/intro-image--desktop.jpg);
+    .title {
+      font-size: 2rem;
+      padding: 0 0.50rem;
+    }
+    .description {
+      margin-top: 1rem;
+      font-size: 1rem;
+    }
+    .talents {
+      margin-bottom: 1rem;
+      font-size: 1rem;
+    }
+    .cool-button {
+      font-size: .90rem;
+      padding: 10px 10px;
+    }
   }
   background-size: cover;
   background-position: center;

@@ -1,10 +1,10 @@
 import * as AppActionTypes from '../actiontypes/app';
 
-const initialState = {
+export const initialAppState = {
   test: 'test value'
 }
 
-export default function App(state=initialState, action) {
+export function AppReducer(state=initialAppState, action) {
   switch(action.type) {
     case AppActionTypes.TEST_ACTION: {
       return {

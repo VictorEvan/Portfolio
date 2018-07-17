@@ -38,7 +38,7 @@ class Header extends Component {
         }
         <div className="logo-container">
           <NavLink
-            className={this.props.isAnimating ? 'navlink disable' : 'navlink'}
+            className={this.props.isAnimating || this.props.location.pathname === '/' ? 'navlink disable' : 'navlink'}
             exact to='/'
           >
             <Logo 

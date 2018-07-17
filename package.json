@@ -5,15 +5,18 @@
   "homepage": "http://victorevan.github.io/Portfolio",
   "dependencies": {
     "ajv": "^6.5.2",
+    "connected-react-router": "^4.3.0",
     "lethargy": "^1.0.4",
     "node-sass-chokidar": "^1.3.0",
     "npm": "^6.2.0",
     "npm-run-all": "^4.1.3",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
+    "react-redux": "^5.0.7",
     "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.4",
-    "react-transition-group": "^2.4.0"
+    "react-transition-group": "^2.4.0",
+    "redux": "^4.0.0"
   },
   "scripts": {
     "build-css": "node-sass-chokidar src/ -o src/",

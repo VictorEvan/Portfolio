@@ -4,14 +4,12 @@ import { createBrowserHistory } from 'history'
 import { Provider } from 'react-redux';
 import { applyMiddleware, compose, createStore } from 'redux'
 import { connectRouter, routerMiddleware, ConnectedRouter } from 'connected-react-router'
-import { Route } from 'react-router-dom'; 
+import { HashRouter, Route } from 'react-router-dom'; 
 import registerServiceWorker from './registerServiceWorker';
 import {AppReducer, initialAppState} from './redux/reducers/app';
 import App from './App';
 
-const history = createBrowserHistory({
-  basename: process.env.PUBLIC_URL
-});
+const history = createBrowserHistory();
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -27,10 +25,12 @@ const store = createStore(
 
 ReactDOM.render(
   <Provider store={store}>
-    <ConnectedRouter history={history}>
-      <Route render={props => (
-        <App {...props} />
-      )}/>
+    <ConnectedRouter history={history} router={HashRouter}>
+      <HashRouter>
+        <Route render={props => (
+          <App {...props} />
+        )}/>
+      </HashRouter>
     </ConnectedRouter>
   </Provider>
 , document.querySelector('[react-js="root"]'));

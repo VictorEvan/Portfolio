@@ -8,7 +8,7 @@
   @include mq('med') {
     background-image: url(../images/backgrounds/intro-image--desktop.jpg);
   }
-  @media screen and (orientation: landscape) and (max-width: map-get($breakpoints,'sm')) {
+  @media screen and (orientation: landscape) and (max-width: map-get($breakpoints,'xs')) {
     background-image: url(../images/backgrounds/intro-image--desktop.jpg);
     .title {
       font-size: 2rem;

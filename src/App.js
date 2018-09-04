@@ -1,8 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
-import * as AppActionCreators from './redux/actions/app';
 import { Route, Switch } from 'react-router-dom'; 
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import './scss/App.css';
@@ -25,11 +21,8 @@ function addEvent(el, eventType, handler) {
     el['on' + eventType] = handler;
   }
 };
-
+	
 class App extends Component {
-  static propTypes = {
-    test: PropTypes.string.isRequired
-  }
 
   state = {
     pageIsAnimating: false,
@@ -397,7 +390,7 @@ class App extends Component {
               },0);
               if (this.props.location.pathname !== '/' && this.props.location.pathname !== '/projects') {
                 document.body.style.overflow = "auto";
-              }
+              }  
             }}
           >
             <Switch location={this.props.location}>
@@ -539,16 +532,4 @@ App.defaultProps = {
   ]
 };
 
-const mapStateToProps = state => {
-	return {
-    test: state.test
-	}
-};
-
-const mapDispatchToProps = dispatch => {
-	return {
-		actions: bindActionCreators(AppActionCreators, dispatch)
-	}
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default App;

@@ -89,7 +89,6 @@ class App extends Component {
     }
     const closeSideNav = () => {
       if (this.state.sideNavIsOpen) {
-        document.body.style.overflow = "auto";
         this.setState({ariaHidden: true});
         setTimeout( () => this.setState({sideNavIsOpen: false, navIsAnimating: false}),500);
       }

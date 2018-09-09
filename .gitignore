@@ -18,6 +18,8 @@ src/.sass-cache/
 .env.test.local
 .env.production.local
 
+.firebase
+
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*

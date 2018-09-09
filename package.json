@@ -2,7 +2,6 @@
   "name": "victorevan",
   "version": "0.1.0",
   "private": false,
-  "homepage": "http://victorevan.github.io/Portfolio",
   "dependencies": {
     "ajv": "^6.5.2",
     "lethargy": "^1.0.4",

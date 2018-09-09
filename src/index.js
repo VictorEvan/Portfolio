@@ -1,15 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom'; 
 import App from './App';
-import { Route, HashRouter } from 'react-router-dom'; 
+import { Route, BrowserRouter } from 'react-router-dom'; 
 import registerServiceWorker from './registerServiceWorker';
 
 ReactDOM.render(
-  <HashRouter>
+  <BrowserRouter>
     <Route render={props => (
       <App {...props} />
     )}/>
-  </HashRouter>
+  </BrowserRouter>
 , document.querySelector('[react-js="root"]'));
 
 registerServiceWorker();

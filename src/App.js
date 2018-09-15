@@ -2,13 +2,17 @@ import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom'; 
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import './scss/App.css';
-import projects from './data/projects'
+
+import frontEndProjects from './data/frontEndProjects';
+import repetitiveProjects from './data/repetitiveProjects';
+import transitionHandler from './helper/transitionHandler';
 
 import Header from './components/Header';
 import Intro from './components/Intro';
-import Portfolio from './components/Portfolio';
+import Projects from './components/Projects';
 import CaseStudy from './components/CaseStudy';
-import About from './components/About';
+import Contact from './components/Contact';
+import backEndProjects from './data/backEndProjects';
 
 const { Lethargy } = require('lethargy');
 
@@ -27,7 +31,6 @@ class App extends Component {
 
   state = {
     pageIsAnimating: false,
-    animateFromPage: null,
     showMouseUpIcon: false,
     sideNavIsOpen: false, // header stuff
     ariaHidden: true, // header stuff
@@ -36,10 +39,10 @@ class App extends Component {
   }
 
   componentDidMount = () => {
-    // sets the initial animateFromPage location on app load
-    this.setState({animateFromPage: this.props.location.pathname});
+    const { location, addHistory } = this.props;
+    addHistory(location);
     // scroll event listener
-/*     window.addEventListener('wheel',this.detectScroll, {passive: true}); */
+    /*     window.addEventListener('wheel',this.detectScroll, {passive: true}); */
     let el = document.querySelector('.app');
     this.detectSwipe(el, swipedir => {
       switch(swipedir) {
@@ -102,28 +105,30 @@ class App extends Component {
   }
 
   movementHandler = direction => {
+    const { location } = this.props;
+
     if (!this.state.pageIsAnimating) {
       if (direction === 'scrollDown' && 
-        this.props.location.pathname === '/'
+        location.pathname === '/'
       ) {
         this.props.history.push('/projects');
         this.setState({pageIsAnimating: true});
       } else if (
         direction === 'scrollUp' &&
-        this.props.location.pathname === '/projects'
+        location.pathname === '/projects'
       ) {
         this.props.history.push('/');
         this.setState({pageIsAnimating: true});
       } else if (
         direction === 'scrollUp' &&
-        this.props.repetitiveProjects[this.props.location.pathname] &&
+        this.props.repetitiveProjects[location.pathname] &&
         window.pageYOffset === 0 // 0 pageYOffset is top of page
       ) {
         this.props.history.push('/projects');
         this.setState({pageIsAnimating: true});
       } else if (
         direction === 'scrollDown' &&
-        this.props.location.pathname === '/projects' &&
+        location.pathname === '/projects' &&
         this.state.mostRecentProjectVisited
       ) {
         this.props.history.push(`${this.state.mostRecentProjectVisited}`);
@@ -143,6 +148,8 @@ class App extends Component {
   } */
 
   detectSwipe = (el, callback) => {
+    const { location } = this.props;
+
     let touchsurface = el,
     swipedir,
     startX,
@@ -167,8 +174,8 @@ class App extends Component {
   
     touchsurface.addEventListener('touchmove', e => {
       if (
-        this.props.location.pathname === '/' || 
-        this.props.location.pathname === '/projects'
+        location.pathname === '/' || 
+        location.pathname === '/projects'
       ) {
         e.preventDefault();
       }
@@ -192,158 +199,31 @@ class App extends Component {
     }, {passive: true})
   }
 
-  animationHandler = (from, to) => {
-    // handle user back button mid transition
-    if (from === to) {
-      return {
-        classNames: {
-          enter: '',
-          enterActive: '',
-          enterDone: 'negate',
-          exit: '',
-          exitActive: '',
-          exitDone: ''
-        }, timeout: 0, appear: false
-      }
-    }
-    if (from !== to) {
-      // from switch
-      switch(from) {
-        case '/contact':
-          return {
-            classNames: {
-              enter: '',
-              enterActive: '',
-              enterDone: '',
-              exit: 'move-out-halves',
-              exitActive: 'move-out-halves-active',
-              exitDone: ''
-            }, timeout: 1250, appear: false
-          }
-        default:
-          break;
-      }
-
-      // to switch
-      switch(to) {
-        case '/contact':
-          return {
-            classNames: {
-              enter: 'move-in-halves',
-              enterActive: 'move-in-halves-active',
-              enterDone: '',
-              exit: '',
-              exitActive: '',
-              exitDone: ''
-            }, timeout: 1500, appear: false
-          }
-        default:
-          break;
-      }
-    }
-
-    // full from to switch
-    if (this.props.repetitiveProjects[from] && to === '/projects') from = 'any-project';
-    else if (this.props.repetitiveProjects[from] && to === '/') from = 'any-project';
-    const data = `${from}-${to}`;
-
-    const defaultProjectsCase = {
-      classNames: {
-        enter: 'expand-chosen-project',
-        enterActive: 'expand-chosen-project-active',
-        enterDone: 'expand-chosen-project-done',
-        exit: 'expand-projects',
-        exitActive: 'expand-projects-active',
-        exitDone: ''
-      },
-      timeout: 1500, appear: false
-    }
-    switch(data) {
-      case '/-/projects':
-        return {
-          classNames: {
-            enter: 'slide-up-from-bottom',
-            enterActive: 'slide-up-from-bottom-active',
-            enterDone: '',
-            exit: 'slide-up-from-middle',
-            exitActive: 'slide-up-from-middle-active',
-            exitDone: 'slide-up-from-middle-done'
-          },
-          timeout: 1500, appear: false
-        }
-      case '/projects-/':
-        return {
-          classNames: {
-            enter: 'slide-down-from-top',
-            enterActive: 'slide-down-from-top-active',
-            enterDone: '',
-            exit: 'slide-down-from-middle',
-            exitActive: 'slide-down-from-middle-active',
-            exitDone: 'slide-down-from-middle-done'
-          },
-          timeout: 1500, appear: false
-        }
-      case `/projects-/projects/${this.props.projects[0].title}`:
-        return defaultProjectsCase;
-      case `/projects-/projects/${this.props.projects[1].title}`:
-        return defaultProjectsCase;
-      case `/projects-/projects/${this.props.projects[2].title}`:
-        return defaultProjectsCase;
-      case `/projects-/projects/${this.props.projects[3].title}`:
-        return defaultProjectsCase;
-      case 'any-project-/projects':
-        return {
-          classNames: {
-            enter: 'slide-down-from-top',
-            enterActive: 'slide-down-from-top-active',
-            enterDone: '',
-            exit: 'slide-down-from-middle',
-            exitActive: 'slide-down-from-middle-active',
-            exitDone: 'slide-down-from-middle-done'
-          },
-          timeout: 1500, appear: false
-        }
-      case 'any-project-/':
-        return {
-          classNames: {
-            enter: 'slide-down-from-top',
-            enterActive: 'slide-down-from-top-active',
-            enterDone: '',
-            exit: 'slide-down-from-middle',
-            exitActive: 'slide-down-from-middle-active',
-            exitDone: 'slide-down-from-middle-done'
-          },
-          timeout: 1500, appear: false
-        }
-      default:
-        return {
-          classNames: {
-            enter: '',
-            enterActive: '',
-            enterDone: '',
-            exit: '',
-            exitActive: '',
-            exitDone: ''
-          },
-          timeout: 0, appear: false
-        }
-    }
-  }
-
   childFactoryCreator = () => {
-    let animateFromPage = this.state.animateFromPage;
-    let animateToPage = this.props.location.pathname;
-    console.log(`${animateFromPage} to ${animateToPage}`);
-    console.log(this.animationHandler(animateFromPage, animateToPage));
-    let { classNames, timeout, appear } = this.animationHandler(animateFromPage,animateToPage);
-      return (
+    const { historyObject } = this.props;
+    const { from, to } = historyObject;
+    const { classNames, enter, timeout } = transitionHandler(from, to);
+    return (
       (child) => {
-        return ( React.cloneElement(child, { classNames, timeout, appear }) )
+        return ( React.cloneElement(child, { classNames, enter, timeout }) )
       }
     );
   }
 
   render() {
+    const { location, history, frontEndProjects } = this.props;
+    const { pageIsAnimating } = this.state;
+
+    // do not allow transition interruptions
+    if (!this.unblock && pageIsAnimating) {
+      this.unblock = history.block();
+    }
+
+    if (this.unblock && !pageIsAnimating) {
+      this.unblock();
+      this.unblock = null;
+    }
+
     const scrollablePages = {
       '/projects/tic-tac-toe': true,
       '/projects/calculator': true,
@@ -352,9 +232,9 @@ class App extends Component {
     };
 
     return (
-      <div className={scrollablePages[`${this.props.location.pathname}`] ? 'app scrollable' : 'app'}>
+      <div className={scrollablePages[`${location.pathname}`] ? 'app scrollable' : 'app'}>
         <Header 
-          location={this.props.location}
+          location={location}
           isAnimating={this.state.pageIsAnimating}
           sideNavIsOpen={this.state.sideNavIsOpen}
           ariaHidden={this.state.ariaHidden}
@@ -368,51 +248,34 @@ class App extends Component {
           childFactory={this.childFactoryCreator()}
         >
           <CSSTransition 
-            key={this.props.location.pathname}
+            key={location.pathname}
             timeout={0}
             onEnter={() => {
-              // console.log(`onEnter: A <Transition> callback fired immediately after the 'enter' or 'appear' class is applied.`);
               document.body.style.overflow = "hidden";
-              this.setState({pageIsAnimating: true});
+              this.setState(() => ({pageIsAnimating: true}));
             }}
-            // onEntering={() => console.log(`onEntering: A <Transition> callback fired immediately after the 'enter-active' or 'appear-active' class is applied.`)}
-            onEntered={() => {
-              // console.log(`onEntered: A <Transition> callback fired immediately after the 'enter' or 'appear' classes are removed and the done class is added to the DOM node.`);
-              if (this.props.location.pathname === '/') this.setState({pageIsAnimating: false});
-            }}
-            // onExit={() => console.log(`onExit: A <Transition> callback fired immediately after the 'exit' class is applied.`)}
-            // onExiting={() => console.log(`onExiting: A <Transition> callback fired immediately after the 'exit-active' is applied.`)}
             onExited={() => {
-              // console.log(`onExited: A <Transition> callback fired immediately after the 'exit' classes are removed and the exit-done class is added to the DOM node.`);
-              // set the current Page to be the animateFromPage going forward
-              setTimeout( () => {
-                this.setState({animateFromPage: this.props.location.pathname, pageIsAnimating: false});
-              },0);
-              if (this.props.location.pathname !== '/' && this.props.location.pathname !== '/projects') {
+              this.setState(() => ({pageIsAnimating: false}));
+              if (location.pathname !== '/' && location.pathname !== '/projects') {
                 document.body.style.overflow = "auto";
               }  
             }}
           >
-            <Switch location={this.props.location}>
+            <Switch location={location}>
               <Route exact path={`/`} render={props => 
                 <Intro 
                   {...props} 
                   isAnimating={this.state.pageIsAnimating}
                 />} 
               />
-              <Route exact path={`/projects`} render={props =>
-                <Portfolio 
+              <Route exact path={`/projects/`} render={props =>
+                <Projects 
                   {...props}
-                  projects={this.props.projects}
+                  projects={frontEndProjects}
                   mostRecentProject={this.handleMostRecentProject}
-                />} 
+                />}
               />
-              <Route exact path={`/contact`} render={props =>
-                <About
-                  {...props}
-                />} 
-              />
-              {this.props.projects.map( project => (
+              {frontEndProjects.map( project => (
                 <Route key={project.title} exact path={`/projects/${project.title}`} render={props =>
                   <CaseStudy
                     {...props}
@@ -421,6 +284,11 @@ class App extends Component {
                   />}
                 />
               ))}
+              <Route exact path={`/contact`} render={props =>
+                <Contact
+                  {...props}
+                />} 
+              />
             </Switch>
           </CSSTransition>
         </TransitionGroup>
@@ -430,13 +298,8 @@ class App extends Component {
 }
 
 App.defaultProps = {
-  repetitiveProjects: {
-    '/projects/tic-tac-toe': true,
-    '/projects/calculator': true,
-    '/projects/random-quote-machine': true,
-    '/projects/pomodoro-clock': true
-  },
-  projects
+  repetitiveProjects,
+  frontEndProjects
 };
 
 export default App;

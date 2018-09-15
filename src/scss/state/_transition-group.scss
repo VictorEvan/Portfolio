@@ -52,7 +52,7 @@
 .slide-up-from-bottom-active {
 	z-index: 500;
 	transform: translateY(0) translateZ(0);
-	transition: transform $slide-animation-time $bounce-animation-effect;
+	transition: transform $slide-animation-time $slide-animation-effect;
 }
 
 .slide-up-from-bottom-done {
@@ -67,7 +67,7 @@
 .slide-up-from-middle-active {
 	z-index: 250;
 	transform: translateY(-100vh) translateZ(0);
-	transition: transform $slide-animation-time $bounce-animation-effect;
+	transition: transform $slide-animation-time $slide-animation-effect;
 }
 
 .slide-up-from-middle-done {
@@ -77,7 +77,7 @@
 .slide-up-from-middle.slide-up-from-middle-active.negate {
 	z-index: 250;
 	transform: translateY(0) translateZ(0);
-	transition: transform $slide-animation-time $bounce-animation-effect;
+	transition: transform $slide-animation-time $slide-animation-effect;
 }
 
 // ====================
@@ -92,7 +92,7 @@
 .slide-down-from-top-active {
 	z-index: 500;
 	transform: translateY(0) translateZ(0);
-	transition: transform $slide-animation-time $bounce-animation-effect;
+	transition: transform $slide-animation-time $slide-animation-effect;
 }
 
 .slide-down-from-middle {
@@ -102,13 +102,13 @@
 
 .slide-down-from-middle-active {
 	transform: translateY(100vh) translateZ(0);
-	transition: transform $slide-animation-time $bounce-animation-effect;
+	transition: transform $slide-animation-time $slide-animation-effect;
 }
 
 .slide-down-from-middle.slide-down-from-middle-active.negate {
 	z-index: 250;
 	transform: translateY(0) translateZ(0);
-	transition: transform $slide-animation-time $bounce-animation-effect;
+	transition: transform $slide-animation-time $slide-animation-effect;
 }
 
 // ====================
@@ -125,9 +125,13 @@
 }
 
 .move-in-halves-active {
-	section {
+	section:nth-of-type(1) {
 		transform: translateY(0) translateZ(0) !important;
-		transition: transform $move-in-animation-time cubic-bezier(.44,1.57,.82,-0.63);
+		transition: transform $move-in-animation-time ease;
+	}
+	section:nth-of-type(2) {
+		transform: translateY(0) translateZ(0) !important;
+		transition: transform $move-in-animation-time .5s ease;
 	}
 }
 
@@ -144,18 +148,18 @@
 .move-out-halves-active {
 	section:nth-of-type(1) {
 		transform: translateY(-120%) translateZ(0);
-		transition: transform .5s ease;
+		transition: transform $move-out-animation-time ease;
 	}
 	section:nth-of-type(2) {
 		transform: translateY(120%) translateZ(0);
-		transition: transform .5s .25s ease;
+		transition: transform $move-out-animation-time .25s ease;
 	}
 }
 
 .move-out-halves.move-out-halves-active.negate {
 	section {
 		transform: translateY(0) translateZ(0);
-		transition: transform .5s ease;
+		transition: transform $move-out-animation-time ease;
 	}
 }
 

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
+import styled from 'styled-components';
 
 import GitHub from './../images/social/GitHub';
 import Codepen from './../images/social/Codepen';
@@ -14,8 +15,13 @@ import ScrollDownIcon from './../images/icons/ScrollDownIcon';
 import MouseIcon from './../images/icons/MouseIcon';
 import { Link } from 'react-router-dom';
 
+const Warning = styled.h4`
+  opacity: .75;
+`;
+
 class Header extends Component {
   render() {
+    const { location } = this.props;
     return (
       <header>
         <Hamburger 
@@ -46,6 +52,7 @@ class Header extends Component {
             />
           </NavLink>
         </div>
+        { location.pathname === '/projects' ? <Warning>Back-End Case Studies Coming in Site Redesign</Warning> : null }
         <nav 
           className={this.props.sideNavIsOpen ? "nav--active" : "nav"}
           aria-hidden={this.props.ariaHidden}

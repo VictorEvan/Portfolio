@@ -47,7 +47,7 @@ class Intro extends Component {
           this.setState({isTyping: true});
           let newString = this.state.output.slice(0, this.state.output.length - 1);
           this.setState({output: newString});
-          setTimeout( () => this.typeWriter('delete'), this.props.typingSpeed);
+          setTimeout( () => this.typeWriter('delete'), this.props.typingSpeed - 20);
         } else {
           this.currentTalent++;
           this.currentLetter = 0;
@@ -67,7 +67,7 @@ class Intro extends Component {
       <section className="intro">
         <div className="intro--overlay"></div>
         <h1 className="title">Victor Evangelista</h1>
-        <p className="description">A Front End Engineer skilled with</p>
+        <p className="description">A Full Stack Engineer skilled with</p>
         <p className="talents">{this.state.output}<span className={this.state.isTyping ? 'text-cursor' : 'text-cursor--active'}>|</span><span className="dot">.</span></p>
         <CoolButton 
           className={`cool-button ${coolButtonClassName}`}
@@ -94,8 +94,8 @@ class Intro extends Component {
 
 Intro.defaultProps = {
   path: '/',
-  talents: ['JavaScript ES5/ES6', 'React/React-Redux', 'HTML/CSS3/SCSS', 'Object Oriented & Functional JS', 'responsive design', 'Bootstrap/jQuery'],
-  typingSpeed: 100
+  talents: ['React/React-Redux' ,'Node.js/Express', 'NoSQL/MongoDB' , 'HTML/CSS3/Sass', 'Object Oriented & Functional JS', 'responsive design', 'Bootstrap/jQuery'],
+  typingSpeed: 70
 };
 
 Intro.propTypes = {

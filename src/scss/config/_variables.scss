@@ -25,9 +25,9 @@ $breakpoints: (
 
 $base-animation-time: .5s;
 $fade-animation-time: .5s;
-$slide-animation-time: 1.5s;
+$slide-animation-time: .50s;
 $cursor-animation-time: .60s;
-$move-in-animation-time: 1.5s;
+$move-in-animation-time: .5s;
 $move-out-animation-time: .5s;
 
-$bounce-animation-effect: cubic-bezier(.79,-0.38,.22,1.54);
+$slide-animation-effect: ease-out;

@@ -7,7 +7,7 @@ import CoolButton from './CoolButton';
 
 class ProjectSquare extends Component {
   render() {
-    let url = this.props.match.url;
+    const { match } = this.props;
     return (
       <div 
         className={`project projects__project--${this.props.project}`}
@@ -19,16 +19,16 @@ class ProjectSquare extends Component {
         <div className='project-container'>
           <Link 
             className="project-link-cover" 
-            to={`${url}/${this.props.project}`}
-            onClick={()=>this.props.mostRecentProject(`${url}/${this.props.project}`)}
+            to={`${match.url}/${this.props.project}`}
+            onClick={()=>this.props.mostRecentProject(`${match.url}/${this.props.project}`)}
           ></Link>
           <h2 className="project-title">{titleCase(this.props.project, "title") === 'Random Quote Machine' ? 'Quote Machine' : titleCase(this.props.project, "title")}</h2>
           <h3 className="project-description">{this.props.description}</h3>
           <div className="link-container">
             <CoolButton
               className="project-link cool-button"
-              to={`${url}/${this.props.project}`}
-              onClick={()=>this.props.mostRecentProject(`${url}/${this.props.project}`)}
+              to={`${match.url}/${this.props.project}`}
+              onClick={()=>this.props.mostRecentProject(`${match.url}/${this.props.project}`)}
               text="Case Study"
             >
             </CoolButton>

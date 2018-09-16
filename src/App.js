@@ -255,8 +255,9 @@ class App extends Component {
               this.setState(() => ({pageIsAnimating: true}));
             }}
             onExited={() => {
+              const { to } = this.props.historyObject;
               this.setState(() => ({pageIsAnimating: false}));
-              if (location.pathname !== '/' && location.pathname !== '/projects') {
+              if (to !== '/' && to !== '/projects') {
                 document.body.style.overflow = "auto";
               }  
             }}

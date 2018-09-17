@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Route } from 'react-router-dom';
 import styled from 'styled-components';
 import queryString from 'query-string';
 
@@ -8,8 +7,6 @@ import projects from '../data/projects';
 
 import tagValidator from '../util/tagValidator';
 import intoN from '../util/intoN';
-
-import ProjectSquare from './ProjectSquare';
 
 const ProjectTileContainer = styled.li`
   width: 50%;

@@ -5,14 +5,13 @@ import titleCase from '../util/titleCase.js';
 import Column from './Column';
 
 class CaseStudy extends Component {
+  static propTypes = {
+    project: PropTypes.object.isRequired
+  }
+  // TODO: Decide whether to reintroduce mouse up icon
 
   componentDidMount = () => {
     document.body.classList.add('stop-pull-refresh');
-    setTimeout(() => this.props.enableMouseUpIcon(true),2500);
-  }
-
-  componentWillUnmount = () => {
-    this.props.enableMouseUpIcon(false);
   }
 
   render() {
@@ -65,11 +64,6 @@ class CaseStudy extends Component {
       </main>
     )
   }
-}
-
-CaseStudy.propTypes = {
-  project: PropTypes.object.isRequired,
-  enableMouseUpIcon: PropTypes.func.isRequired
 }
 
 export default CaseStudy;

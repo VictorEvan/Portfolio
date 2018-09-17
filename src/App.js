@@ -12,7 +12,6 @@ import Intro from './components/Intro';
 import Projects from './components/Projects';
 import CaseStudy from './components/CaseStudy';
 import Contact from './components/Contact';
-import backEndProjects from './data/backEndProjects';
 
 const { Lethargy } = require('lethargy');
 
@@ -178,7 +177,7 @@ class App extends Component {
   }
 
   render() {
-    const { location, history, frontEndProjects } = this.props;
+    const { location, history } = this.props;
     const { pageIsAnimating } = this.state;
 
     // do not allow transition interruptions
@@ -276,10 +275,5 @@ class App extends Component {
     );
   }
 }
-
-App.defaultProps = {
-  repetitiveProjects,
-  frontEndProjects
-};
 
 export default App;

@@ -1,21 +1,14 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
-const Hamburger = props => (
+const Hamburger = () => (
   <button 
     aria-label="toggle-nav"
-    className={!props.ariaHidden ? 'hamburger is-active' : 'hamburger'}
-    onClick={() => props.toggleSideNav(true)}
+    className='hamburger'
   >
     <span className="line"></span>
     <span className="line"></span>
     <span className="line"></span>
   </button>
 )
-
-Hamburger.propTypes = {
-  toggleSideNav: PropTypes.func.isRequired,
-  ariaHidden: PropTypes.bool.isRequired
-}
 
 export default Hamburger;

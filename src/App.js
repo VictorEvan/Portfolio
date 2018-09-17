@@ -261,7 +261,6 @@ class App extends Component {
                   <CaseStudy
                     {...props}
                     project={project}
-                    enableMouseUpIcon={this.handleMouseUpIcon}
                   />}
                 />
               ))}

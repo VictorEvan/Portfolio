@@ -1,47 +1,18 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
-import styled from 'styled-components';
 
 import GitHub from './../images/social/GitHub';
 import Codepen from './../images/social/Codepen';
 import Linkedin from './../images/social/Linkedin';
 import Logo from '../images/Logo';
 
-import Hamburger from './Hamburger';
 import NavLinkContainer from './NavLinkContainer';
-
-import ScrollDownIcon from './../images/icons/ScrollDownIcon';
-import MouseIcon from './../images/icons/MouseIcon';
-import { Link } from 'react-router-dom';
-
-const Warning = styled.h4`
-  opacity: .75;
-`;
 
 class Header extends Component {
   render() {
-    const { location } = this.props;
     return (
       <header>
-        <Hamburger 
-          toggleSideNav={this.props.handleHamburger}
-          ariaHidden={this.props.ariaHidden}
-        />
-        { this.props.showMouseUpIcon ?
-          <Link
-            className="mouse-up-container"
-            aria-label="to projects"
-            to="/projects"
-          >
-            <div className={`carousel-scroll-btn--lone ${this.props.sideNavIsOpen ? 'lower-z-index' : ''}`}>
-              <div className="carousel-scroll-btn-icon-wrapper">
-                <ScrollDownIcon />
-              </div>
-                <MouseIcon />
-            </div>
-          </Link> : null
-        }
         <div className="logo-container">
           <NavLink
             className={this.props.isAnimating || this.props.location.pathname === '/' ? 'navlink disable' : 'navlink'}
@@ -52,11 +23,8 @@ class Header extends Component {
             />
           </NavLink>
         </div>
-        { location.pathname === '/projects' ? <Warning>Back-End Case Studies Coming in Site Redesign</Warning> : null }
         <nav 
-          className={this.props.sideNavIsOpen ? "nav--active" : "nav"}
-          aria-hidden={this.props.ariaHidden}
-          onClick={() => this.props.closeSideNav()}
+          className='nav'
         >
           <div className="nav__inner" onClick={e => e.stopPropagation()}>
             <div className="nav__inner__title mobile-only">
@@ -65,7 +33,6 @@ class Header extends Component {
               {this.props.navLinks.map( navLink => (
                 <NavLinkContainer
                   key={navLink.toPath}
-                  closeSideNav={this.props.closeSideNav}
                   isAnimating={this.props.isAnimating}
                   currentPath={this.props.location.pathname}
                   toPath={navLink.toPath}
@@ -120,12 +87,7 @@ Header.defaultProps = {
 
 Header.propTypes = {
   location: PropTypes.object.isRequired,
-  isAnimating: PropTypes.bool,
-  sideNavIsOpen: PropTypes.bool.isRequired,
-  ariaHidden: PropTypes.bool.isRequired,
-  handleHamburger: PropTypes.func.isRequired,
-  closeSideNav: PropTypes.func.isRequired,
-  showMouseUpIcon: PropTypes.bool.isRequired,
+  isAnimating: PropTypes.bool
 }
 
 export default Header;

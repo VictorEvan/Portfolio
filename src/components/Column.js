@@ -2,6 +2,17 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 class Column extends Component {
+  static propTypes = {
+    title: PropTypes.string.isRequired,
+    skillDescription: PropTypes.string.isRequired,
+    listTitle: PropTypes.string.isRequired,
+    noteworthyLink: PropTypes.object,
+    noteworthyItem: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.array,
+    ]).isRequired
+  }
+  
   render() {
     return (
       <div className="column">
@@ -31,17 +42,6 @@ class Column extends Component {
       </div>
     )
   }
-}
-
-Column.propTypes = {
-  title: PropTypes.string.isRequired,
-  skillDescription: PropTypes.string.isRequired,
-  listTitle: PropTypes.string.isRequired,
-  noteworthyLink: PropTypes.object,
-  noteworthyItem: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.array,
-  ]).isRequired
 }
 
 export default Column;

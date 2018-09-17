@@ -1,12 +1,14 @@
 // Colors
 
+$resume-dark-blue : #313638;
+$resume-light-blue: #5271ff;
 $cod-gray         : #111111;
 $black-opacity-25 : rgba(0,0,0,0.25);
 $cerulean         : #10A3D5;
 $white            : #F5F5F5;
 $dodger-blue      : #3088f3;
 
-$color--nav             : $cod-gray;
+$color--nav             : $resume-dark-blue;
 $color--cursor          : $white;
 $color--black-dim       : $black-opacity-25;
 $color--case-study-theme : $dodger-blue;

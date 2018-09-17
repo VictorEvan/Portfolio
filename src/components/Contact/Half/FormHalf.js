@@ -1,10 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const ContactForm = styled.form`
+import { HalfSection } from './styled';
+
+const Form = styled.form`
+  width: 100%;
   display: flex;
   flex-direction: column;
-  margin: .50rem 0;
+  padding: 1rem 0;
   input {
     margin-bottom: .25rem;
   }
@@ -20,8 +23,8 @@ const ContactForm = styled.form`
   }
 `;
 
-export default () => (
-  <ContactForm>
+const ContactForm = () => (
+  <Form>
     <label htmlFor="name">Name
     </label>
     <input id="name" type="text" /> 
@@ -29,5 +32,16 @@ export default () => (
     <input id="email" type="email" />
     <label htmlFor="message">Message</label>
     <textarea id="message" name="message"/>
-  </ContactForm>
+    <input type="submit" value="submit" />
+  </Form>
 );
+
+const FormHalf = () => (
+  <HalfSection type="form">
+    <HalfSection.Title>Contact Info</HalfSection.Title>
+    <HalfSection.Description>Let's Talk</HalfSection.Description>
+    <ContactForm />
+  </HalfSection>
+);
+
+export default FormHalf;

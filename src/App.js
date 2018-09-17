@@ -7,6 +7,10 @@ import './scss/App.css';
 import frontEndProjects from './data/frontEndProjects';
 import repetitiveProjects from './data/repetitiveProjects';
 
+import transitionHandler from './util/transitionHandler';
+import addEvent from './util/addEvent';
+
+import SidebarContent from './components/SidebarContent';
 import Header from './components/Header';
 import Intro from './components/Intro';
 import Projects from './components/Projects';
@@ -72,33 +76,29 @@ class App extends Component {
 
   movementHandler = direction => {
     const { location } = this.props;
+    const { pageIsAnimating } = this.state;
 
-    if (!this.state.pageIsAnimating) {
+    if (!pageIsAnimating) {
       if (direction === 'scrollDown' && 
         location.pathname === '/'
       ) {
         this.props.history.push('/projects');
-        this.setState({pageIsAnimating: true});
       } else if (
         direction === 'scrollUp' &&
         location.pathname === '/projects'
       ) {
         this.props.history.push('/');
-        this.setState({pageIsAnimating: true});
       } else if (
         direction === 'scrollUp' &&
-        this.props.repetitiveProjects[location.pathname] &&
-        window.pageYOffset === 0 // 0 pageYOffset is top of page
+        repetitiveProjects[location.pathname]
       ) {
         this.props.history.push('/projects');
-        this.setState({pageIsAnimating: true});
       } else if (
         direction === 'scrollDown' &&
         location.pathname === '/projects' &&
         this.state.mostRecentProjectVisited
       ) {
         this.props.history.push(`${this.state.mostRecentProjectVisited}`);
-        this.setState({pageIsAnimating: true});
       }
     }
   }
@@ -245,13 +245,12 @@ class App extends Component {
               <Route exact path={`/`} render={props => 
                 <Intro 
                   {...props} 
-                  isAnimating={this.state.pageIsAnimating}
+                  isAnimating={pageIsAnimating}
                 />} 
               />
               <Route exact path={`/projects/`} render={props =>
-                <Projects 
-                  {...props}
-                  projects={frontEndProjects}
+                <Projects
+                  location={location}
                   mostRecentProject={this.handleMostRecentProject}
                 />}
               />

@@ -16,17 +16,6 @@ import backEndProjects from './data/backEndProjects';
 
 const { Lethargy } = require('lethargy');
 
-// Cross-browser bind without using JQuery, taken from http://stackoverflow.com/a/3076693/3966682
-function addEvent(el, eventType, handler) {
-  if (el.addEventListener) { // DOM Level 2 browsers
-    el.addEventListener(eventType, handler, false);
-  } else if (el.attachEvent) { // IE <= 8
-    el.attachEvent('on' + eventType, handler);
-  } else { // ancient browsers
-    el['on' + eventType] = handler;
-  }
-};
-	
 class App extends Component {
 
   state = {

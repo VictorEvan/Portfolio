@@ -1,6 +1,7 @@
 export default
 [
   {
+    tags: ['front-end'],
     title: 'tic-tac-toe',
     description: 'Single or Multiplayer Redux Game',
     programmingDescription: "React's reusable presentational components and Redux' store for app state proved to make a delightful cocktail for this game.",
@@ -24,6 +25,7 @@ export default
     ],
   },
   {
+    tags: ['front-end'],
     title: 'calculator',
     description: 'Fully functional & responsive',
     programmingDescription: "Using React for this application was a pleasure. The majority of the UI is dynamically rendered by reusable React Components.",
@@ -47,6 +49,7 @@ export default
     ],
   },
   {
+    tags: ['front-end'],
     title: 'random-quote-machine',
     description: 'Inspirational quotes from the web',
     programmingDescription: "All the quotes behind this beautiful app are pulled from the web using the fetch API, and can be easily be shared on Twitter.",
@@ -70,6 +73,7 @@ export default
     ],
   },
   {
+    tags: ['front-end'],
     title: 'pomodoro-clock',
     description: 'Simple productivity app',
     programmingDescription: "There has to be something interesting I can say about a clock.",

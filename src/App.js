@@ -6,7 +6,6 @@ import './scss/App.css';
 
 import frontEndProjects from './data/frontEndProjects';
 import repetitiveProjects from './data/repetitiveProjects';
-import transitionHandler from './helper/transitionHandler';
 
 import Header from './components/Header';
 import Intro from './components/Intro';

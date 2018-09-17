@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withRouter, Link } from 'react-router-dom';
-import titleCase from '../helper/titleCase.js';
+import titleCase from '../util/titleCase.js';
 
 import CoolButton from './CoolButton';
 

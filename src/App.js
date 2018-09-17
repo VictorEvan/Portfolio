@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom'; 
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
+import Sidebar from 'react-sidebar';
 import './scss/App.css';
 
 import frontEndProjects from './data/frontEndProjects';
@@ -19,13 +20,12 @@ const { Lethargy } = require('lethargy');
 class App extends Component {
 
   state = {
+    sidebarOpen: false,
     pageIsAnimating: false,
-    showMouseUpIcon: false,
-    sideNavIsOpen: false, // header stuff
-    ariaHidden: true, // header stuff
-    navIsAnimating: false, //header stuff
     mostRecentProjectVisited: null
   }
+
+  onSetSidebarOpen = (open) => this.setState(() => ({sidebarOpen: open}));
 
   componentDidMount = () => {
     const { location, addHistory } = this.props;
@@ -70,27 +70,6 @@ class App extends Component {
     addEvent(window, 'wheel', checkScroll);
     addEvent(window, 'MozMousePixelScroll', checkScroll);
     // ============================================================
-  }
-
-  handleMouseUpIcon = boolean => this.setState({showMouseUpIcon: boolean});
-
-  handleNav = (toggle= false) => {
-    const openSideNav = () => {
-      document.body.style.overflow = "hidden";
-      setTimeout( () => this.setState({ariaHidden: false}),10);
-      setTimeout( () => this.setState({navIsAnimating: false}),500);
-    }
-    const closeSideNav = () => {
-      if (this.state.sideNavIsOpen) {
-        this.setState({ariaHidden: true});
-        setTimeout( () => this.setState({sideNavIsOpen: false, navIsAnimating: false}),500);
-      }
-    }
-    const toggleSideNav = () => {
-      this.setState({sideNavIsOpen: true, navIsAnimating: true});
-      this.state.sideNavIsOpen ? closeSideNav() : openSideNav();
-    };
-    if (!this.state.navIsAnimating) toggle ? toggleSideNav() : closeSideNav();
   }
 
   movementHandler = direction => {
@@ -224,14 +203,27 @@ class App extends Component {
       <div className={scrollablePages[`${location.pathname}`] ? 'app scrollable' : 'app'}>
         <Header 
           location={location}
-          isAnimating={this.state.pageIsAnimating}
-          sideNavIsOpen={this.state.sideNavIsOpen}
-          ariaHidden={this.state.ariaHidden}
-          navIsAnimating={this.state.navIsAnimating}
-          handleHamburger={this.handleNav}
-          closeSideNav={this.handleNav}
-          showMouseUpIcon={this.state.showMouseUpIcon}
+          isAnimating={pageIsAnimating}
         />
+        <Sidebar
+          sidebar={<SidebarContent/>}
+          open={this.state.sidebarOpen}
+          onSetOpen={this.onSetSidebarOpen}
+          shadow={true}
+          styles={{ 
+            sidebar: { 
+              zIndex: 2000, background: "white", width: "70%"
+            },
+            dragHandle: {
+              zIndex: 1000
+            },
+            overlay: {
+              zIndex: 1000
+            }
+          }}
+        >
+          <button onClick={() => this.onSetSidebarOpen(true)} style={{color: 'white'}} >TOGGLE</button>
+        </Sidebar>
         <TransitionGroup 
           component={null}
           childFactory={this.childFactoryCreator()}

@@ -7,7 +7,6 @@ const NavLinkContainer = props => {
     <li className={`navlink-container--${props.title.toLowerCase()}`}>
       <NavLink 
         className={props.isAnimating || props.currentPath === props.toPath ? 'navlink disable' : 'navlink'}
-        onClick={() => props.closeSideNav()}
         exact to={props.toPath}
       >
         {props.title}
@@ -17,7 +16,6 @@ const NavLinkContainer = props => {
 }
 
 NavLinkContainer.propTypes = {
-  closeSideNav: PropTypes.func.isRequired,
   isAnimating: PropTypes.bool,
   currentPath: PropTypes.string,
   toPath: PropTypes.string.isRequired,

@@ -4,7 +4,7 @@ import App from './App';
 import { Router, Route } from 'react-router-dom'; 
 import registerServiceWorker from './registerServiceWorker';
 import { createBrowserHistory } from 'history';
-import historyTracker from './helper/historyTracker';
+import historyTracker from './util/historyTracker';
 
 const customHistory = createBrowserHistory({basename: process.env.basename});
 const addHistory = historyTracker();

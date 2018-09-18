@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
 
 import { HalfSection } from './styled';
@@ -8,6 +8,12 @@ const Form = styled.form`
   display: flex;
   flex-direction: column;
   padding: 1rem 0;
+
+  label {
+    display: flex;
+    flex-direction: column;
+  }
+
   input {
     margin-bottom: .25rem;
   }
@@ -23,18 +29,47 @@ const Form = styled.form`
   }
 `;
 
-const ContactForm = () => (
-  <Form>
-    <label htmlFor="name">Name
-    </label>
-    <input id="name" type="text" /> 
-    <label htmlFor="email">Email</label>
-    <input id="email" type="email" />
-    <label htmlFor="message">Message</label>
-    <textarea id="message" name="message"/>
-    <input type="submit" value="submit" />
-  </Form>
-);
+class ContactForm extends Component {
+  state = {
+    name: '',
+    email: '',
+    message: ''
+  }
+
+  handleSubmit = async (event) => {
+    event.preventDefault();
+    const result = await fetch('/api/contact', {
+      method: 'post',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify(this.state)
+    });
+    console.dir(result);
+  }
+
+  handleChange = (value, type) => this.setState({[type]: value});
+
+  render() {
+    const { name, email, message } = this.state;
+
+    return (
+      <Form onSubmit={this.handleSubmit} >
+        <label>
+          Name:
+          <input type="text" value={name} onChange={(e) => this.handleChange(e.target.value, 'name')} /> 
+        </label>
+        <label>
+          Email:
+          <input type="email" value={email} onChange={(e) => this.handleChange(e.target.value, 'email')} />
+        </label>
+        <label>
+          Message:
+          <textarea value={message} onChange={(e) => this.handleChange(e.target.value, 'message')} />
+        </label>
+        <input type="submit" value="Submit" />
+      </Form>
+    );
+  }
+};
 
 const FormHalf = () => (
   <HalfSection type="form">

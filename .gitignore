@@ -11,7 +11,7 @@ client/coverage
 client/build
 
 # misc
-src/scss/App.css
+client/src/scss/App.css
 src/.sass-cache/
 .DS_Store
 .env.local

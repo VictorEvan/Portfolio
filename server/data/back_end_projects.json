@@ -1,0 +1,17 @@
+[
+  {
+    "title": "Stock Price Checker",
+    "description": "Check and compare stock prices.",
+    "tags": ["back-end"],
+    "web_url": "https://ve-stock-price-checker.glitch.me/",
+    "github_repo_url": "https://github.com/victorevan/stock-price-checker/",
+    "skills": [
+      {
+        "type": "Programming"
+      },
+      {
+        "type": "Architecture"
+      }
+    ]
+  }
+]

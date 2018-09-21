@@ -20,6 +20,10 @@ const Form = styled.form`
     margin-bottom: .25rem;
   }
   
+  textarea {
+    resize: none;
+  }
+  
   input,
   textarea {
     padding: 4px 2.5px;

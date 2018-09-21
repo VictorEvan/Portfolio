@@ -19,7 +19,7 @@ const Form = styled.form`
   input {
     margin-bottom: .25rem;
   }
-  
+
   textarea {
     resize: none;
   }

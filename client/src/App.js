@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+import handleInitialData from './redux/thunk/handleInitialData';
+import { connect } from 'react-redux';
 import { Route, Switch } from 'react-router-dom'; 
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import Sidebar from 'react-sidebar';
 import './scss/App.css';
 
-import frontEndProjects from './data/frontEndProjects';
 import repetitiveProjects from './data/repetitiveProjects';
 
 import transitionHandler from './util/transitionHandler';
@@ -275,4 +276,11 @@ class App extends Component {
   }
 }
 
-export default App;
+function mapStateToProps({ projects }) {
+  console.log('App mapStateToProps');
+  return {
+    loading: !Boolean(projects[0])
+  }
+};
+
+export default connect(mapStateToProps)(App);

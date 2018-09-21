@@ -1,7 +1,10 @@
 export default (acceptedTags, tag) => {
   tag = tag.toLowerCase();
+  let tagIsValidated = false;
   acceptedTags.forEach((validTag) => {
-    if (tag === validTag) return true
+    if (tag === validTag) {
+      tagIsValidated = true;
+    }
   });
-  return false;
+  return tagIsValidated;
 };

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -41,6 +42,13 @@ class SideNavLinkContainer extends Component {
     );
   }
 }
+
+SideNavLinkContainer.propTypes = {
+  label: PropTypes.string.isRequired,
+  to: PropTypes.string.isRequired,
+  sublinks: PropTypes.array,
+  closeSidebar: PropTypes.func.isRequired
+};
 
 const SideNav = styled.nav`
   height: 100%;
@@ -102,6 +110,11 @@ SidebarContent.defaultProps = {
       to: '/contact'
     }
   ]
-}
+};
+
+SidebarContent.propTypes = {
+  links: PropTypes.array.isRequired,
+  closeSidebar: PropTypes.func.isRequired
+};
 
 export default SidebarContent;

@@ -19,14 +19,14 @@ class SideNavLinkContainer extends Component {
   openSubLink = (open) => this.setState(({ sublinksOpen: prev }) => ({sublinksOpen: !prev }));
 
   render() {
-    const { label, to, sublinks } = this.props;
+    const { label, to, sublinks, closeSidebar } = this.props;
     const { sublinksOpen } = this.state;
     return (
       <NavLinkContainer>
-        <NavLink to={to} >
+        <NavLink closeSidebar={closeSidebar} to={to}>
           {label}
         </NavLink>
-        {sublinks && <button onClick={this.openSubLink} >Toggle</button>}
+        {sublinks && <button onClick={this.openSubLink}>Toggle</button>}
         {sublinksOpen && 
           <ul>
             {sublinks.map(({ label, to }) => (
@@ -69,16 +69,17 @@ SideNav.ListContainer = styled.ul`
   height: 100%;
 `;
 
-const SidebarContent = ({ links }) => (
+const SidebarContent = ({ links, closeSidebar }) => (
   <SideNav>
     <SideNav.Header>Menu</SideNav.Header>
     <SideNav.ListContainer>
       {links.map(({ label, to, sublinks }) => (
-        <SideNavLinkContainer 
+        <SideNavLinkContainer
           key={label}
           label={label}
           to={to}
           sublinks={sublinks}
+          closeSidebar={closeSidebar}
         />
       ))}
     </SideNav.ListContainer>

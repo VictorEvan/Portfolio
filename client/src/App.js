@@ -14,9 +14,10 @@ import addEvent from './util/addEvent';
 import SidebarContent from './components/SidebarContent';
 import Header from './components/Header';
 import Intro from './components/Intro';
-import Projects from './components/Projects';
+import ProjectsPreview from './components/ProjectsPreview';
 import CaseStudy from './components/CaseStudy';
 import Contact from './components/Contact';
+import LoadingBar from 'react-redux-loading';
 
 const { Lethargy } = require('lethargy');
 
@@ -24,13 +25,13 @@ class App extends Component {
 
   state = {
     sidebarOpen: false,
-    pageIsAnimating: false,
-    mostRecentProjectVisited: null
+    pageIsAnimating: false
   }
 
   onSetSidebarOpen = (open) => this.setState(() => ({sidebarOpen: open}));
 
   componentDidMount = () => {
+    this.props.dispatch(handleInitialData());
     const { location, addHistory } = this.props;
     addHistory(location);
     // scroll event listener
@@ -94,29 +95,11 @@ class App extends Component {
         repetitiveProjects[location.pathname]
       ) {
         this.props.history.push('/projects');
-      } else if (
-        direction === 'scrollDown' &&
-        location.pathname === '/projects' &&
-        this.state.mostRecentProjectVisited
-      ) {
-        this.props.history.push(`${this.state.mostRecentProjectVisited}`);
       }
     }
   }
 
-  
-  handleMostRecentProject = projectPathName => this.setState({mostRecentProjectVisited: projectPathName});
-
-/*   detectScroll = e => {
-    let delta = e.wheelDelta ? e.wheelDelta : -1 * e.deltaY;
-    // Negative delta is scroll down, positive delta is scroll up
-    let direction = delta < 0 ? 'scrollDown' : 'scrollUp';
-    this.movementHandler(direction);
-  } */
-
   detectSwipe = (el, callback) => {
-    const { location } = this.props;
-
     let touchsurface = el,
     swipedir,
     startX,
@@ -137,16 +120,7 @@ class App extends Component {
         startY = touchobj.pageY;
         startTime = new Date().getTime(); // record time when finger first makes contact with surface
         // e.preventDefault()
-    }, {passive: true})
-  
-    touchsurface.addEventListener('touchmove', e => {
-      if (
-        location.pathname === '/' || 
-        location.pathname === '/projects'
-      ) {
-        e.preventDefault();
-      }
-    }, false)
+    }, {passive: true});
   
     touchsurface.addEventListener('touchend', e => {
         let touchobj = e.changedTouches[0]
@@ -163,19 +137,14 @@ class App extends Component {
         }
         handleswipe(swipedir)
         // e.preventDefault();
-    }, {passive: true})
+    }, {passive: true});
   }
 
   childFactoryCreator = () => {
-    const { historyObject } = this.props;
-    const { from, to } = historyObject;
+    const { from, to } = this.props.historyObject;
     const { classNames, enter, timeout } = transitionHandler(from, to);
-    return (
-      (child) => {
-        return ( React.cloneElement(child, { classNames, enter, timeout }) )
-      }
-    );
-  }
+    return ((child) => React.cloneElement(child, { classNames, enter, timeout }));
+  };
 
   render() {
     const { location, history } = this.props;
@@ -192,20 +161,21 @@ class App extends Component {
     }
 
     const scrollablePages = {
-      '/projects/tic-tac-toe': true,
-      '/projects/calculator': true,
-      '/projects/random-quote-machine': true,
-      '/projects/pomodoro-clock': true
+      '/case-study/tic-tac-toe': true,
+      '/case-study/calculator': true,
+      '/case-study/random-quote-machine': true,
+      '/case-study/pomodoro-clock': true
     };
 
     return (
       <div className={scrollablePages[`${location.pathname}`] ? 'app scrollable' : 'app'}>
+        <LoadingBar style={{ zIndex: 1241231000 }} />
         <Header 
           location={location}
           isAnimating={pageIsAnimating}
         />
         <Sidebar
-          sidebar={<SidebarContent/>}
+          sidebar={<SidebarContent closeSidebar={() => this.onSetSidebarOpen(false)} />}
           open={this.state.sidebarOpen}
           onSetOpen={this.onSetSidebarOpen}
           shadow={true}
@@ -223,6 +193,10 @@ class App extends Component {
         >
           <button onClick={() => this.onSetSidebarOpen(true)} style={{color: 'white'}} >TOGGLE</button>
         </Sidebar>
+        {
+          this.props.loading === true
+            ? null
+            :         
         <TransitionGroup 
           component={null}
           childFactory={this.childFactoryCreator()}
@@ -249,28 +223,20 @@ class App extends Component {
                   isAnimating={pageIsAnimating}
                 />} 
               />
-              <Route exact path={`/projects/`} render={props =>
-                <Projects
-                  location={location}
-                  mostRecentProject={this.handleMostRecentProject}
-                />}
+              <Route exact path={`/projects`} render={({ location }) => {
+                document.body.classList.add('stop-pull-refresh');
+                document.body.style.overflow = "hidden";
+                return (
+                  <ProjectsPreview
+                    location={location}
+                  />)}}
               />
-              {frontEndProjects.map( project => (
-                <Route key={project.title} exact path={`/projects/${project.title}`} render={props =>
-                  <CaseStudy
-                    {...props}
-                    project={project}
-                  />}
-                />
-              ))}
-              <Route exact path={`/contact`} render={props =>
-                <Contact
-                  {...props}
-                />} 
-              />
+              <Route exact path={`/case-studies`} component={CaseStudy} />
+              <Route exact path={`/contact`} component={Contact} />
             </Switch>
           </CSSTransition>
         </TransitionGroup>
+        }
       </div>
     );
   }

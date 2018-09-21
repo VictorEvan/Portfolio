@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -18,14 +19,14 @@ class SideNavLinkContainer extends Component {
   openSubLink = (open) => this.setState(({ sublinksOpen: prev }) => ({sublinksOpen: !prev }));
 
   render() {
-    const { label, to, sublinks } = this.props;
+    const { label, to, sublinks, closeSidebar } = this.props;
     const { sublinksOpen } = this.state;
     return (
       <NavLinkContainer>
-        <NavLink to={to} >
+        <NavLink closeSidebar={closeSidebar} to={to}>
           {label}
         </NavLink>
-        {sublinks && <button onClick={this.openSubLink} >Toggle</button>}
+        {sublinks && <button onClick={this.openSubLink}>Toggle</button>}
         {sublinksOpen && 
           <ul>
             {sublinks.map(({ label, to }) => (
@@ -41,6 +42,13 @@ class SideNavLinkContainer extends Component {
     );
   }
 }
+
+SideNavLinkContainer.propTypes = {
+  label: PropTypes.string.isRequired,
+  to: PropTypes.string.isRequired,
+  sublinks: PropTypes.array,
+  closeSidebar: PropTypes.func.isRequired
+};
 
 const SideNav = styled.nav`
   height: 100%;
@@ -61,16 +69,17 @@ SideNav.ListContainer = styled.ul`
   height: 100%;
 `;
 
-const SidebarContent = ({ links }) => (
+const SidebarContent = ({ links, closeSidebar }) => (
   <SideNav>
     <SideNav.Header>Menu</SideNav.Header>
     <SideNav.ListContainer>
       {links.map(({ label, to, sublinks }) => (
-        <SideNavLinkContainer 
+        <SideNavLinkContainer
           key={label}
           label={label}
           to={to}
           sublinks={sublinks}
+          closeSidebar={closeSidebar}
         />
       ))}
     </SideNav.ListContainer>
@@ -102,6 +111,11 @@ SidebarContent.defaultProps = {
       to: '/contact'
     }
   ]
-}
+};
+
+SidebarContent.propTypes = {
+  links: PropTypes.array.isRequired,
+  closeSidebar: PropTypes.func.isRequired
+};
 
 export default SidebarContent;

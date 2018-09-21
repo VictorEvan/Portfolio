@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 
+import { saveContact } from '../../../util/api';
+
 import { HalfSection } from './styled';
 
 const Form = styled.form`
@@ -16,6 +18,10 @@ const Form = styled.form`
 
   input {
     margin-bottom: .25rem;
+  }
+
+  textarea {
+    resize: none;
   }
   
   input,
@@ -36,13 +42,9 @@ class ContactForm extends Component {
     message: ''
   }
 
-  handleSubmit = async (event) => {
-    event.preventDefault();
-    const result = await fetch('/api/contact', {
-      method: 'post',
-      headers: {'Content-Type':'application/json'},
-      body: JSON.stringify(this.state)
-    });
+  handleSubmit = async (e) => {
+    e.preventDefault();
+    const result = await saveContact(this.state);
     console.dir(result);
   }
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import titleCase from '../util/titleCase.js';
+import titleCase from '../../util/titleCase.js';
 import Column from './Column';
 
 class CaseStudy extends Component {

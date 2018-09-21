@@ -17,7 +17,7 @@ class Column extends Component {
     return (
       <div className="column">
         <figure className="column__image">
-          <img className="skill-icon" rel="noopener noreferrer" src={require(`../images/icons/${this.props.title.toLowerCase()}.svg`)} alt=""/>
+          <img className="skill-icon" rel="noopener noreferrer" src={require(`../../images/icons/${this.props.title.toLowerCase()}.svg`)} alt=""/>
         </figure>
         <h3 className="column__skill-name">{this.props.title}</h3>
         <p className="column__skill-description">{this.props.skillDescription}</p>

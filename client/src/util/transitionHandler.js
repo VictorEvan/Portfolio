@@ -1,4 +1,3 @@
-import projects from '../data/frontEndProjects';
 import repetitiveProjects from '../data/repetitiveProjects';
 
 export default (from, to) => {
@@ -76,14 +75,14 @@ export default (from, to) => {
         },
         timeout: 500, appear: false
       }
-    case `/projects-/projects/${projects[0].title}`:
-      return defaultProjectsCase;
-    case `/projects-/projects/${projects[1].title}`:
-      return defaultProjectsCase;
-    case `/projects-/projects/${projects[2].title}`:
-      return defaultProjectsCase;
-    case `/projects-/projects/${projects[3].title}`:
-      return defaultProjectsCase;
+    // case `/projects-/projects/${projects[0].title}`:
+    //   return defaultProjectsCase;
+    // case `/projects-/projects/${projects[1].title}`:
+    //   return defaultProjectsCase;
+    // case `/projects-/projects/${projects[2].title}`:
+    //   return defaultProjectsCase;
+    // case `/projects-/projects/${projects[3].title}`:
+    //   return defaultProjectsCase;
     case 'any-project-/projects':
       return {
         classNames: {

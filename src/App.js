@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import * as AppActionCreators from './redux/actions/app';
 import { Route, Switch } from 'react-router-dom'; 
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
+import { push } from 'connected-react-router';
 import './scss/App.css';
 
 import Header from './components/Header';
@@ -338,12 +339,16 @@ class App extends Component {
   }
 
   childFactoryCreator = () => {
+    console.log('RUN CHILD FACTORY CREATOR- RUN ANIMATION HANDLER');
+    console.log(this.props.location.history);
+    // this.props.location.history[this.props.location.history.length -1];
     let animateFromPage = this.state.animateFromPage;
     let animateToPage = this.props.location.pathname;
     console.log(`${animateFromPage} to ${animateToPage}`);
     console.log(this.animationHandler(animateFromPage, animateToPage));
     let { classNames, timeout, appear } = this.animationHandler(animateFromPage,animateToPage);
-      return (
+    
+    return (
       (child) => {
         return ( React.cloneElement(child, { classNames, timeout, appear }) )
       }
@@ -378,20 +383,23 @@ class App extends Component {
             key={this.props.location.pathname}
             timeout={0}
             onEnter={() => {
-              // console.log(`onEnter: A <Transition> callback fired immediately after the 'enter' or 'appear' class is applied.`);
+              console.log(`onEnter: A <Transition> callback fired immediately after the 'enter' or 'appear' class is applied.`);
               document.body.style.overflow = "hidden";
               this.setState({pageIsAnimating: true});
             }}
-            // onEntering={() => console.log(`onEntering: A <Transition> callback fired immediately after the 'enter-active' or 'appear-active' class is applied.`)}
+            onEntering={() => console.log(`onEntering: A <Transition> callback fired immediately after the 'enter-active' or 'appear-active' class is applied.`)}
             onEntered={() => {
-              // console.log(`onEntered: A <Transition> callback fired immediately after the 'enter' or 'appear' classes are removed and the done class is added to the DOM node.`);
+              console.log(`onEntered: A <Transition> callback fired immediately after the 'enter' or 'appear' classes are removed and the done class is added to the DOM node.`);
               if (this.props.location.pathname === '/') this.setState({pageIsAnimating: false});
             }}
-            // onExit={() => console.log(`onExit: A <Transition> callback fired immediately after the 'exit' class is applied.`)}
-            // onExiting={() => console.log(`onExiting: A <Transition> callback fired immediately after the 'exit-active' is applied.`)}
+            onExit={() => console.log(`onExit: A <Transition> callback fired immediately after the 'exit' class is applied.`)}
+            onExiting={() => {
+              console.log(`onExiting: A <Transition> callback fired immediately after the 'exit-active' is applied.`)
+            }}
             onExited={() => {
-              // console.log(`onExited: A <Transition> callback fired immediately after the 'exit' classes are removed and the exit-done class is added to the DOM node.`);
+              console.log(`onExited: A <Transition> callback fired immediately after the 'exit' classes are removed and the exit-done class is added to the DOM node.`);
               // set the current Page to be the animateFromPage going forward
+              
               setTimeout( () => {
                 this.setState({animateFromPage: this.props.location.pathname, pageIsAnimating: false});
               },0);
@@ -541,7 +549,8 @@ App.defaultProps = {
 
 const mapStateToProps = state => {
 	return {
-    test: state.test
+    test: state.test,
+    location: state.router.location
 	}
 };
 
@@ -551,4 +560,6 @@ const mapDispatchToProps = dispatch => {
 	}
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default App;
+
+// export default connect(mapStateToProps, mapDispatchToProps)(App);

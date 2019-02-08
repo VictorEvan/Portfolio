@@ -36,7 +36,7 @@
     align-items: stretch;
   }
   .project-title {
-      display: none;
+    display: none;
     @media screen and (min-width: map-get($breakpoints,'med')) and (min-height: 400px) {
       display: block;
       font-size: 2rem;
